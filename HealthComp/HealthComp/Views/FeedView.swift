@@ -11,13 +11,46 @@ struct FeedView: View {
     let feed: Feed
     
     var body: some View {
-        VStack (spacing: 15){
-            ForEach(feed.posts) {post in
-                PostView(post: post)
-                Divider()
+        
+        ZStack{
+            Color("light-green")
+                .ignoresSafeArea()
+            ScrollView{
+                HStack{
+                    Text("Hey, Roaree! See what everyone is up to")
+                        .font(.system(size: 20, weight: .semibold))
+                        .padding()
+                        
+                    AsyncImage(
+                        url: URL(string:"https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG"),
+                        content: { image in
+                            image.resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .overlay(Circle().stroke(Color("light-blue"), lineWidth: 4))
+                                .clipShape(Circle())
+                            
+                        },
+                        placeholder: {
+                            ProgressView()
+                        }
+                    )
+                }.background{
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .fill(Color("medium-green"))
+                        .frame(width:UIScreen.main.bounds.width-20)
+                }
+                .padding(.bottom, 2)
+
+                ForEach(feed.posts) {post in
+                    PostView(post: post)
+                        .padding(.horizontal)
+                }
             }
+            
+
+            
         }
-        .frame(width: UIScreen.main.bounds.width-10)
     }
 }
 
@@ -26,33 +59,30 @@ struct FeedView_Previews: PreviewProvider {
         posts: [
             Post(id: UUID(),
                  userId: UUID(),
-                 name: "Phillip",
+                 name: "Ben",
                  date: "2023-11-07",
-                 pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_800_800/0/1694449265391?e=2147483647&v=beta&t=eOyQO18Pihsu-d-UlNHV1iw40wDIdMhBqCNipoO9LcU",
+                 pfp: "https://media.licdn.com/dms/image/C4D03AQGtwhLUclJJkw/profile-displayphoto-shrink_800_800/0/1641697614222?e=1704931200&v=beta&t=LWc3Ci5zcLViC5tjdze0bgxtSCXQAsXvuIBgAKcaQPg",
                  likes: 10,
-                 attatchment: "",
+                 attatchment: nil,
                  caption: "Purring today! I am slaying so hard you should totally get like me!",
                  comments: [
                     Comment(id: UUID(),
                         name: "Ben",
-                        pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg",
                         recieverUserID: UUID(),
                         senderUserId: UUID(),
-                        message: "This is a sample comment 1",
+                        message: "Yas",
                         date: "2023-11-07"),
                     Comment(id: UUID(),
                         name: "Claudia",
-                        pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg",
                         recieverUserID: UUID(),
                         senderUserId: UUID(),
-                        message: "This is a sample comment 2",
+                        message: "Yup Ben!",
                         date: "2023-11-07"),
                     Comment(id: UUID(),
                         name: "Eugenia",
-                        pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg",
                         recieverUserID: UUID(),
                         senderUserId: UUID(),
-                        message: "This is a sample comment 3",
+                        message: "Goals pookie",
                         date: "2023-11-07")
                     ]),
             
@@ -60,17 +90,32 @@ struct FeedView_Previews: PreviewProvider {
                 userId: UUID(),
                 name: "Eugenia",
                 date: "2023-11-06",
-                pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_800_800/0/1694449265391?e=2147483647&v=beta&t=eOyQO18Pihsu-d-UlNHV1iw40wDIdMhBqCNipoO9LcU",
+                pfp: "https://media.licdn.com/dms/image/C4E03AQFdwJIKhXcQ-g/profile-displayphoto-shrink_800_800/0/1660068407072?e=1704931200&v=beta&t=1fLAkh0en-gEON0zegrK5j2GJV1sWh8GnzmU7mq_rYk",
                 likes: 15,
-                attatchment: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_800_800/0/1694449265391?e=2147483647&v=beta&t=eOyQO18Pihsu-d-UlNHV1iw40wDIdMhBqCNipoO9LcU",
+                attatchment: "https://img.freepik.com/free-photo/young-happy-sportswoman-running-road-morning-copy-space_637285-3758.jpg",
                  caption: "Killing it today!",
                 comments: [
                     Comment(id: UUID(),
                             name: "Phillip",
-                            pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg",
                             recieverUserID: UUID(),
                             senderUserId: UUID(),
                             message: "Another sample comment",
+                            date: "2023-11-06")
+            ]),
+            Post(id: UUID(),
+                userId: UUID(),
+                name: "Claudia",
+                date: "2023-11-06",
+                pfp: "https://media.licdn.com/dms/image/C5603AQFUfmwgesrAeg/profile-displayphoto-shrink_800_800/0/1643164227597?e=1704931200&v=beta&t=SK36RgTxhuimEyFkg2TNgZbnH7cvInLzqTjzsRUbq2k",
+                likes: 15,
+                attatchment: nil,
+                caption: "Not feeling it today :(",
+                comments: [
+                    Comment(id: UUID(),
+                            name: "Phillip",
+                            recieverUserID: UUID(),
+                            senderUserId: UUID(),
+                            message: "It is important to breaks!",
                             date: "2023-11-06")
             ])
     ])

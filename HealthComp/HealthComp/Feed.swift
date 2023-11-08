@@ -29,7 +29,6 @@ struct Post: Identifiable, Decodable {
 struct Comment: Identifiable, Decodable {
     var id: UUID
     var name: String
-    var pfp: String
     var recieverUserID: UUID
     var senderUserId: UUID
     var message: String
