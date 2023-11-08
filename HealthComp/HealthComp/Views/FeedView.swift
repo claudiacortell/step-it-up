@@ -9,37 +9,26 @@ import SwiftUI
 
 struct FeedView: View {
     let feed: Feed
-    
+    @State private var local = true
     var body: some View {
         
         ZStack{
             Color("light-green")
                 .ignoresSafeArea()
             ScrollView{
-                HStack{
-                    Text("Hey, Roaree! See what everyone is up to")
-                        .font(.system(size: 20, weight: .semibold))
-                        .padding()
-                        
-                    AsyncImage(
-                        url: URL(string:"https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG"),
-                        content: { image in
-                            image.resizable()
-                                .scaledToFill()
-                                .frame(width: 70, height: 70)
-                                .overlay(Circle().stroke(Color("light-blue"), lineWidth: 4))
-                                .clipShape(Circle())
-                            
-                        },
-                        placeholder: {
-                            ProgressView()
-                        }
-                    )
-                }.background{
-                    RoundedRectangle(cornerRadius: 25.0)
-                        .fill(Color("medium-green"))
-                        .frame(width:UIScreen.main.bounds.width-20)
-                }
+                Header()
+//                HStack{
+//                    Spacer()
+//                    HStack{
+//                        Image(systemName: "globe.americas.fill")
+//                        Toggle(isOn: $local){}.toggleStyle(.switch)
+//                        Image(systemName: "person.2.circle.fill")
+//
+//                    }
+//                    
+//                }
+                
+                
                 .padding(.bottom, 2)
 
                 ForEach(feed.posts) {post in
@@ -122,5 +111,34 @@ struct FeedView_Previews: PreviewProvider {
 
     static var previews: some View {
         FeedView(feed: sampleFeed)
+    }
+}
+
+struct Header: View {
+    var body: some View {
+        HStack{
+            Text("Hey, Roaree! See what everyone is up to")
+                .font(.system(size: 16, weight: .semibold))
+                .padding()
+            
+            AsyncImage(
+                url: URL(string:"https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG"),
+                content: { image in
+                    image.resizable()
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .overlay(Circle().stroke(Color("light-blue"), lineWidth: 4))
+                        .clipShape(Circle())
+                    
+                },
+                placeholder: {
+                    ProgressView()
+                }
+            ).padding()
+        }.background{
+            RoundedRectangle(cornerRadius: 25.0)
+                .fill(Color("medium-green"))
+                .frame(width:UIScreen.main.bounds.width-20)
+        }
     }
 }

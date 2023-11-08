@@ -28,7 +28,7 @@ struct NoContent: View{
     var body: some View{
         VStack(alignment: .leading, spacing: 10) { // Adjust the spacing as needed
             HStack {
-                PosterImage(pfp: post.pfp)
+                ProfileImage(pfp: post.pfp)
                     .padding(.leading, 1)
                 Text(post.name)
                     .font(.system(size: 14, weight: .semibold))
@@ -78,7 +78,7 @@ struct WithContent: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) { // Adjust the spacing as needed
             HStack {
-                PosterImage(pfp: post.pfp)
+                ProfileImage(pfp: post.pfp)
 //                    .padding(.leading, 1)
                 Text(post.name)
                     .font(.system(size: 14, weight: .semibold))
@@ -151,7 +151,7 @@ struct CommentView: View {
     }
 }
 
-struct PosterImage: View {
+struct ProfileImage: View {
     let pfp : String
     var size: CGFloat = 40
     var body: some View {
@@ -161,7 +161,7 @@ struct PosterImage: View {
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size, height: size)
-                    .overlay(Circle().stroke(Color("light-blue"), lineWidth: 4))
+                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
                     .clipShape(Circle())
                 
             },
