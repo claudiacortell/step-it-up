@@ -21,6 +21,7 @@
 		75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70E2AFAA342001D6E74 /* CompView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
+		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		75A8B70E2AFAA342001D6E74 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				75A8B70E2AFAA342001D6E74 /* CompView.swift */,
 				75A8B7102AFAA34A001D6E74 /* FeedView.swift */,
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
+				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */,
+				7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */,
 				7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserModel.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
