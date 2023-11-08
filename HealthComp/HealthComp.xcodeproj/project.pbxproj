@@ -21,6 +21,8 @@
 		75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70E2AFAA342001D6E74 /* CompView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
+		75AD00972AFAE747004F28D2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00962AFAE747004F28D2 /* Feed.swift */; };
+		75AD00992AFB0551004F28D2 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00982AFB0551004F28D2 /* PostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		75A8B70E2AFAA342001D6E74 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		75AD00962AFAE747004F28D2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		75AD00982AFB0551004F28D2 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 			children = (
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
 				754255832AF5CCF900E9DB17 /* UserModel.swift */,
+				75AD00962AFAE747004F28D2 /* Feed.swift */,
 				754255822AF5CCCF00E9DB17 /* Views */,
 				754255702AF5CC9700E9DB17 /* Assets.xcassets */,
 				754255722AF5CC9700E9DB17 /* Preview Content */,
@@ -100,6 +105,7 @@
 				75A8B70C2AFAA33B001D6E74 /* CompDetailView.swift */,
 				75A8B70E2AFAA342001D6E74 /* CompView.swift */,
 				75A8B7102AFAA34A001D6E74 /* FeedView.swift */,
+				75AD00982AFB0551004F28D2 /* PostView.swift */,
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
 			);
 			path = Views;
@@ -186,6 +192,8 @@
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
+				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
+				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
