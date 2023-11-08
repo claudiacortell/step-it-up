@@ -17,19 +17,7 @@ struct FeedView: View {
                 .ignoresSafeArea()
             ScrollView{
                 Header()
-//                HStack{
-//                    Spacer()
-//                    HStack{
-//                        Image(systemName: "globe.americas.fill")
-//                        Toggle(isOn: $local){}.toggleStyle(.switch)
-//                        Image(systemName: "person.2.circle.fill")
-//
-//                    }
-//                    
-//                }
-                
-                
-                .padding(.bottom, 2)
+                    .padding(.bottom, 2)
 
                 ForEach(feed.posts) {post in
                     PostView(post: post)
