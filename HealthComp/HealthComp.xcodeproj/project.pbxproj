@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D22AFC0E2900382FD3 /* Enums.swift */; };
+		751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D72AFC8E5E00382FD3 /* Buttons.swift */; };
+		751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D92AFC9E7700382FD3 /* BaseView.swift */; };
 		7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */; };
 		7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542556E2AF5CC9600E9DB17 /* ContentView.swift */; };
 		754255712AF5CC9700E9DB17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754255702AF5CC9700E9DB17 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		751F04D22AFC0E2900382FD3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		751F04D72AFC8E5E00382FD3 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		751F04D92AFC9E7700382FD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		754255692AF5CC9600E9DB17 /* HealthComp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthComp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCompApp.swift; sourceTree = "<group>"; };
 		7542556E2AF5CC9600E9DB17 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +74,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		751F04D52AFC8E3F00382FD3 /* Struct Defs */ = {
+			isa = PBXGroup;
+			children = (
+				75AD00962AFAE747004F28D2 /* Feed.swift */,
+				75AD00A52AFC0746004F28D2 /* User.swift */,
+				75AD00A72AFC0CE1004F28D2 /* Group.swift */,
+				751F04D22AFC0E2900382FD3 /* Enums.swift */,
+			);
+			path = "Struct Defs";
+			sourceTree = "<group>";
+		};
+		751F04D62AFC8E4F00382FD3 /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */,
+				751F04D72AFC8E5E00382FD3 /* Buttons.swift */,
+			);
+			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
 		754255602AF5CC9600E9DB17 = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +115,7 @@
 			children = (
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
 				75AD00A42AFC05C5004F28D2 /* View Models */,
-				75AD00962AFAE747004F28D2 /* Feed.swift */,
-				75AD00A52AFC0746004F28D2 /* User.swift */,
-				75AD00A72AFC0CE1004F28D2 /* Group.swift */,
-				751F04D22AFC0E2900382FD3 /* Enums.swift */,
+				751F04D52AFC8E3F00382FD3 /* Struct Defs */,
 				754255822AF5CCCF00E9DB17 /* Views */,
 				754255702AF5CC9700E9DB17 /* Assets.xcassets */,
 				754255722AF5CC9700E9DB17 /* Preview Content */,
@@ -114,8 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				7542556E2AF5CC9600E9DB17 /* ContentView.swift */,
-				757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */,
+				751F04D62AFC8E4F00382FD3 /* Reusable Views */,
 				7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */,
+				751F04D92AFC9E7700382FD3 /* BaseView.swift */,
 				7542557E2AF5CCB900E9DB17 /* StartupView.swift */,
 				7542557C2AF5CCB000E9DB17 /* LoginView.swift */,
 				754255802AF5CCC700E9DB17 /* HomeView.swift */,
@@ -213,6 +235,7 @@
 				75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */,
 				7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */,
 				75AD00A12AFC0571004F28D2 /* NotificationVM.swift in Sources */,
+				751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
@@ -228,6 +251,7 @@
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
+				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
 				75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */,
 				75AD00A62AFC0746004F28D2 /* User.swift in Sources */,

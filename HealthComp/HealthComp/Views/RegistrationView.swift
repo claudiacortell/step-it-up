@@ -9,45 +9,70 @@ import SwiftUI
 
 struct RegistrationView: View {
     @State private var name = ""
+    @State private var email = ""
+    @State private var username = ""
+    @State private var password = ""
+    @State private var confirm = ""
+    
     var body: some View {
         NavigationStack{
             VStack(){
                 Text("CREATE ACCOUNT")
-//                    .frame(width: UIScreen.main.bounds.width, height: 100)\
                     .padding()
                     .foregroundColor(.white)
+                    .font(.system(size: 25, weight: .bold))
                     .background(
                         RoundedRectangle(cornerRadius: 25)
                             .foregroundColor(Color("medium-green"))
                     )
-                    .font(.system(size: 25, weight: .bold))
-//                    .position(x: UIScreen.main.bounds.width/2, y: 15)
-                ZStack {
-                    Circle()
-                        .frame(width: 150, height: 150)
-                        .foregroundColor(Color("light-green"))
-                    Image(systemName: "plus")
-                    
-                }.padding(.vertical)
+                Button(action: {}, label: {
+                    ZStack {
+                        Circle()
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(Color("light-green"))
+                        Image(systemName: "plus")
+                        
+                    }.padding(.vertical)
+                }) .accentColor(Color("dark-blue"))
+               
                 Text("Add profile picture")
                     .font(.system(size: 14))
                 TextField("Name", text: $name)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle)
                     .padding()
-                TextField("Email", text: $name)
+                Divider()
+                    .padding(.horizontal)
+                TextField("Email", text: $email)
                     .padding()
-                TextField("Username", text: $name)
+                Divider()
+                    .padding(.horizontal)
+                TextField("Username", text: $username)
                     .padding()
-                TextField("Password", text: $name)
+                Divider()
+                    .padding(.horizontal)
+                TextField("Password", text: $password)
                     .padding()
-                TextField("Confirm password", text: $name)
+                Divider()
+                    .padding(.horizontal)
+                TextField("Confirm password", text: $confirm)
                     .padding()
-                LoginButton()
-                    .padding(.vertical)
-                RegisterButton()
-                    .padding(.bottom)
+                Divider()
+                    .padding(.horizontal)
+                NavigationLink {
+                    HomeView()
+                } label: {
+                    SignupButton()
+                        .padding(.bottom)
+                }.accentColor(.white)
+                NavigationLink {
+                    LoginView()
+                } label: {
+                    SmallSigninButton()
+                        .padding(.bottom)
+                }.accentColor(.white)
+
+                
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 
@@ -55,31 +80,3 @@ struct RegistrationView: View {
     RegistrationView()
 }
 
-struct LoginButton: View {
-    var body: some View {
-        NavigationLink {
-            HomeView()
-        } label: {
-            ZStack{
-                RoundedRectangle(cornerRadius: 20.0)
-                    .frame(width:UIScreen.main.bounds.width-80, height: 50)
-                    .foregroundColor(Color("dark-blue"))
-                Text("Sign Up")
-                    .font(.system(size: 16, weight: .semibold))
-            }
-        }.accentColor(.white)
-    }
-}
-
-struct RegisterButton: View {
-    var body: some View {
-        NavigationLink {
-            RegistrationView()
-        } label: {
-            HStack{
-                Text ("Already have an account? Sign in")
-                    .foregroundColor(Color.black)
-            }
-        }
-    }
-}

@@ -12,10 +12,21 @@ struct StartupView: View {
         NavigationStack{
             VStack{
                 Logo()
-                LoginButton()
-                RegisterButton()
+                    .padding(.vertical, 50)
+                NavigationLink {
+                    LoginView()
+                } label: {
+                    LoginButton()
+                }.accentColor(.white)
+                    .padding()
+                
+                NavigationLink {
+                    RegistrationView()
+                } label: {
+                    SignupButton()
+                }.accentColor(.white)
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 
@@ -23,33 +34,3 @@ struct StartupView: View {
     StartupView()
 }
 
-struct LoginButton: View {
-    var body: some View {
-        NavigationLink {
-            LoginView()
-        } label: {
-            ZStack{
-                RoundedRectangle(cornerRadius: 20.0)
-                    .frame(width:UIScreen.main.bounds.width-80, height: 50)
-                    .foregroundColor(Color("med-green"))
-                Text("LOGIN")
-                    .font(.system(size: 16, weight: .semibold))
-            }
-        }.accentColor(.white)
-    }
-}
-
-struct RegisterButton: View {
-    var body: some View {
-        NavigationLink {
-            RegistrationView()
-        } label: {
-            HStack{
-                Text ("Dont have an account?")
-                    .foregroundColor(Color.black)
-                Text("Sign up")
-                    .foregroundColor(Color("med-green"))
-            }
-        }
-    }
-}

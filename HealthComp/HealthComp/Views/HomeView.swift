@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+    @EnvironmentObject var UserModel: UserVM
     
     var body: some View {
-        Text("Hey Roaree!")
+        // TODO: Replace with the users name
+        HStack{
+            Text("Hey Roaree, welcome back!")
+                .font(.system(size: 16, weight: .semibold))
+            ProfileImage(pfp: "https://pbs.twimg.com/media/DG4TUQpXsAA42tW?format=jpg&name=4096x4096")
+            
+        }
+        
+        
         
         
     }
@@ -19,4 +27,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(UserVM())
 }

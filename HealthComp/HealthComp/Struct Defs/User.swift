@@ -11,8 +11,6 @@ enum Status{
     case accepted
     case rejected
 }
-
-// User and friends that the user interacts with will be a User type
 struct User: Identifiable {
     // Should store the ID as a user default
     var id: UUID
@@ -21,8 +19,14 @@ struct User: Identifiable {
     var username: String
     var pfp: String
     // Group ID and String -> possibly store this in the user defaults
-    var groups: [UUID]?
-//    var score: Int
+    var friends: [UUID]?
+    var data: HealthData
+    
+}
+struct HealthData {
+    var dailyStep: Int
+    var dailyMileage: Int
+    var dailyFlights: Int
 }
 
 struct FriendRequest: Identifiable {
