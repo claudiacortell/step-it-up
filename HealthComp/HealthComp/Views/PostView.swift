@@ -16,8 +16,6 @@ struct PostView: View {
         } else {
             NoContent(post:post)
                 .padding(.vertical, 5)
-
-
         }
 
     }
@@ -59,7 +57,7 @@ struct NoContent: View{
                     .padding(.top, 1)
 //                    Divider()
                 }
-                Buttons(likes: post.likes, comments: post.comments!.count)
+                InteractButtons(likes: post.likes, comments: post.comments!.count)
                 
             }
             
@@ -98,7 +96,7 @@ struct WithContent: View {
                 }
             )
             
-            Buttons(likes: post.likes, comments: post.comments!.count)
+            InteractButtons(likes: post.likes, comments: post.comments!.count)
                 .padding(.top)
             VStack (alignment: .leading){
                 HStack {
@@ -172,7 +170,7 @@ struct ProfileImage: View {
     }
 }
 
-struct Buttons: View {
+struct InteractButtons: View {
     let likes: Int
     let comments: Int
     let size: CGFloat = 20

@@ -11,7 +11,7 @@ struct Logo: View {
     var body: some View {
         Image(systemName: "heart.circle.fill")
             .resizable()
-            .foregroundColor(Color("dark-blue"))
+            .foregroundColor(Color("medium-green"))
             .frame(width: 150, height: 150)
         
     }
