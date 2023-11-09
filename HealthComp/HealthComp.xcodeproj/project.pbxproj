@@ -24,7 +24,6 @@
 		75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70E2AFAA342001D6E74 /* CompView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
-<<<<<<< HEAD
 		75AD00972AFAE747004F28D2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00962AFAE747004F28D2 /* Feed.swift */; };
 		75AD00992AFB0551004F28D2 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00982AFB0551004F28D2 /* PostView.swift */; };
 		75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */; };
@@ -33,9 +32,7 @@
 		75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A22AFC0582004F28D2 /* FriendVM.swift */; };
 		75AD00A62AFC0746004F28D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A52AFC0746004F28D2 /* User.swift */; };
 		75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A72AFC0CE1004F28D2 /* Group.swift */; };
-=======
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
->>>>>>> eb3353
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +54,6 @@
 		75A8B70E2AFAA342001D6E74 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		75AD00962AFAE747004F28D2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		75AD00982AFB0551004F28D2 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVM.swift; sourceTree = "<group>"; };
@@ -66,9 +62,7 @@
 		75AD00A22AFC0582004F28D2 /* FriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVM.swift; sourceTree = "<group>"; };
 		75AD00A52AFC0746004F28D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75AD00A72AFC0CE1004F28D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-=======
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
->>>>>>> eb3353
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
