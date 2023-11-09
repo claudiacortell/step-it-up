@@ -10,7 +10,7 @@ import SwiftUI
 struct CompView: View {
     var body: some View {
         ZStack {
-            Color("light-green").ignoresSafeArea()
+            Color("light-green")
             VStack {
                 ZStack {
                     Rectangle()
