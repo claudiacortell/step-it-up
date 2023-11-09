@@ -17,6 +17,13 @@ struct Logo: View {
     }
 }
 
-#Preview {
-    Logo()
+
+struct Logo_Previews: PreviewProvider {
+    static var previews: some View {
+        Logo()
+    }
 }
+
+//#Preview {
+//    Logo()
+//}
