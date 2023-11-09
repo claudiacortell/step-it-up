@@ -11,23 +11,22 @@ struct FeedView: View {
     let feed: Feed
     @State private var local = true
     var body: some View {
-        
-        ZStack{
-            Color("light-green")
-                .ignoresSafeArea()
-            ScrollView{
-                Header()
-                    .padding(.bottom, 2)
+        NavigationStack{
+            ZStack{
+                Color("light-green")
+                    .ignoresSafeArea()
+                ScrollView{
+                    Header()
+                        .padding(.bottom, 2)
 
-                ForEach(feed.posts) {post in
-                    PostView(post: post)
-                        .padding(.horizontal)
+                    ForEach(feed.posts) {post in
+                        PostView(post: post)
+                            .padding(.horizontal)
+                    }
                 }
             }
-            
+        }.navigationBarBackButtonHidden()
 
-            
-        }
     }
 }
 

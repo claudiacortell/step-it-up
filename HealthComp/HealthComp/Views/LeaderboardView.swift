@@ -7,59 +7,6 @@
 
 import SwiftUI
 
-
-//import Foundation
-//
-//enum Status{
-//    case accepted
-//    case rejected
-//}
-//struct User: Identifiable {
-//    // Should store the ID as a user default
-//    var id: UUID
-//    var name: String
-//    // What do we think about this?
-//    var username: String
-//    var pfp: String
-//    // Group ID and String -> possibly store this in the user defaults
-//    var friends: [UUID]?
-//    var data: HealthData
-//    
-//}
-//struct HealthData {
-//    var dailyStep: Int
-//    var dailyMileage: Int
-//    var dailyFlights: Int
-//}
-//
-//struct FriendRequest: Identifiable {
-//    var id: UUID
-//    var origin: User
-//    var dest: User
-//    var status: Status
-//}
-//
-//struct ProfileImage: View {
-//    let pfp : String
-//    var size: CGFloat = 40
-//    var body: some View {
-//        AsyncImage(
-//            url: URL(string:pfp),
-//            content: { image in
-//                image.resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: size, height: size)
-//                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-//                    .clipShape(Circle())
-//                
-//            },
-//            placeholder: {
-//                ProgressView()
-//            }
-//        )
-//    }
-//}
-
 struct LeaderboardView: View {
     let sortedUsers: [User]
     
@@ -71,18 +18,20 @@ struct LeaderboardView: View {
     
     
     var body: some View {
-        VStack{
-            ScrollView{
-                LeaderboardHeader().padding(.bottom, 5)
-                LeaderboardMessage(currentUser: currentUser, sortedUsers: sortedUsers)
-                
-                ForEach(Array(sortedUsers.enumerated()), id: \.element.id) { index, user in
-                    let isCurrentUser = user.id == currentUser.id
-                    LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+        NavigationStack{
+            VStack{
+                ScrollView{
+                    LeaderboardHeader().padding(.bottom, 5)
+                    LeaderboardMessage(currentUser: currentUser, sortedUsers: sortedUsers)
                     
+                    ForEach(Array(sortedUsers.enumerated()), id: \.element.id) { index, user in
+                        let isCurrentUser = user.id == currentUser.id
+                        LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+                        
+                    }
                 }
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 

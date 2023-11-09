@@ -21,7 +21,7 @@ struct LoginView: View {
                 TextField("Password", text: $name)
                     .padding()
                 NavigationLink {
-                    HomeView()
+                    BaseView()
                 } label: {
                     LoginButton()
                 }.accentColor(.white)

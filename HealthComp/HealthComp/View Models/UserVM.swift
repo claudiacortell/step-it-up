@@ -10,7 +10,7 @@ import SwiftUI
 
 
 class UserVM: ObservableObject {
-//    @Published var currentUser: User?
+    @Published var currentUser: User?
     
     init() {
 //        self.currentUser = User(id: UUID(), name: "Roaree Lion", username: "roaree.bae", pfp: "https://gocolumbialions.com/images/2018/6/19/Roaree_Background.jpg")

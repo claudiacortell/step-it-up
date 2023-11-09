@@ -58,7 +58,7 @@ struct RegistrationView: View {
                 Divider()
                     .padding(.horizontal)
                 NavigationLink {
-                    HomeView()
+                    BaseView()
                 } label: {
                     SignupButton()
                         .padding(.bottom)

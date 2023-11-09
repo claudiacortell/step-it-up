@@ -86,7 +86,7 @@ struct BaseView: View {
     
     var body: some View {
         TabView {
-            HomeView()
+            ProfileView()
                 .tabItem {
                     Label("", systemImage: "house.fill")
                 }
@@ -96,12 +96,12 @@ struct BaseView: View {
                 }
             LeaderboardView()
                 .tabItem {
-                    Label("", systemImage: "trophy")
+                    Label("", systemImage: "char.bar.fill")
                 }
             // Change to Profile View
-            FeedView(feed: sampleFeed)
+            CompView()
                 .tabItem {
-                    Label("", systemImage: "person.fill")
+                    Label("", systemImage: "trophy")
                 }
         }
     }
