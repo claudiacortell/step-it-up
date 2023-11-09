@@ -73,7 +73,7 @@ struct LeaderboardView: View {
     var body: some View {
         VStack{
             ScrollView{
-                Header().padding(.bottom, 5)
+                LeaderboardHeader().padding(.bottom, 5)
                 LeaderboardMessage(currentUser: currentUser, sortedUsers: sortedUsers)
                 
                 ForEach(Array(sortedUsers.enumerated()), id: \.element.id) { index, user in
@@ -91,7 +91,7 @@ struct LeaderboardView: View {
     LeaderboardView()
 }
     
-struct Header: View {
+struct LeaderboardHeader: View {
     var body: some View {
         ZStack {
            Rectangle()
