@@ -64,7 +64,7 @@ struct ProfileView: View {
             ZStack{
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color("dark-blue"))
-                .frame(height: 440)
+                .frame( height: 380)
                 .overlay(
                     VStack(spacing:20) {
                         Text("Your stats are looking good, keep it up!")
