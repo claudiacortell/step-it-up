@@ -11,7 +11,7 @@ struct LeaderboardView: View {
     let sortedUsers: [User]
     
     init(){
-        sortedUsers = sampleFriends.sorted { user1, user2 in
+        sortedUsers = sample_friends.sorted { user1, user2 in
             return user1.data.dailyStep > user2.data.dailyStep
         }
     }
@@ -122,15 +122,3 @@ struct LeaderboardCell: View{
         }
     }
 }
-
-
-var sampleFriends: [User] = [
-    User(id: UUID(), name: "Claudia Cortell", username: "ccc373", pfp: "https://media.licdn.com/dms/image/C5603AQFUfmwgesrAeg/profile-displayphoto-shrink_800_800/0/1643164227597?e=1704931200&v=beta&t=SK36RgTxhuimEyFkg2TNgZbnH7cvInLzqTjzsRUbq2k", friends: [UUID](), data: HealthData(dailyStep: 5000, dailyMileage: 3, dailyFlights: 0)),
-    User(id: UUID(), name: "Phillip Le", username: "pl123", pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg", friends: [UUID](), data: HealthData(dailyStep: 18000, dailyMileage: 4, dailyFlights: 1)),
-    User(id: UUID(), name: "Ben Vazzana", username: "bz123", pfp: "https://media.licdn.com/dms/image/C4D03AQGtwhLUclJJkw/profile-displayphoto-shrink_800_800/0/1641697614222?e=1704931200&v=beta&t=LWc3Ci5zcLViC5tjdze0bgxtSCXQAsXvuIBgAKcaQPg", friends: [UUID](), data: HealthData(dailyStep: 11000, dailyMileage: 5, dailyFlights: 2)),
-    User(id: UUID(), name: "Teodora Sutlovic", username: "ts123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [UUID](), data: HealthData(dailyStep: 13000, dailyMileage: 4, dailyFlights: 0)),
-    User(id: UUID(), name: "Eugenia Boracini", username: "eb123", pfp: "https://media.licdn.com/dms/image/C4E03AQFdwJIKhXcQ-g/profile-displayphoto-shrink_800_800/0/1660068407072?e=1704931200&v=beta&t=1fLAkh0en-gEON0zegrK5j2GJV1sWh8GnzmU7mq_rYk", friends: [UUID](), data: HealthData(dailyStep: 9000, dailyMileage: 6, dailyFlights: 1)),
-    currentUser
-]
-
-let currentUser = User(id: UUID(), name: "Roaree the Lion", username: "roaree69", pfp: "https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG", friends: [UUID](), data: HealthData(dailyStep: 12500, dailyMileage: 6, dailyFlights: 1))

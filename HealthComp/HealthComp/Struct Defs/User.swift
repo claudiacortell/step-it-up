@@ -20,13 +20,16 @@ struct User: Identifiable {
     var pfp: String
     // Group ID and String -> possibly store this in the user defaults
     var friends: [UUID]?
+    var groups: [UUID]?
     var data: HealthData
-    
 }
+
 struct HealthData {
     var dailyStep: Int
     var dailyMileage: Int
     var dailyFlights: Int
+    var weeklyStep: Int
+    var weeklyMileage: Int
 }
 
 struct FriendRequest: Identifiable {

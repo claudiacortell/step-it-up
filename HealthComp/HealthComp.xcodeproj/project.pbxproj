@@ -19,6 +19,7 @@
 		7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542557E2AF5CCB900E9DB17 /* StartupView.swift */; };
 		754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255802AF5CCC700E9DB17 /* HomeView.swift */; };
 		754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255832AF5CCF900E9DB17 /* UserVM.swift */; };
+		754436852AFFD71600880413 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754436842AFFD71600880413 /* SampleData.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
 		75A8B70D2AFAA33B001D6E74 /* CompDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70C2AFAA33B001D6E74 /* CompDetailView.swift */; };
 		75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70E2AFAA342001D6E74 /* CompView.swift */; };
@@ -49,6 +50,7 @@
 		7542557E2AF5CCB900E9DB17 /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupView.swift; sourceTree = "<group>"; };
 		754255802AF5CCC700E9DB17 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		754255832AF5CCF900E9DB17 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
+		754436842AFFD71600880413 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		75A8B70C2AFAA33B001D6E74 /* CompDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompDetailView.swift; sourceTree = "<group>"; };
 		75A8B70E2AFAA342001D6E74 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
+				754436842AFFD71600880413 /* SampleData.swift */,
 				75AD00A42AFC05C5004F28D2 /* View Models */,
 				751F04D52AFC8E3F00382FD3 /* Struct Defs */,
 				754255822AF5CCCF00E9DB17 /* Views */,
@@ -253,6 +256,7 @@
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
+				754436852AFFD71600880413 /* SampleData.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
 				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
