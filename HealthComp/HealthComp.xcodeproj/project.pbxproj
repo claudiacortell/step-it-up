@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73432F9A2AFFDAB6000FF355 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432F992AFFDAB6000FF355 /* FriendsView.swift */; };
+		73432F9C2AFFDAE9000FF355 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432F9B2AFFDAE9000FF355 /* FriendSearchView.swift */; };
 		751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D22AFC0E2900382FD3 /* Enums.swift */; };
 		751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D72AFC8E5E00382FD3 /* Buttons.swift */; };
 		751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D92AFC9E7700382FD3 /* BaseView.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		73432F992AFFDAB6000FF355 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		73432F9B2AFFDAE9000FF355 /* FriendSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
 		751F04D22AFC0E2900382FD3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		751F04D72AFC8E5E00382FD3 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		751F04D92AFC9E7700382FD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				75AD00982AFB0551004F28D2 /* PostView.swift */,
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
 				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
+				73432F992AFFDAB6000FF355 /* FriendsView.swift */,
+				73432F9B2AFFDAE9000FF355 /* FriendSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,12 +256,14 @@
 				75A8B70D2AFAA33B001D6E74 /* CompDetailView.swift in Sources */,
 				75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */,
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
+				73432F9A2AFFDAB6000FF355 /* FriendsView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
+				73432F9C2AFFDAE9000FF355 /* FriendSearchView.swift in Sources */,
 				754436852AFFD71600880413 /* SampleData.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
