@@ -11,11 +11,12 @@ enum Status{
     case accepted
     case rejected
 }
-struct User: Identifiable {
+struct User: Identifiable, Codable {
     // Should store the ID as a user default
-    var id: UUID
+    var id: String
     var name: String
     // What do we think about this?
+    var email: String
     var username: String
     var pfp: String
     // Group ID and String -> possibly store this in the user defaults
@@ -24,7 +25,7 @@ struct User: Identifiable {
     var data: HealthData
 }
 
-struct HealthData {
+struct HealthData: Codable {
     var dailyStep: Int
     var dailyMileage: Int
     var dailyFlights: Int

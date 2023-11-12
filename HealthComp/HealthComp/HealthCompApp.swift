@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import Firebase
 
 @main
 struct HealthCompApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             StartupView()
+                .environmentObject(UserVM())
         }
     }
 }
