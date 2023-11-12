@@ -7,7 +7,7 @@
 
 import Foundation
 
-var sample_group = Group(id: UUID(), name: "HealthApp", members: sample_friends)
+var sample_group = Group2(id: UUID(), name: "HealthApp", members: sample_friends)
 
 var sample_feed = Feed(
     posts: [

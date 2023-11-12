@@ -16,7 +16,7 @@ struct HealthCompApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            StartupView()
+            ContentView()
                 .environmentObject(UserVM())
         }
     }

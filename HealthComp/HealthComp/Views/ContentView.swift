@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userModel: UserVM
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if userModel.userSession != nil {
+                BaseView()
+            } else {
+                StartupView()
+            }
+        }.onAppear {
+            userModel.checkUserSession()
         }
-        .padding()
     }
 }
 
-#Preview {
-    ContentView()
-}

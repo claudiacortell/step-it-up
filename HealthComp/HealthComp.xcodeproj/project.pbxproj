@@ -33,6 +33,9 @@
 		75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A22AFC0582004F28D2 /* FriendVM.swift */; };
 		75AD00A62AFC0746004F28D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A52AFC0746004F28D2 /* User.swift */; };
 		75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A72AFC0CE1004F28D2 /* Group.swift */; };
+		75B7D2832B007361004E5DE0 /* RegistrationView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B7D2822B007361004E5DE0 /* RegistrationView2.swift */; };
+		75B7D2852B008A59004E5DE0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B7D2842B008A59004E5DE0 /* TextField.swift */; };
+		75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B7D2862B009D88004E5DE0 /* ImageUtil.swift */; };
 		75B809B52B00555B0009D84A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B809B42B00555B0009D84A /* GoogleService-Info.plist */; };
 		75B809B82B0056860009D84A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809B72B0056860009D84A /* FirebaseAnalytics */; };
 		75B809BC2B0056860009D84A /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809BB2B0056860009D84A /* FirebaseAnalyticsSwift */; };
@@ -71,6 +74,9 @@
 		75AD00A22AFC0582004F28D2 /* FriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVM.swift; sourceTree = "<group>"; };
 		75AD00A52AFC0746004F28D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75AD00A72AFC0CE1004F28D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		75B7D2822B007361004E5DE0 /* RegistrationView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView2.swift; sourceTree = "<group>"; };
+		75B7D2842B008A59004E5DE0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		75B7D2862B009D88004E5DE0 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		75B809B42B00555B0009D84A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +114,7 @@
 			children = (
 				757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */,
 				751F04D72AFC8E5E00382FD3 /* Buttons.swift */,
+				75B7D2842B008A59004E5DE0 /* TextField.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 				75B809B42B00555B0009D84A /* GoogleService-Info.plist */,
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
 				754436842AFFD71600880413 /* SampleData.swift */,
+				75B7D2862B009D88004E5DE0 /* ImageUtil.swift */,
 				75AD00A42AFC05C5004F28D2 /* View Models */,
 				751F04D52AFC8E3F00382FD3 /* Struct Defs */,
 				754255822AF5CCCF00E9DB17 /* Views */,
@@ -158,6 +166,7 @@
 				7542556E2AF5CC9600E9DB17 /* ContentView.swift */,
 				751F04D62AFC8E4F00382FD3 /* Reusable Views */,
 				7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */,
+				75B7D2822B007361004E5DE0 /* RegistrationView2.swift */,
 				751F04D92AFC9E7700382FD3 /* BaseView.swift */,
 				7542557E2AF5CCB900E9DB17 /* StartupView.swift */,
 				7542557C2AF5CCB000E9DB17 /* LoginView.swift */,
@@ -288,6 +297,8 @@
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
+				75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */,
+				75B7D2852B008A59004E5DE0 /* TextField.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
@@ -295,6 +306,7 @@
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
 				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
+				75B7D2832B007361004E5DE0 /* RegistrationView2.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
 				75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */,
 				75AD00A62AFC0746004F28D2 /* User.swift in Sources */,

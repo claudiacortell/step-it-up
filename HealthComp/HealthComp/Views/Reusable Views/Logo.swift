@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct Logo: View {
+    let size: CGFloat?
+    
+    init(size: CGFloat? = nil) {
+        self.size = size
+    }
+    
     var body: some View {
         Image(systemName: "heart.circle.fill")
             .resizable()
             .foregroundColor(Color("medium-green"))
-            .frame(width: 150, height: 150)
-        
+            .frame(width: size ?? 100, height: size ?? 100)
     }
 }
 
 
+
 struct Logo_Previews: PreviewProvider {
     static var previews: some View {
-        Logo()
+        Logo(size: 100)
     }
 }
 

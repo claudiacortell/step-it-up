@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Group: Identifiable {
+struct Group2: Identifiable {
     // Group ID can be really useful
     var id: UUID
     var name: String

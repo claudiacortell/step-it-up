@@ -10,7 +10,7 @@ import Foundation
 
 
 class GroupVM: ObservableObject {
-    @Published var groups: [String: Group] = [:]
+    @Published var groups: [String: Group2] = [:]
     
     func fetchGroups(groups: [UUID]) async throws-> Base{
         return .success

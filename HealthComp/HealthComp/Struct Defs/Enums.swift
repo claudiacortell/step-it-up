@@ -12,6 +12,11 @@ enum Upload{
     case failure(String)
 }
 
+enum CreateUser{
+    case success(String)
+    case failure(String)
+}
+
 enum Base{
     case success
     case failure(String)
