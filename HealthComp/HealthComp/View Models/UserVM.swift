@@ -33,7 +33,6 @@ class UserVM: ObservableObject {
                 self.userSession = user
                 Task {
                     print(user.email!)
-                    print(user.isEmailVerified)
                     await self.fetchUser()
                 }
             } else {
@@ -115,6 +114,8 @@ class UserVM: ObservableObject {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapshot.data(as: User.self)
+        print(self.currentUser?.name)
+        print(self.currentUser?.id)
         print("SUCCESS: Fetched the user")
     }
     
