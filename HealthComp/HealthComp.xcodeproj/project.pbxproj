@@ -33,6 +33,8 @@
 		75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A22AFC0582004F28D2 /* FriendVM.swift */; };
 		75AD00A62AFC0746004F28D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A52AFC0746004F28D2 /* User.swift */; };
 		75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A72AFC0CE1004F28D2 /* Group.swift */; };
+		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
+		7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		75AD00A22AFC0582004F28D2 /* FriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVM.swift; sourceTree = "<group>"; };
 		75AD00A52AFC0746004F28D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75AD00A72AFC0CE1004F28D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
+		7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,8 @@
 				75AD00982AFB0551004F28D2 /* PostView.swift */,
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
 				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
+				7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */,
+				7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,12 +258,14 @@
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
+				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
 				754436852AFFD71600880413 /* SampleData.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
+				7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
 				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
