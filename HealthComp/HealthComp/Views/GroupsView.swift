@@ -11,9 +11,9 @@ struct GroupsView: View {
                     .fontWeight(.bold)
                     .padding()
 
-                Text("Currently an active member of \(groups.count ) groups!")
+                Text("Currently an active member of \(groups.count) groups!")
 
-                LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.02) {
+                LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
                     ForEach(groups.indices) { index in
                         GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
                     }
@@ -41,7 +41,7 @@ struct GroupCell: View {
             Image(systemName: "photo") // Replace with actual group image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.width * 0.4)
+                .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.25)
                 .cornerRadius(10)
 
             // Group Name
@@ -56,7 +56,7 @@ struct GroupCell: View {
                     Image(systemName: "person.circle") // Replace with actual member image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width * 0.1, height: UIScreen.main.bounds.width * 0.1)
+                        .frame(width: UIScreen.main.bounds.width * 0.08, height: UIScreen.main.bounds.width * 0.08)
                         .clipShape(Circle())
                 }
 
@@ -64,7 +64,7 @@ struct GroupCell: View {
                     Text("+\(group.members.count - 3)")
                         .font(.footnote)
                         .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.1, height: UIScreen.main.bounds.width * 0.1)
+                        .frame(width: UIScreen.main.bounds.width * 0.08, height: UIScreen.main.bounds.width * 0.08)
                         .background(Color.blue)
                         .clipShape(Circle())
                 }
