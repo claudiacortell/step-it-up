@@ -17,8 +17,7 @@ struct ProfileHeaderView: View {
                 .clipShape(Circle())
                 .padding(.top, 20)
         }
-        .padding(.top,200)
-        .edgesIgnoringSafeArea(.top)
+        .padding(.top,250)
     }
 }
 
@@ -55,7 +54,7 @@ struct ProgressBarView: View {
                 .bold()
                 .foregroundColor(Color("dark-blue"))
                 .multilineTextAlignment(.center)
-                .lineLimit(nil)
+               
 
             ZStack {
                 Circle()
@@ -78,7 +77,7 @@ struct ProgressBarView: View {
                     .font(.title3)
                     .bold()
             }
-       
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
            
         }
     }
@@ -140,8 +139,8 @@ struct ProfileView: View {
                 BaseView()
             } label: {
                 ProgressBarView(progressText: "Progress towards your current goal: ", numProgress: Double(user.data.dailyStep)/Double(user.data.dailyStep), progress:"\(user.data.dailyStep) / \(user.data.dailyStep)")
-                    .frame(width: 150.0, height: 150.0)
-                        .padding(40.0)
+                    .frame(width: 250, height: 250)
+                        .padding(20.0)
 
             }
 
