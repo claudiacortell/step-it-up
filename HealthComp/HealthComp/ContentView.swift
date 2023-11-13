@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var userModel: UserVM
-    
     var body: some View {
         Group {
             if userModel.userSession != nil {
                 BaseView()
+                    .environmentObject(FriendVM(userModel: userModel))
             } else {
                 StartupView()
+                    .environmentObject(userModel)
             }
         }.onAppear {
             userModel.checkUserSession()

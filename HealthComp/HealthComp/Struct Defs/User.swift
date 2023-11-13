@@ -20,10 +20,11 @@ struct User: Identifiable, Codable {
     var username: String
     var pfp: String
     // Group ID and String -> possibly store this in the user defaults
-    var friends: [UUID]?
-    var groups: [UUID]?
+    var friends: [String]?
+    var groups: [String]?
     var data: HealthData
 }
+
 
 struct HealthData: Codable {
     var dailyStep: Int

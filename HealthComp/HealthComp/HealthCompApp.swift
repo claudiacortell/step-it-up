@@ -14,10 +14,12 @@ struct HealthCompApp: App {
     init() {
         FirebaseApp.configure()
     }
+    @StateObject var userModel = UserVM()
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(UserVM())
+                .environmentObject(userModel)
+//                .environmentObject(HealthVM())
         }
     }
 }

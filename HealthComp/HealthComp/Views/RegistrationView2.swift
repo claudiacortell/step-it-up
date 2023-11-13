@@ -111,26 +111,6 @@ struct RegistrationView2: View {
                 }
                     
                 Spacer()
-
-                    
-                    
-                    //                Button{
-                    //                    Task{
-                    //                        if let result = try? await userModel.createUser(email: email, password: password, username: username, name: name, pfp_uri: ""){ switch result {
-                    //                        case .success:
-                    //                            print("yay")
-                    //                        case .failure(let error):
-                    //                            print(error)
-                    //                        }
-                    //                        }
-                    //                    }
-                    //                } label: {
-                    //                    /*SignupButton*/()
-                    ////                        .padding(.bottom)
-                    //                }.accentColor(.white)
-//                    Spacer()
-                    
-                
             }.navigationBarBackButtonHidden()
         }
     }

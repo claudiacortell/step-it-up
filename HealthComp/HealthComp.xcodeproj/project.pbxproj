@@ -141,6 +141,7 @@
 			children = (
 				75B809B42B00555B0009D84A /* GoogleService-Info.plist */,
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
+				7542556E2AF5CC9600E9DB17 /* ContentView.swift */,
 				754436842AFFD71600880413 /* SampleData.swift */,
 				75B7D2862B009D88004E5DE0 /* ImageUtil.swift */,
 				75AD00A42AFC05C5004F28D2 /* View Models */,
@@ -163,7 +164,6 @@
 		754255822AF5CCCF00E9DB17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7542556E2AF5CC9600E9DB17 /* ContentView.swift */,
 				751F04D62AFC8E4F00382FD3 /* Reusable Views */,
 				7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */,
 				75B7D2822B007361004E5DE0 /* RegistrationView2.swift */,
