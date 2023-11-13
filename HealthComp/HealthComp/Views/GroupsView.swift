@@ -5,33 +5,29 @@ struct GroupsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(spacing: UIScreen.main.bounds.height * 0.02) {
                 Text("My Groups")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding()
+
                 Text("Currently an active member of \(groups.count ) groups!")
 
-                LazyVGrid(columns: [GridItem(), GridItem()], spacing: 16) {
+                LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.02) {
                     ForEach(groups.indices) { index in
                         GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
                     }
                 }
                 .padding()
-                
             }
-            
         }
         .navigationBarItems(trailing: NavigationLink(destination: Text("Add Member")) {
             Image(systemName: "plus")
                 .font(.title)
-                .foregroundColor(Color("medium-green")
-                )
+                .foregroundColor(Color("medium-green"))
                 .padding()
         })
-        
     }
-    
 }
 
 struct GroupCell: View {
@@ -40,12 +36,12 @@ struct GroupCell: View {
     let columnIndex: Int
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: UIScreen.main.bounds.height * 0.01) {
             // Group Image
             Image(systemName: "photo") // Replace with actual group image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
+                .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.width * 0.4)
                 .cornerRadius(10)
 
             // Group Name
@@ -55,12 +51,12 @@ struct GroupCell: View {
                 .foregroundColor(.black)
 
             // Members' Images
-            HStack(spacing: 8) {
+            HStack(spacing: UIScreen.main.bounds.width * 0.01) {
                 ForEach(group.members.prefix(3)) { member in
                     Image(systemName: "person.circle") // Replace with actual member image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 30, height: 30)
+                        .frame(width: UIScreen.main.bounds.width * 0.1, height: UIScreen.main.bounds.width * 0.1)
                         .clipShape(Circle())
                 }
 
@@ -68,7 +64,7 @@ struct GroupCell: View {
                     Text("+\(group.members.count - 3)")
                         .font(.footnote)
                         .foregroundColor(.white)
-                        .frame(width: 30, height: 30)
+                        .frame(width: UIScreen.main.bounds.width * 0.1, height: UIScreen.main.bounds.width * 0.1)
                         .background(Color.blue)
                         .clipShape(Circle())
                 }
