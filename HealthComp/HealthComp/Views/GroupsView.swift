@@ -29,7 +29,9 @@ struct GroupsView: View {
                 )
                 .padding()
         })
+        
     }
+    
 }
 
 struct GroupCell: View {
