@@ -8,24 +8,31 @@
 import SwiftUI
 
 struct FriendsView: View {
-    
-    let friends: [User]
-    
+//    @State var friends: [User]
+    var friends: [User]
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView{
                     FriendsHeader()
-                    AddFriends()
-                    ForEach(friends){ friend in
-                            FriendCell(friend: friend)
+                    NavigationLink {
+//                        FriendSearchView(friends: $friends)
+                        FriendSearchView()
+
+                    } label: {
+                        AddFriends()
                     }
-                    .padding(.vertical, 3)
+                    LazyVGrid(columns: [GridItem(), GridItem()], spacing: 10){
+                        ForEach(friends){ friend in
+                            FriendCell(friend: friend)
+                        }
+                        .padding(.vertical, 3)
+                    }
+                }
                 }
             }
         }
     }
-}
 
 #Preview {
     FriendsView(friends: sample_friends)
@@ -42,9 +49,6 @@ struct FriendsHeader: View {
                 .font(.system(size: 30, weight: .bold))
                 .foregroundColor(.white)
         }
-        
-        
-
     }
 }
 struct AddFriends: View {
