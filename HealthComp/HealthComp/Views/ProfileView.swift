@@ -62,7 +62,7 @@ struct ProgressBarView: View {
                     .opacity(0.3)
                     .foregroundColor(Color("dark-blue"))
                     .padding()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 155, height: 155)
 
                 
                 Circle()
@@ -71,10 +71,10 @@ struct ProgressBarView: View {
                     .foregroundColor(Color("light-blue"))
                     .rotationEffect(Angle(degrees: 270.0))
                     .padding()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 155, height: 155)
 
                 Text(String(progress))
-                    .font(.title3)
+                    .font(.subheadline)
                     .bold()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -139,7 +139,7 @@ struct ProfileView: View {
                 BaseView()
             } label: {
                 ProgressBarView(progressText: "Progress towards your current goal: ", numProgress: Double(user.data.dailyStep)/Double(user.data.dailyStep), progress:"\(user.data.dailyStep) / \(user.data.dailyStep)")
-                    .frame(width: 250, height: 250)
+                    .frame(width: 200, height: 200)
                         .padding(20.0)
 
             }
