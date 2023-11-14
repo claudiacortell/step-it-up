@@ -13,6 +13,8 @@ struct GoalView: View {
     @State var stepGoal = 30000
     @FocusState var isTextFieldFocused: Bool
     
+    let circleWidth = UIScreen.main.bounds.width - 60
+    
     var body: some View {
         ZStack {
             VStack() {
@@ -25,17 +27,7 @@ struct GoalView: View {
                         .foregroundColor(.white)
                 }
                 ZStack {
-                    Circle()
-                        .stroke(Color("light-blue"), style: StrokeStyle(lineWidth: 30, lineCap: .round, lineJoin: .round))
-                        .frame(width: 350)
-                    Circle()
-                        .fill(Color("medium-green"))
-                        .frame(width: 320)
-                    Circle()
-                        .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep) / CGFloat(stepGoal)))
-                        .stroke(Color("medium-blue"), style: StrokeStyle(lineWidth: 30, lineCap: .round, lineJoin: .round))
-                        .frame(width: 350)
-                        .rotationEffect(.degrees(-90))
+                    CircularProgressBar(stepGoal: $stepGoal, circleWidth: circleWidth, thickness: 30.0)
                     VStack(spacing: 0) {
                         Text("\(currentUser.data.weeklyStep)")
                             .font(.system(size: 64, weight: .bold))
@@ -44,11 +36,12 @@ struct GoalView: View {
                             Text("/")
                                 .font(.system(size: 24, weight: .semibold))
                                 .foregroundColor(.white)
+                            // TODO: make this work with commas
                             TextField("", value: $stepGoal, formatter: NumberFormatter(), onCommit: onGoalUpdate)
                                 .keyboardType(.numberPad)
                                 .foregroundColor(.white)
                                 .font(.system(size: 24, weight: .semibold))
-                                .frame(maxWidth: 100)
+                                .frame(maxWidth: circleWidth / 4, alignment: .center)
                                 .focused($isTextFieldFocused)
                         }
                         Text("Steps")
@@ -71,6 +64,26 @@ struct GoalView: View {
     private func onGoalUpdate() {
         // TODO: Use ViewModel to update user's personal step goal
         print("New step goal: \(self.stepGoal)")
+    }
+}
+
+struct CircularProgressBar: View {
+    @Binding var stepGoal: Int
+    var circleWidth: CGFloat
+    var thickness: CGFloat
+
+    var body: some View {
+        Circle()
+            .stroke(Color("light-blue"), style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
+            .frame(width: circleWidth)
+        Circle()
+            .fill(Color("medium-green"))
+            .frame(width: circleWidth - thickness)
+        Circle()
+            .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep) / CGFloat(stepGoal)))
+            .stroke(Color("medium-blue"), style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
+            .frame(width: circleWidth)
+            .rotationEffect(.degrees(-90))
     }
 }
 

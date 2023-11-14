@@ -47,7 +47,7 @@ struct GroupCreationView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("medium-green"))
-                            .frame(width: 240, height: 50)
+                            .frame(width: UIScreen.main.bounds.width / 1.75, height: 50)
                             .padding(.vertical)
                         Text("Create New Group")
                             .font(.system(size: 18, weight: .semibold))
