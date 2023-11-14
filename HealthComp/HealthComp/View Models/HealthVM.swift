@@ -8,17 +8,39 @@
 import Foundation
 import HealthKit
 
+enum HealthKitRetrievalInt{
+    case success(Int)
+    case failure
+}
+
+enum HealthKitRetrievalDouble{
+    case success(Double)
+    case failure
+}
+
+enum HealthKitRetrievalHealthData{
+    case success(HealthData)
+    case failure
+}
+
 
 
 class HealthVM: ObservableObject {
     static let shared = HealthVM()
 
     var healthStore = HKHealthStore()
-
-    @Published var healthData = HealthData(dailyStep: 0, dailyMileage: 0, dailyFlights: 0, weeklyStep: 0, weeklyMileage: 0)
+    @Published var healthData: HealthData?
+    
+//    @Published var dailyStep: Int?
+//    @Published var dailyMileage: Double?
+//    @Published var dailyFlights: Int?
+//    @Published var weeklyStep: Int?
+//    @Published var weeklyMileage: Double?
+    
     
     init() {
         requestAuthorization()
+        //writeHealthData()
     }
     
     
@@ -43,31 +65,87 @@ class HealthVM: ObservableObject {
             //request permission
             healthStore.requestAuthorization(toShare: nil, read: toReads) { success, error in
                 if success {
-                    self.fetchAllHealthData()
+                    let result = self.fetchAllHealthData()
+                    switch result {
+                        case .success(let returnedHealthData):
+                            self.healthData = returnedHealthData
+                        case .failure:
+                            print("Unable to load health data")
+                    }
                 } else {
                     print("\(String(describing: error))")
                 }
             }
         } else {
             //Authorization already granted, fetch data
-            self.fetchAllHealthData()
+            let result = self.fetchAllHealthData()
+            switch result {
+                case .success(let returnedHealthData):
+                    self.healthData = returnedHealthData
+                case .failure:
+                    print("Unable to load health data")
+            }
         }
     }
     
-    func fetchAllHealthData() {
-        readTodaysSteps()
-        readWeeklySteps()
-        readTodaysMileage()
-        readWeeklyMileage()
-        readTodaysFlights()
+    func fetchAllHealthData() -> HealthKitRetrievalHealthData {
+        var fetchedHealthData = HealthData(dailyStep: nil, dailyMileage: nil, dailyFlights: nil, weeklyStep: nil, weeklyMileage: nil)
+        let dailyStepResult = readTodaysSteps()
+        switch dailyStepResult{
+            case .success(let steps):
+                fetchedHealthData.dailyStep = steps
+            case .failure:
+                print("Getting daily steps failed")
+            
+        }
+        
+        let weeklyStepResult = readWeeklySteps()
+        switch weeklyStepResult{
+            case .success(let weeklySteps):
+                fetchedHealthData.weeklyStep = weeklySteps
+            case .failure:
+                print("Getting weekly steps failed")
+            
+        }
+        
+        let dailyMileageResult = readTodaysMileage()
+        switch dailyMileageResult{
+            case .success(let dailyMileage):
+                fetchedHealthData.dailyMileage = dailyMileage
+            case .failure:
+                print("Getting daily mileage failed")
+            
+        }
+        
+        let weeklyMileageResult = readWeeklyMileage()
+        switch dailyMileageResult{
+            case .success(let weeklyMileage):
+                fetchedHealthData.weeklyMileage = weeklyMileage
+            case .failure:
+                print("Getting weekly mileage failed")
+            
+        }
+   
+        let dailyFlightResult = readTodaysFlights()
+        switch dailyFlightResult{
+            case .success(let dailyFlights):
+                fetchedHealthData.dailyFlights = dailyFlights
+            case .failure:
+                print("Getting daily flights failed")
+            
+        }
+
         print("Fetched all health data")
+        return .success(fetchedHealthData)
+        
     }
     
     
-    func readTodaysSteps() {
+    func readTodaysSteps() -> HealthKitRetrievalInt{
+        var steps = 0
         print("READING TODAYS STEPS")
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
-            return
+            return .failure
         }
         
         let now = Date()
@@ -90,30 +168,32 @@ class HealthVM: ObservableObject {
                 return
             }
             
-            let steps = Int(sum.doubleValue(for: HKUnit.count()))
-            print("steps is \(steps)")
-            self.healthData.dailyStep = steps
+            steps = Int(sum.doubleValue(for: HKUnit.count()))
+            print("Daily steps: \(steps)")
+//            self.healthData.dailyStep = steps
         }
         healthStore.execute(query)
+        return .success(steps)
     }
     
     
-    func readWeeklySteps(){
+    func readWeeklySteps() -> HealthKitRetrievalInt{
         print("READING WEEKLY STEPS")
+        var weeklySteps = 0
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
-            return
+            return .failure
         }
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         //Find the start date (Monday) of the current week
         guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else {
             print("Failed to calculate the start date of the week.")
-            return
+            return .failure
         }
         //Find the end date (Sunday) of the current week
         guard let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
             print("Failed to calculate the end date of the week.")
-            return
+            return .failure
         }
 
         let predicate = HKQuery.predicateForSamples(
@@ -136,16 +216,19 @@ class HealthVM: ObservableObject {
     
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
             print("Weekly steps from \(startOfWeek) to \(endOfWeek): \(steps)")
-            self.healthData.weeklyStep = steps
+//            self.healthData.weeklyStep = steps
+            weeklySteps = steps
         }
         healthStore.execute(query)
+        return .success(weeklySteps)
     }
     
     
-    func readTodaysMileage(){
+    func readTodaysMileage() -> HealthKitRetrievalDouble{
+        var dailyMileage = 0.0
         print("READING TODAY'S WALKING/ RUNNING DISTANCE")
         guard let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) else {
-            return
+            return .failure
         }
         
         let now = Date()
@@ -171,29 +254,33 @@ class HealthVM: ObservableObject {
 //            let distanceInKilometers = distanceInMeters / 1000.0 // Convert meters to kilometers if needed
             let distanceInMiles = distanceInMeters * 0.000621371 // Convert meters to miles
         
-            self.healthData.dailyMileage = distanceInMiles
-            print("Walking/Running distance is \(distanceInMiles) mi")
+//            self.healthData.dailyMileage = distanceInMiles
+            dailyMileage = distanceInMiles
+            print("Daily mileage: \(distanceInMiles) mi")
+            
         }
         healthStore.execute(query)
+        return .success(dailyMileage)
     }
     
     
-    func readWeeklyMileage(){
+    func readWeeklyMileage() -> HealthKitRetrievalDouble{
         print("READING WEEKLY MILAGE")
+        var weeklyMileage = 0.0
         guard let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) else {
-            return
+            return .failure
         }
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         // Find the start date (Monday) of the current week
         guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else {
             print("Failed to calculate the start date of the week.")
-            return
+            return .failure
         }
         // Find the end date (Sunday) of the current week
         guard let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
             print("Failed to calculate the end date of the week.")
-            return
+            return .failure
         }
 
         let predicate = HKQuery.predicateForSamples(
@@ -217,17 +304,20 @@ class HealthVM: ObservableObject {
             let weeklyDistanceInMeters = sum.doubleValue(for: HKUnit.meter())
 //            let weeklyDistanceInKilometers = weeklyDistanceInMeters / 1000.0 // Convert meters to kilometers if needed
             let weeklyDistanceInMiles = weeklyDistanceInMeters * 0.000621371 // Convert meters to miles
-            self.healthData.weeklyMileage = weeklyDistanceInMiles
+            weeklyMileage = weeklyDistanceInMiles
+//            self.weeklyMileage = weeklyDistanceInMiles
             print("Weekly mileage from \(startOfWeek) to \(endOfWeek): \(weeklyDistanceInMiles) mi")
         }
         healthStore.execute(query)
+        return .success(weeklyMileage)
     }
     
     
-    func readTodaysFlights(){
+    func readTodaysFlights() -> HealthKitRetrievalInt{
         print("READING TODAYS FLIGHTS")
+        var dailyFlights = 0
         guard let flightsType = HKQuantityType.quantityType(forIdentifier: .flightsClimbed) else {
-            return
+            return .failure
         }
         
         let now = Date()
@@ -251,11 +341,17 @@ class HealthVM: ObservableObject {
             }
             
             let flights = Int(sum.doubleValue(for: HKUnit.count()))
-            print("flights is \(flights)")
-            self.healthData.dailyFlights = flights
+            print("Daily flights: \(flights)")
+            dailyFlights = flights
         }
         healthStore.execute(query)
+        return .success(dailyFlights)
     }
+    
+    
+//    func writeHealthData() ->{
+//
+//    }
     
     
 }
