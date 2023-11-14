@@ -19,7 +19,6 @@ struct HealthCompApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(userModel)
-//                .environmentObject(HealthVM())
         }
     }
 }

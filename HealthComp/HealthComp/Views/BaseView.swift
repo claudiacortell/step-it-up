@@ -19,7 +19,6 @@ struct CircularProfileIcon: View {
 }
 
 struct BaseView: View {
-    
     var body: some View {
         TabView {
             ProfileView()
@@ -32,7 +31,7 @@ struct BaseView: View {
                 }
             LeaderboardView()
                 .tabItem {
-                    Label("", systemImage: "char.bar.fill")
+                    Label("", systemImage: "chart.bar.fill")
                 }
             // Change to Profile View
             CompView()

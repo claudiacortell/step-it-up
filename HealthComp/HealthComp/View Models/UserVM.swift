@@ -16,38 +16,77 @@ import SwiftUI
 class UserVM: ObservableObject {
     @Published var currentUser: User?
     @Published var userSession: FirebaseAuth.User?
+    
     var imageUtil = ImageUtils()
     
     init() {
-        self.userSession = Auth.auth().currentUser
-        Task{
-            await fetchUser()
+        DispatchQueue.main.async{
+            self.userSession = Auth.auth().currentUser
+        }
+        Task.detached {
+            if self.userSession != nil {
+                do {
+                    let result = try await self.fetchUser(id: self.userSession!.uid)
+                    DispatchQueue.main.async {
+                        switch result{
+                        case .success(let user):
+                            self.currentUser = user
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                } catch {
+                    print("Error fetching current user: \(error)")
+                }
+            }
         }
     }
     
     func checkUserSession() {
-        // Add an observer to the Firebase Authentication state
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             guard let self = self else { return }
             if let user = user {
-                self.userSession = user
+                DispatchQueue.main.async{
+                    self.userSession = user
+                }
                 Task {
                     print(user.email!)
-                    await self.fetchUser()
+                    let result = try await self.fetchUser(id: self.userSession!.uid)
+                    switch result {
+                    case .success(let currentUser):
+                        DispatchQueue.main.async {
+                            self.currentUser = currentUser
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
                 }
             } else {
-                // User is signed out, set userSession to nil and reset currentUser data
-                self.userSession = nil
-                self.currentUser = nil
+                DispatchQueue.main.async {
+                    self.userSession = nil
+                    self.currentUser = nil
+                }
             }
         }
     }
+
     func signIn(withEmail email: String, password: String) async throws-> Base{
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             print(result)
-            self.userSession = result.user
-            await fetchUser()
+            DispatchQueue.main.async{
+                self.userSession = result.user
+            }
+            let fetch_result = try await fetchUser(id: self.userSession!.uid)
+            switch fetch_result {
+            case .success(let currentUser):
+                DispatchQueue.main.async{
+                    self.currentUser = currentUser
+                    return
+                }
+            case .failure(let error):
+                print(error)
+            }
             return .success
         } catch {
             print(error)
@@ -66,7 +105,9 @@ class UserVM: ObservableObject {
     func createUser(email: String, password: String, username: String, name: String, pfp_uri: String) async throws -> CreateUser{
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = result.user
+            DispatchQueue.main.async{
+                self.userSession = result.user
+            }
             UserDefaults.standard.set(result.user.uid, forKey: "userId")
             UserDefaults.standard.set(name, forKey: "name")
             let data = HealthData(dailyStep: 0, dailyMileage: 0, dailyFlights: 0, weeklyStep: 0, weeklyMileage: 0)
@@ -109,17 +150,16 @@ class UserVM: ObservableObject {
         }
     }
     
-    func fetchUser() async {
-        print("Fetching the user")
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
-        self.currentUser = try? snapshot.data(as: User.self)
-        print("SUCCESS: Fetched the user")
+    func fetchUser(id: String) async throws -> FetchUser {
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(id).getDocument() else {return .failure("Could not fetch user")}
+        if let user = try? snapshot.data(as: User.self) {
+            print("SUCCESS: Fetched the user")
+            return .success(user)
+        } else {
+            return .failure("Could not decode")
+        }
+        
     }
-    
-    
-    
-    
     
     func signOut() {
         

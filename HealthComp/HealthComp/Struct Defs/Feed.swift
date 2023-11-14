@@ -7,18 +7,14 @@
 
 import Foundation
 
-struct Feed: Decodable {
-    var posts: [Post]
-}
 
-struct Post: Identifiable, Decodable {
-    var id: UUID
-    var userId: UUID
-    var name: String
-    // Consider changing to Date() type but prolly not because of storage
-    var date: String
-    // Link that we will use to load the image
-    var pfp: String
+
+struct Post: Identifiable, Codable {
+    var id: String
+    var userId: String
+    // Store it as a Date() but convert to string
+    var date: String?
+    var date_swift: Date?
     var likes: Int
     // Link that we will use to load the image
     var attatchment: String?
@@ -26,7 +22,7 @@ struct Post: Identifiable, Decodable {
     var comments: [Comment]?
 }
 
-struct Comment: Identifiable, Decodable {
+struct Comment: Identifiable, Codable {
     var id: UUID
     var name: String
     var recieverUserID: UUID

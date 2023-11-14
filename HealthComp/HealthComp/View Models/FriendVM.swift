@@ -14,11 +14,10 @@ import FirebaseStorage
 import SwiftUI
 
 
-
 class FriendVM: ObservableObject {
     var userModel: UserVM
-    @Published var friends: [User] = []
-    @Published var friend_req: [FriendRequest] = []
+    @Published var user_friends: [String: User] = [:]
+    @Published var user_reqs: [FriendRequest] = []
 
     init(userModel: UserVM) {
         self.userModel = userModel
@@ -28,11 +27,13 @@ class FriendVM: ObservableObject {
                     await fetchFriends(friend_ids: friends_id)
                 }
             }
+            print("Here")
         }
     }
     
     func searchFriend(search: String, completion: @escaping (Search) -> Void){
         var matchingUsers: [User] = []
+        //TO-DO: change is equal to something like starts with
         Firestore.firestore().collection("users")
             .whereField("username", isEqualTo: search.trimmingCharacters(in: .whitespaces))
             .getDocuments{ (querySnapshot, error) in
@@ -66,27 +67,25 @@ class FriendVM: ObservableObject {
     }
 
     func fetchFriends(friend_ids: [String]) async {
-        
         for user_id in friend_ids {
             do {
-                let document = try await Firestore.firestore().collection("users").document(user_id).getDocument()
-                if document.exists {
-                    let user = try document.data(as: User.self)
-                    self.friends.append(user)
-                } else {
-                    print("User not found for ID: \(user_id)")
+                let result = try await self.userModel.fetchUser(id: user_id)
+                switch result {
+                case .success(let user):
+                    self.user_friends[user.id] = user
+                case .failure(let error):
+                    print(error)
                 }
             } catch {
                 print("Error fetching user data for ID: \(user_id), Error: \(error)")
             }
         }
     }
-
-
     
     // Not neccessary to display
     func requestFriend(origin: User, dest: User) async throws -> Base{
         // Store the friend request in db?? 
+        
         return .success
     }
     

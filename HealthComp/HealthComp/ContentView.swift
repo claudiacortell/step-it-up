@@ -9,18 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var userModel: UserVM
+    
     var body: some View {
+        let friendModel = FriendVM(userModel: userModel)
+        let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
+        let feedModel = FeedVM(userModel: userModel, friendModel: friendModel)
+        let testModel = TestVM(userModel: userModel, friendModel: friendModel, groupModel: groupModel, feedModel: feedModel)
         Group {
-            if userModel.userSession != nil {
-                BaseView()
-                    .environmentObject(FriendVM(userModel: userModel))
-            } else {
-                StartupView()
-                    .environmentObject(userModel)
-            }
-        }.onAppear {
-            userModel.checkUserSession()
+            TestView()
+                .environmentObject(testModel)
         }
+//        Group {
+//            if userModel.userSession != nil {
+//                BaseView()
+//                    .environmentObject(friendModel)
+//                    .environmentObject(groupModel)
+//            } else {
+//                StartupView()
+//                    .environmentObject(userModel)
+//            }
+//        }.onAppear {
+//            userModel.checkUserSession()
+//        }
     }
 }
 
