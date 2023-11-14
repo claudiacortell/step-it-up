@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FeedView: View {
-    let feed: Feed
+    let feed: [Post]
+//    let posts: [Post]
     @State private var local = true
     var body: some View {
         NavigationStack{
@@ -19,7 +20,7 @@ struct FeedView: View {
                     Header()
                         .padding(.bottom, 2)
 
-                    ForEach(feed.posts) {post in
+                    ForEach(feed) {post in
                         PostView(post: post)
                             .padding(.horizontal)
                     }

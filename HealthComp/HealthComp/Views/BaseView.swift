@@ -19,6 +19,7 @@ struct CircularProfileIcon: View {
 }
 
 struct BaseView: View {
+    @EnvironmentObject var userModel: UserVM
     var body: some View {
         TabView {
             ProfileView()

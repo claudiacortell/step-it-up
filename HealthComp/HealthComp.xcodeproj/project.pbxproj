@@ -20,6 +20,7 @@
 		754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255802AF5CCC700E9DB17 /* HomeView.swift */; };
 		754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255832AF5CCF900E9DB17 /* UserVM.swift */; };
 		754436852AFFD71600880413 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754436842AFFD71600880413 /* SampleData.swift */; };
+		7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578312E2B032890009B1CD1 /* FeedVM.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
 		75A8B70D2AFAA33B001D6E74 /* CompDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70C2AFAA33B001D6E74 /* CompDetailView.swift */; };
 		75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B70E2AFAA342001D6E74 /* CompView.swift */; };
@@ -62,6 +63,7 @@
 		754255802AF5CCC700E9DB17 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		754255832AF5CCF900E9DB17 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		754436842AFFD71600880413 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		7578312E2B032890009B1CD1 /* FeedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVM.swift; sourceTree = "<group>"; };
 		757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		75A8B70C2AFAA33B001D6E74 /* CompDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompDetailView.swift; sourceTree = "<group>"; };
 		75A8B70E2AFAA342001D6E74 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				75AD00A22AFC0582004F28D2 /* FriendVM.swift */,
 				75AD00A02AFC0571004F28D2 /* NotificationVM.swift */,
+				7578312E2B032890009B1CD1 /* FeedVM.swift */,
 				75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */,
 				75AD009E2AFC0557004F28D2 /* GroupVM.swift */,
 				754255832AF5CCF900E9DB17 /* UserVM.swift */,
@@ -301,6 +304,7 @@
 				75A8B70D2AFAA33B001D6E74 /* CompDetailView.swift in Sources */,
 				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */,
+				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,

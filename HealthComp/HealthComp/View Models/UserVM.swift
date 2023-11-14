@@ -51,7 +51,7 @@ class UserVM: ObservableObject {
                 }
                 Task {
                     print(user.email!)
-                    let result = try await self.fetchUser(id: self.userSession!.uid)
+                    let result = try await self.fetchUser(id: user.uid)
                     switch result {
                     case .success(let currentUser):
                         DispatchQueue.main.async {
