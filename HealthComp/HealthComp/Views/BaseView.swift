@@ -19,7 +19,7 @@ struct CircularProfileIcon: View {
 }
 
 struct BaseView: View {
-    
+    @EnvironmentObject var userModel: UserVM
     var body: some View {
         TabView {
             ProfileView(user: currentUser)
@@ -32,7 +32,7 @@ struct BaseView: View {
                 }
             LeaderboardView()
                 .tabItem {
-                    Label("", systemImage: "char.bar.fill")
+                    Label("", systemImage: "chart.bar.fill")
                 }
             // Change to Profile View
         }

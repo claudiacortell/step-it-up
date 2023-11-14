@@ -8,17 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var healthModel: HealthVM
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            if let user = userModel.currentUser{
+                BaseView()
+
+            }
+        }.onAppear{
+            Task{
+                if var user = userModel.currentUser{
+                    user.data = healthModel.healthData
+                }
+            }
         }
-        .padding()
+//        Group {
+//            if userModel.userSession != nil {
+//                
+//                BaseView()
+//            } else {
+//                StartupView()
+//            }
+//        }.onAppear {
+//            userModel.checkUserSession()
+//        }
     }
 }
 
-#Preview {
-    ContentView()
-}

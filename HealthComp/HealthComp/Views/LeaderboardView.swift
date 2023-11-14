@@ -11,8 +11,9 @@ struct LeaderboardView: View {
     let sortedUsers: [User]
     
     init(){
+        sample_friends.append(currentUser)
         sortedUsers = sample_friends.sorted { user1, user2 in
-            return user1.data.dailyStep > user2.data.dailyStep
+            return user1.data.dailyStep! > user2.data.dailyStep!
         }
     }
     
@@ -76,7 +77,7 @@ struct LeaderboardMessage: View {
                 return "Keep it up! You're on top!"
             } else {
                 if let userToBeat = userToBeat(leaderboardPosition) {
-                    let numStepsToBeat = userToBeat.data.dailyStep - currentUser.data.dailyStep
+                    let numStepsToBeat = userToBeat.data.dailyStep! - currentUser.data.dailyStep!
                     return "\(numStepsToBeat) more steps to beat \(userToBeat.name)! Bring it on!"
                 } else {
                     return "You're on top! Keep it up!"
@@ -117,8 +118,9 @@ struct LeaderboardCell: View{
                 Text(user.name).foregroundColor(isCurrentUser ? .black : Color("dark-blue")).fontWeight(.semibold).frame(maxWidth: 300, alignment: .leading)
                     .padding(.leading, 8)
                 Spacer()
-                Text("\(user.data.dailyStep)").fontWeight(.bold).foregroundColor(Color("dark-blue"))
+                Text("\(user.data.dailyStep!)").fontWeight(.bold).foregroundColor(Color("dark-blue"))
             }.frame(width: UIScreen.main.bounds.width - 80)
         }
     }
 }
+
