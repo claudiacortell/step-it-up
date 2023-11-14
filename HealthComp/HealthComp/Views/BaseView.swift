@@ -35,10 +35,6 @@ struct BaseView: View {
                     Label("", systemImage: "char.bar.fill")
                 }
             // Change to Profile View
-            CompView()
-                .tabItem {
-                    Label("", systemImage: "trophy")
-                }
         }
     }
 
