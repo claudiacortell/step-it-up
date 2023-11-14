@@ -24,10 +24,10 @@ struct User: Identifiable, Codable {
 
 struct HealthData: Codable {
     var dailyStep: Int
-    var dailyMileage: Int
+    var dailyMileage: Double
     var dailyFlights: Int
     var weeklyStep: Int
-    var weeklyMileage: Int
+    var weeklyMileage: Double
 }
 
 struct FriendRequest: Identifiable {

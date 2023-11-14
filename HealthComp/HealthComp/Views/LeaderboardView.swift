@@ -11,6 +11,7 @@ struct LeaderboardView: View {
     let sortedUsers: [User]
     
     init(){
+        sample_friends.append(currentUser)
         sortedUsers = sample_friends.sorted { user1, user2 in
             return user1.data.dailyStep > user2.data.dailyStep
         }
@@ -122,3 +123,4 @@ struct LeaderboardCell: View{
         }
     }
 }
+

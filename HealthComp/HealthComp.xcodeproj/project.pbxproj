@@ -44,6 +44,7 @@
 		75B809D32B0060020009D84A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D22B0060020009D84A /* FirebaseFirestore */; };
 		75B809D52B0060090009D84A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D42B0060090009D84A /* FirebaseStorage */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
+		9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF207072AFFF92600C8AE37 /* HealthVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,9 @@
 		75B7D2862B009D88004E5DE0 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		75B809B42B00555B0009D84A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9DF207072AFFF92600C8AE37 /* HealthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthVM.swift; sourceTree = "<group>"; };
+		9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthComp.entitlements; sourceTree = "<group>"; };
+		9DF2070A2AFFFA2400C8AE37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +128,7 @@
 			children = (
 				7542556B2AF5CC9600E9DB17 /* HealthComp */,
 				7542556A2AF5CC9600E9DB17 /* Products */,
-				75B809C12B0057130009D84A /* Frameworks */,
+				9DF207042AFFE5FF00C8AE37 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				75B809B42B00555B0009D84A /* GoogleService-Info.plist */,
+				9DF2070A2AFFFA2400C8AE37 /* Info.plist */,
+				9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */,
 				7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */,
 				7542556E2AF5CC9600E9DB17 /* ContentView.swift */,
 				754436842AFFD71600880413 /* SampleData.swift */,
@@ -189,11 +195,12 @@
 				75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */,
 				75AD009E2AFC0557004F28D2 /* GroupVM.swift */,
 				754255832AF5CCF900E9DB17 /* UserVM.swift */,
+				9DF207072AFFF92600C8AE37 /* HealthVM.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
 		};
-		75B809C12B0057130009D84A /* Frameworks */ = {
+		9DF207042AFFE5FF00C8AE37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -292,6 +299,7 @@
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */,
 				75A8B70D2AFAA33B001D6E74 /* CompDetailView.swift in Sources */,
+				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				75A8B70F2AFAA342001D6E74 /* CompView.swift in Sources */,
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
@@ -440,12 +448,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HealthComp/HealthComp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthComp/Preview Content\"";
 				DEVELOPMENT_TEAM = 3FMGY5Z7S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HealthComp/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Allow app to use health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,12 +480,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HealthComp/HealthComp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthComp/Preview Content\"";
 				DEVELOPMENT_TEAM = 3FMGY5Z7S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HealthComp/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Allow app to use health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
