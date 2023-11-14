@@ -22,7 +22,7 @@ struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
     var body: some View {
         TabView {
-            ProfileView()
+            ProfileView(user: currentUser)
                 .tabItem {
                     Label("", systemImage: "house.fill")
                 }
@@ -35,10 +35,6 @@ struct BaseView: View {
                     Label("", systemImage: "chart.bar.fill")
                 }
             // Change to Profile View
-            CompView()
-                .tabItem {
-                    Label("", systemImage: "trophy")
-                }
         }
     }
 
