@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GoalView: View {
     var userModel = currentUser
+    // TODO: replace with stepGoal in User struct
+    @State var stepGoal = 30000
+    @FocusState var isTextFieldFocused: Bool
     
     var body: some View {
         ZStack {
@@ -28,30 +31,46 @@ struct GoalView: View {
                     Circle()
                         .fill(Color("medium-green"))
                         .frame(width: 320)
-                    // TODO: add stepGoal to User struct
                     Circle()
-                        .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep) / CGFloat(30000)))
+                        .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep) / CGFloat(stepGoal)))
                         .stroke(Color("medium-blue"), style: StrokeStyle(lineWidth: 30, lineCap: .round, lineJoin: .round))
                         .frame(width: 350)
                         .rotationEffect(.degrees(-90))
                     VStack(spacing: 0) {
                         Text("\(currentUser.data.weeklyStep)")
                             .font(.system(size: 64, weight: .bold))
-                            .foregroundColor(Color.white)
-                        Text("/ \(30000)")
-                            .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(Color.white)
+                            .foregroundColor(.white)
+                        HStack {
+                            Text("/")
+                                .font(.system(size: 24, weight: .semibold))
+                                .foregroundColor(.white)
+                            TextField("", value: $stepGoal, formatter: NumberFormatter(), onCommit: onGoalUpdate)
+                                .keyboardType(.numberPad)
+                                .foregroundColor(.white)
+                                .font(.system(size: 24, weight: .semibold))
+                                .frame(maxWidth: 100)
+                                .focused($isTextFieldFocused)
+                        }
                         Text("Steps")
                             .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(Color.white)
+                            .foregroundColor(.white)
                         Image(systemName: "square.and.pencil")
                             .font(.largeTitle)
                             .foregroundColor(.white)
+                            .onTapGesture {
+                                isTextFieldFocused = true
+                            }
                     }
                 }
+                .padding(.vertical, 50)
                 Spacer()
             }
         }
+    }
+    
+    private func onGoalUpdate() {
+        // TODO: Use ViewModel to update user's personal step goal
+        print("New step goal: \(self.stepGoal)")
     }
 }
 
