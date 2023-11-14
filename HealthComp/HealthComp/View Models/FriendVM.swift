@@ -29,6 +29,7 @@ class FriendVM: ObservableObject {
             }
             print("Here")
         }
+
     }
     
     func searchFriend(search: String, completion: @escaping (Search) -> Void){
