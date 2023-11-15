@@ -13,19 +13,6 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftUI
 
-
-struct Group_id: Identifiable, Codable{
-    var id: String
-    var name: String
-    var members: [String]
-}
-
-struct Group_user: Identifiable, Codable{
-    var id: String
-    var name: String
-    var members: [User] = []
-}
-
 class GroupVM: ObservableObject {
     var userModel: UserVM
     var friendModel: FriendVM
@@ -44,8 +31,7 @@ class GroupVM: ObservableObject {
         }
         
     }
-    
-    
+
     // Make sure that the current user is in the list
     func fillGroupStruct(groups: [Group_id]) async {
         for group in groups{

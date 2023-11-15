@@ -27,7 +27,6 @@ class FriendVM: ObservableObject {
                     await fetchFriends(friend_ids: friends_id)
                 }
             }
-            print("Here")
         }
 
     }

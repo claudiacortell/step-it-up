@@ -13,31 +13,23 @@ struct ContentView: View {
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
         let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
-        let feedModel = FeedVM(userModel: userModel, friendModel: friendModel)
-//        let testModel = TestVM(userModel: userModel, friendModel: friendModel, groupModel: groupModel, feedModel: feedModel)
-//        Group {
-//            TestView()
-//                .environmentObject(testModel)
-//        }
+        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
+
         Group {
             if userModel.userSession != nil {
                 BaseView()
                     .environmentObject(friendModel)
                     .environmentObject(groupModel)
+                    .environmentObject(HealthVM())
+                    .onAppear {
+                        userModel.checkUserSession()
+                        }
             } else {
                 StartupView()
                     .environmentObject(userModel)
             }
-        }.onAppear {
-            userModel.checkUserSession()
-            Task{
-                let healthModel = HealthVM()
-                if let _ = userModel.currentUser{
-                    userModel.currentUser?.data = healthModel.healthData!
-                }
-            }
+        }
                 
         }
     }
-}
 

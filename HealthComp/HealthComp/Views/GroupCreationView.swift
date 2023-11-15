@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GroupCreationView: View {
     @State var groupName = ""
-    @State var selectedMembers: [UUID: Bool] = [:]
+    @State var selectedMembers: [String: Bool] = [:]
     
     var body: some View {
         VStack {

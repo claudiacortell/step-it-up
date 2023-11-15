@@ -8,26 +8,7 @@
 import Foundation
 import HealthKit
 
-enum HealthKitRetrievalInt{
-    case success(Int)
-    case failure
-}
-
-enum HealthKitRetrievalDouble{
-    case success(Double)
-    case failure
-}
-
-enum HealthKitRetrievalHealthData{
-    case success(HealthData)
-    case failure
-}
-
-
-
 class HealthVM: ObservableObject {
-    static let shared = HealthVM()
-
     var healthStore = HKHealthStore()
     @Published var healthData: HealthData?
     
@@ -118,7 +99,7 @@ class HealthVM: ObservableObject {
         }
         
         let weeklyMileageResult = readWeeklyMileage()
-        switch dailyMileageResult{
+        switch weeklyMileageResult{
             case .success(let weeklyMileage):
                 fetchedHealthData.weeklyMileage = weeklyMileage
             case .failure:

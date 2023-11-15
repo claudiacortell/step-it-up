@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var UserModel: UserVM
-    
+
     var body: some View {
         // TODO: Replace with the users name
         HStack{
@@ -25,7 +25,7 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-        .environmentObject(UserVM())
-}
+//#Preview {
+//    HomeView()
+//        .environmentObject(UserVM())
+//}

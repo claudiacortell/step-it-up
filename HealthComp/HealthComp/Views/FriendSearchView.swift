@@ -4,16 +4,12 @@
 //
 //  Created by Teodora Sutilovic on 11/11/23.
 //
-enum Search{
-    case success([User])
-    case no_results
-    case failure(String)
-}
+
 
 import SwiftUI
 
 struct FriendSearchView: View {
-//    @Binding var friends: [User]
+
     @State private var searchText = ""
     @State var  results: [User]?
     
@@ -23,19 +19,19 @@ struct FriendSearchView: View {
                 addFriendsHeader()
                 SearchBar(text: $searchText)
                     .padding()
-                Button(action: {
-                    let searchResult = getSearch(username: searchText)
-                    switch searchResult {
-                    case .success(let friends):
-                        results = friends
-                    case .failure(let error):
-                        print("Error: \(error)")
-                    case .no_results:
-                        print("Nothing")
-                    }
-                }, label: {
-                    Text("Search")
-                })
+//                Button(action: {
+//                    let searchResult = getSearch(username: searchText)
+//                    switch searchResult {
+//                    case .success(let friends):
+//                        results = friends
+//                    case .failure(let error):
+//                        print("Error: \(error)")
+//                    case .no_results:
+//                        print("Nothing")
+//                    }
+//                }, label: {
+//                    Text("Search")
+//                })
 
                 List {
                     if let search_results = results{

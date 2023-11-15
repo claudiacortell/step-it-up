@@ -22,7 +22,7 @@ struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
     var body: some View {
         TabView {
-            ProfileView(user: currentUser)
+            ProfileView()
                 .tabItem {
                     Label("", systemImage: "house.fill")
                 }

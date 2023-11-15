@@ -7,6 +7,21 @@
 
 import Foundation
 
+enum HealthKitRetrievalInt{
+    case success(Int)
+    case failure
+}
+
+enum HealthKitRetrievalDouble{
+    case success(Double)
+    case failure
+}
+
+enum HealthKitRetrievalHealthData{
+    case success(HealthData)
+    case failure
+}
+
 enum Upload{
     case success(String)
     case failure(String)

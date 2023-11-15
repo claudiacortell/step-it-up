@@ -7,11 +7,23 @@
 
 import Foundation
 
-struct Group2: Identifiable {
-    // Group ID can be really useful
-    var id: UUID
+struct Group_id: Identifiable, Codable{
+    var id: String
     var name: String
-    var members: [User]
+    var members: [String]
 }
+
+struct Group_user: Identifiable, Codable{
+    var id: String
+    var name: String
+    var members: [User] = []
+}
+
+//struct Group2: Identifiable {
+//    // Group ID can be really useful
+//    var id: UUID
+//    var name: String
+//    var members: [User]
+//}
 
 

@@ -22,14 +22,13 @@ struct RegistrationView2: View {
     @EnvironmentObject var userModel: UserVM
     
     var body: some View {
-        
         NavigationStack{
             VStack{
                 Text("You are almost there!")
                     .font(.system(size: 25, weight: .bold))
                     .padding(.top, 40)
                     .padding(.bottom, 20)
-                
+    
                 PhotosPicker(selection: $selectedItem, matching: .images){
                     if let selectedImage {
                         selectedImage

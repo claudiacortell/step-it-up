@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GroupsView: View {
-    let groups: [Group]
+    let groups: [Group_user]
 
     var body: some View {
         ScrollView {
@@ -31,7 +31,7 @@ struct GroupsView: View {
 }
 
 struct GroupCell: View {
-    let group: Group
+    let group: Group_user
     let rowIndex: Int
     let columnIndex: Int
 

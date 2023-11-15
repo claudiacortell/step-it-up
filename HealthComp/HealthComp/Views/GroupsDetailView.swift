@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GroupsDetailView: View {
-    var group: Group
+    var group: Group_user
 
     var body: some View {
         VStack {
