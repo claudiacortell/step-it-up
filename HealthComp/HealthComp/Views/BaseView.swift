@@ -20,6 +20,8 @@ struct CircularProfileIcon: View {
 
 struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var manager: HealthVM
+
     var body: some View {
         TabView {
             ProfileView()
@@ -38,8 +40,4 @@ struct BaseView: View {
         }
     }
 
-}
-
-#Preview {
-    BaseView()
 }

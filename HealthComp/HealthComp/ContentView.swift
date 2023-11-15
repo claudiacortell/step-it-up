@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var manager: HealthVM
     
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
@@ -20,7 +21,6 @@ struct ContentView: View {
                 BaseView()
                     .environmentObject(friendModel)
                     .environmentObject(groupModel)
-                    .environmentObject(HealthVM())
                     .onAppear {
                         userModel.checkUserSession()
                         }

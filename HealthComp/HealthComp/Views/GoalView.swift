@@ -29,9 +29,9 @@ struct GoalView: View {
                 ZStack {
                     CircularProgressBar(stepGoal: $stepGoal, circleWidth: circleWidth, thickness: 30.0)
                     VStack(spacing: 0) {
-                        Text("\(currentUser.data.weeklyStep!)")
-                            .font(.system(size: 64, weight: .bold))
-                            .foregroundColor(.white)
+//                        Text("\(currentUser.data.weeklyStep!)")
+//                            .font(.system(size: 64, weight: .bold))
+//                            .foregroundColor(.white)
                         HStack {
                             Text("/")
                                 .font(.system(size: 24, weight: .semibold))
@@ -80,7 +80,7 @@ struct CircularProgressBar: View {
             .fill(Color("medium-green"))
             .frame(width: circleWidth - thickness)
         Circle()
-            .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep!) / CGFloat(stepGoal)))
+//            .trim(from: 0.0, to: (CGFloat(currentUser.data.weeklyStep!) / CGFloat(stepGoal)))
             .stroke(Color("medium-blue"), style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
             .frame(width: circleWidth)
             .rotationEffect(.degrees(-90))

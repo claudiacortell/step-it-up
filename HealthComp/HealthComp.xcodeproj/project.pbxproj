@@ -26,6 +26,11 @@
 		754536332B042C6C00567E8D /* GroupCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754536312B042C6C00567E8D /* GroupCreationView.swift */; };
 		7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578312E2B032890009B1CD1 /* FeedVM.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
+		758B751B2B04750C00230CCC /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751A2B04750C00230CCC /* Health.swift */; };
+		758B751D2B047C8000230CCC /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751C2B047C8000230CCC /* HealthModel.swift */; };
+		758B751F2B04A80700230CCC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751E2B04A80700230CCC /* Header.swift */; };
+		758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */; };
+		758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75222B04AF1900230CCC /* UserGoalView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
 		75AD00972AFAE747004F28D2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00962AFAE747004F28D2 /* Feed.swift */; };
@@ -75,6 +80,11 @@
 		754536312B042C6C00567E8D /* GroupCreationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreationView.swift; sourceTree = "<group>"; };
 		7578312E2B032890009B1CD1 /* FeedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVM.swift; sourceTree = "<group>"; };
 		757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		758B751A2B04750C00230CCC /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
+		758B751C2B047C8000230CCC /* HealthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
+		758B751E2B04A80700230CCC /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmbeddedFriendsView.swift; path = HealthComp/Views/EmbeddedFriendsView.swift; sourceTree = "<group>"; };
+		758B75222B04AF1900230CCC /* UserGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserGoalView.swift; path = ../../UserGoalView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		75AD00962AFAE747004F28D2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 			children = (
 				75AD00962AFAE747004F28D2 /* Feed.swift */,
 				75AD00A52AFC0746004F28D2 /* User.swift */,
+				758B751A2B04750C00230CCC /* Health.swift */,
 				75AD00A72AFC0CE1004F28D2 /* Group.swift */,
 				751F04D22AFC0E2900382FD3 /* Enums.swift */,
 			);
@@ -138,6 +149,7 @@
 		754255602AF5CC9600E9DB17 = {
 			isa = PBXGroup;
 			children = (
+				758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */,
 				7542556B2AF5CC9600E9DB17 /* HealthComp */,
 				7542556A2AF5CC9600E9DB17 /* Products */,
 				9DF207042AFFE5FF00C8AE37 /* Frameworks */,
@@ -156,6 +168,7 @@
 		7542556B2AF5CC9600E9DB17 /* HealthComp */ = {
 			isa = PBXGroup;
 			children = (
+				758B751C2B047C8000230CCC /* HealthModel.swift */,
 				75B809B42B00555B0009D84A /* GoogleService-Info.plist */,
 				9DF2070A2AFFFA2400C8AE37 /* Info.plist */,
 				9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */,
@@ -185,8 +198,10 @@
 			children = (
 				751F04D62AFC8E4F00382FD3 /* Reusable Views */,
 				7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */,
+				758B75222B04AF1900230CCC /* UserGoalView.swift */,
 				75B7D2822B007361004E5DE0 /* RegistrationView2.swift */,
 				751F04D92AFC9E7700382FD3 /* BaseView.swift */,
+				758B751E2B04A80700230CCC /* Header.swift */,
 				7542557E2AF5CCB900E9DB17 /* StartupView.swift */,
 				7542557C2AF5CCB000E9DB17 /* LoginView.swift */,
 				754255802AF5CCC700E9DB17 /* HomeView.swift */,
@@ -323,7 +338,10 @@
 				751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
+				758B751D2B047C8000230CCC /* HealthModel.swift in Sources */,
+				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
+				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,
 				7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */,
 				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
@@ -334,6 +352,8 @@
 				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */,
+				758B751F2B04A80700230CCC /* Header.swift in Sources */,
+				758B751B2B04750C00230CCC /* Health.swift in Sources */,
 				75B7D2852B008A59004E5DE0 /* TextField.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,

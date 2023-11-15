@@ -1,29 +1,98 @@
 import SwiftUI
 
-struct ProfileHeaderView: View {
-//    @EnvironmentObject var userModel: UserVM
-    let user: User
+struct ProfileView: View {
+    @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var healthModel: HealthVM
+    let user = currentUser
     
     var body: some View {
-//        if let user = userModel.currentUser{
+            ScrollView{
+//                if let user = userModel.currentUser{
+                    ProfileHeaderView(user: user)
+                    EmbeddedFriendsView(friends: sample_friends)
+                    .padding(.top)
+//                    HStack(spacing: UIScreen.main.bounds.width * 0.08) {
+//                        NavigationLink {
+//                            BaseView()
+//                        } label: {
+//                            StatsSquare(title: "Total Friends", value: "\(user.friends?.count ?? 0)")
+//                        }
+                        
+                        NavigationLink {
+                            BaseView()
+                        } label: {
+                            StatsSquare(title: "Total Groups", value: "\(user.groups?.count ?? 0)")
+                        }
+//                    }
+                    .padding(.top, UIScreen.main.bounds.height * 0.01)
+                    Spacer(minLength:UIScreen.main.bounds.width * 0.02)
+                    
+                    if healthModel.healthData.dailyStep != nil{
+                        NavigationLink {
+                            BaseView()
+                        } label: {
+                            UserGoalView(progressText: "", numProgress: Double(healthModel.healthData.dailyStep!)/Double(healthModel.healthData.dailyStep!), progress:"\(healthModel.healthData.dailyStep!) / 10000")
+                                .frame(width: UIScreen.main.bounds.width*0.8, height: UIScreen.main.bounds.height * 0.3)
+//                                .padding(UIScreen.main.bounds.height * 0.01)
+                            
+                        }
+                    }
+            
+                    Text("Your stats are looking good, keep it up!")
+                        .font(.headline)
+                        .foregroundColor(Color("dark-blue"))
+                    
+                    if healthModel.healthData.dailyStep != nil{
+                        StatsCard(title: "Daily Steps", value: "\(healthModel.healthData.dailyStep!)")
+                    }
+                    if healthModel.healthData.dailyMileage != nil{
+                        StatsCard(title: "Daily Distance (mi)", value: "\(healthModel.healthData.dailyMileage!)")
+                    }
+                    if healthModel.healthData.weeklyStep != nil{
+                        StatsCard(title: "Weekly Steps", value: "\(healthModel.healthData.weeklyStep!)")
+                    }
+                    if healthModel.healthData.weeklyMileage != nil{
+                        StatsCard(title: "Weekly Distance (mi)", value: "\(healthModel.healthData.weeklyMileage!)")
+                    }
+            }.onAppear{
+                healthModel.fetchAllHealthData()
+            }
+        
+    }
+}
+
+struct ProfileHeaderView: View {
+    let user: User
+    var body: some View {
+        VStack{
+            HStack{
+                Text("App Name")
+                    .font(.system(size: 25, weight: .bold))
+                Spacer()
+            }.padding(.horizontal)
             ZStack {
                 Circle()
-                    .stroke(Color("medium-blue"), lineWidth: 15)
-                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.width * 0.4)
-                    .padding(.top, UIScreen.main.bounds.width * 0.1)
+//                    .stroke(Color("medium-blue"), lineWidth: 2)
+                    .frame(width: 120, height: 120)
                 
                 Image(systemName: user.pfp)
                     .resizable()
                     .scaledToFit()
-                    .frame(width:  UIScreen.main.bounds.width * 0.38, height: UIScreen.main.bounds.width * 0.38)
+                    .frame(width:  120, height: 120)
                     .clipShape(Circle())
-                    .padding(.top, UIScreen.main.bounds.width * 0.1)
             }
-            .padding(.top, UIScreen.main.bounds.width * 0.5) // Adjusted padding here
-//        }
+            Text("\(user.name)")
+                .font(.system(size: 18, weight: .semibold))
+                .padding(.top, 15)
+            Text("@\(user.username)")
+                .font(.system(size: 16, weight: .semibold))
+        }
+
+//            .padding(.top, UIScreen.main.bounds.width * 0.5) // Adjusted padding here
     }
     
 }
+
 
 struct StatsSquare: View {
     let title: String
@@ -64,18 +133,18 @@ struct ProgressBarView: View {
                 Circle()
                     .stroke(lineWidth: 20.0)
                     .opacity(0.3)
-                    .foregroundColor(Color("dark-blue"))
+                    .foregroundColor(Color("light-green"))
                     .padding()
-                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
+//                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
 
                 
                 Circle()
                     .trim(from: 0.0, to: CGFloat(min(numProgress, 1.0)))
                     .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("light-blue"))
+                    .foregroundColor(Color.white)
                     .rotationEffect(Angle(degrees: 270.0))
                     .padding()
-                    .frame(width:UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
+//                    .frame(width:UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
 
                 Text(String(progress))
                     .font(.subheadline)
@@ -110,66 +179,11 @@ struct StatsCard: View {
     }
 }
 
-struct ProfileView: View {
-    @EnvironmentObject var userModel: UserVM
-    @EnvironmentObject var healthModel: HealthVM
-    
-    var body: some View {
-        VStack {
-            ScrollView{
-                if let user = userModel.currentUser{
-                    ProfileHeaderView(user: user)
-                    
-                    Text("Hi, \(user.name)")
-                        .font(.largeTitle)
-                        .padding(.top, UIScreen.main.bounds.height * 0.04)
-                    
-                    HStack(spacing: UIScreen.main.bounds.width * 0.08) {
-                        NavigationLink {
-                            BaseView()
-                        } label: {
-                            StatsSquare(title: "Total Friends", value: "\(user.friends?.count ?? 0)")
-                        }
-                        
-                        NavigationLink {
-                            BaseView()
-                        } label: {
-                            StatsSquare(title: "Total Groups", value: "\(user.groups?.count ?? 0)")
-                        }
-                    }
-                    .padding(.top, UIScreen.main.bounds.height * 0.01)
-                    
-                    Spacer(minLength:UIScreen.main.bounds.width * 0.02)
-                    
-                    NavigationLink {
-                        BaseView()
-                    } label: {
-                        ProgressBarView(progressText: "Progress towards your current goal: ", numProgress: Double(user.data.dailyStep!)/Double(user.data.dailyStep!), progress:"\(user.data.dailyStep!) / \(user.data.dailyStep!)")
-                            .frame(width: UIScreen.main.bounds.width*0.8, height: UIScreen.main.bounds.height * 0.3)
-                            .padding(UIScreen.main.bounds.height * 0.01)
-                        
-                    }
-                    
-                    Text("Your stats are looking good, keep it up!")
-                        .font(.headline)
-                        .foregroundColor(Color("dark-blue"))
-                    if let user_health = healthModel.healthData{
-                        StatsCard(title: "Daily Steps", value: "\(user_health.dailyStep!)")
-                        StatsCard(title: "Daily Distance (mi)", value: "\(user_health.dailyMileage!)")
-                        StatsCard(title: "Weekly Steps", value: "\(user_health.weeklyStep!)")
-                        StatsCard(title: "Weekly Distance (mi)", value: "\(user_health.weeklyMileage!)")
-                    }
-                }
-            }
-            .padding(.top, UIScreen.main.bounds.height * 0.05)
-            .padding(.bottom, UIScreen.main.bounds.height * 0.01)
-            
-        }
-    }
-}
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(UserVM())
+            .environmentObject(HealthVM())
+        
     }
 }
