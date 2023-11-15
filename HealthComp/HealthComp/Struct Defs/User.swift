@@ -19,16 +19,9 @@ struct User: Identifiable, Codable {
     var pfp: String
     var friends: [String]?
     var groups: [String]?
-    var data: HealthData
+//    var data: HealthData
 }
 
-struct HealthData: Codable {
-    var dailyStep: Int?
-    var dailyMileage: Double?
-    var dailyFlights: Int?
-    var weeklyStep: Int?
-    var weeklyMileage: Double?
-}
 
 struct FriendRequest: Identifiable {
     var id: String

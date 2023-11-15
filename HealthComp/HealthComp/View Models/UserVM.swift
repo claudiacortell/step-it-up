@@ -110,8 +110,7 @@ class UserVM: ObservableObject {
             }
             UserDefaults.standard.set(result.user.uid, forKey: "userId")
             UserDefaults.standard.set(name, forKey: "name")
-            let data = HealthData(dailyStep: 0, dailyMileage: 0, dailyFlights: 0, weeklyStep: 0, weeklyMileage: 0)
-            let new_user = User(id: result.user.uid, name: name, email: email, username: username, pfp: pfp_uri, data: data)
+            let new_user = User(id: result.user.uid, name: name, email: email, username: username, pfp: pfp_uri)
             let encoded_user = try Firestore.Encoder().encode(new_user)
             try await Firestore.firestore().collection("users").document(result.user.uid).setData(encoded_user)
             return .success(new_user.id)
