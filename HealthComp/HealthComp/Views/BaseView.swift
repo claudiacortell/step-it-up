@@ -30,11 +30,11 @@ struct BaseView: View {
                 }
             FriendSearchView()
                 .tabItem{
-                    Label("", systemImage: "magnifying")
+                    Label("", systemImage: "magnifyingglass")
                 }
             GroupCreationView()
                 .tabItem{
-                    Label("", systemImage: "magnifying")
+                    Label("", systemImage: "plus.circle")
                 }
             FeedView(feed: sample_feed)
                 .tabItem {

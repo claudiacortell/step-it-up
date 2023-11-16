@@ -86,7 +86,6 @@ class HealthVM: ObservableObject {
     
     
     func readWeeklySteps(){
-        var weeklySteps = 0
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
             return
         }
@@ -124,6 +123,7 @@ class HealthVM: ObservableObject {
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
             DispatchQueue.main.async{
                 self.healthData.weeklyStep = steps
+                print("Steps: \(steps)")
             }
         }
         healthStore.execute(query)

@@ -19,9 +19,12 @@ struct User: Identifiable, Codable {
     var pfp: String
     var friends: [String]?
     var groups: [String]?
-//    var data: HealthData
 }
 
+struct User_Health: Codable{
+    var user: [User]
+    var data: [HealthData]
+}
 
 struct FriendRequest: Identifiable {
     var id: String

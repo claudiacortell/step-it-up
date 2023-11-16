@@ -16,7 +16,7 @@ struct FriendSearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                addFriendsHeader()
+                //addFriendsHeader()
                 SearchBar(text: $searchText)
                     .padding()
 //                Button(action: {
@@ -104,6 +104,7 @@ struct addFriendCell: View {
             Spacer()
             if isFriendAdded == false{
                 Button(action: {
+                    // Call a function from
                     isFriendAdded.toggle()
                 }) {
                     Image(systemName: "plus.circle")
