@@ -31,6 +31,9 @@
 		758B751F2B04A80700230CCC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751E2B04A80700230CCC /* Header.swift */; };
 		758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */; };
 		758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75222B04AF1900230CCC /* UserGoalView.swift */; };
+		758B75252B092C3500230CCC /* ProfileViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75242B092C3500230CCC /* ProfileViewHeader.swift */; };
+		758B75272B092C8B00230CCC /* StatsSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75262B092C8B00230CCC /* StatsSquare.swift */; };
+		758B75292B092D0A00230CCC /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75282B092D0A00230CCC /* ProgressView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
 		75AD00972AFAE747004F28D2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00962AFAE747004F28D2 /* Feed.swift */; };
@@ -85,6 +88,9 @@
 		758B751E2B04A80700230CCC /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedFriendsView.swift; sourceTree = "<group>"; };
 		758B75222B04AF1900230CCC /* UserGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserGoalView.swift; path = ../../UserGoalView.swift; sourceTree = "<group>"; };
+		758B75242B092C3500230CCC /* ProfileViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewHeader.swift; sourceTree = "<group>"; };
+		758B75262B092C8B00230CCC /* StatsSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsSquare.swift; sourceTree = "<group>"; };
+		758B75282B092D0A00230CCC /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		75AD00962AFAE747004F28D2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -141,7 +147,10 @@
 			children = (
 				758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */,
 				757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */,
+				758B75262B092C8B00230CCC /* StatsSquare.swift */,
+				758B75242B092C3500230CCC /* ProfileViewHeader.swift */,
 				751F04D72AFC8E5E00382FD3 /* Buttons.swift */,
+				758B75282B092D0A00230CCC /* ProgressView.swift */,
 				75B7D2842B008A59004E5DE0 /* TextField.swift */,
 			);
 			path = "Reusable Views";
@@ -342,6 +351,7 @@
 				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,
+				758B75292B092D0A00230CCC /* ProgressView.swift in Sources */,
 				7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */,
 				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
@@ -367,9 +377,11 @@
 				75B7D2832B007361004E5DE0 /* RegistrationView2.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
 				7545362E2B042C5800567E8D /* FriendsView.swift in Sources */,
+				758B75272B092C8B00230CCC /* StatsSquare.swift in Sources */,
 				75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */,
 				75AD00A62AFC0746004F28D2 /* User.swift in Sources */,
 				754536332B042C6C00567E8D /* GroupCreationView.swift in Sources */,
+				758B75252B092C3500230CCC /* ProfileViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,8 +524,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,8 +555,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -15,6 +15,8 @@ struct EmbeddedFriendsView: View {
                 Text("\(friends.count) FRIENDS")
                     .font(.system(size: 14, weight: .semibold))
                 Spacer()
+                Text("View all")
+                    .font(.system(size: 14, weight: .semibold))
             }
             ScrollView(.horizontal){
                 HStack(spacing: 20){
