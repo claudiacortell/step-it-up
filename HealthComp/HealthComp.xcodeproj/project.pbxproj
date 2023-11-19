@@ -51,6 +51,8 @@
 		75B809D12B005FF70009D84A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D02B005FF70009D84A /* FirebaseFirestoreSwift */; };
 		75B809D32B0060020009D84A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D22B0060020009D84A /* FirebaseFirestore */; };
 		75B809D52B0060090009D84A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D42B0060090009D84A /* FirebaseStorage */; };
+		7F173D612B0A793D0066E2A5 /* GroupsMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D602B0A793D0066E2A5 /* GroupsMemberView.swift */; };
+		7F173D632B0A7A8B0066E2A5 /* GroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D622B0A7A8B0066E2A5 /* GroupCellView.swift */; };
 		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
 		7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
@@ -99,6 +101,8 @@
 		75B7D2842B008A59004E5DE0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		75B7D2862B009D88004E5DE0 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		75B809B42B00555B0009D84A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7F173D602B0A793D0066E2A5 /* GroupsMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsMemberView.swift; sourceTree = "<group>"; };
+		7F173D622B0A7A8B0066E2A5 /* GroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellView.swift; sourceTree = "<group>"; };
 		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
 				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
 				7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */,
+				7F173D622B0A7A8B0066E2A5 /* GroupCellView.swift */,
+				7F173D602B0A793D0066E2A5 /* GroupsMemberView.swift */,
 				754536312B042C6C00567E8D /* GroupCreationView.swift */,
 				7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */,
 			);
@@ -335,6 +341,7 @@
 				7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */,
 				7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */,
 				75AD00A12AFC0571004F28D2 /* NotificationVM.swift in Sources */,
+				7F173D612B0A793D0066E2A5 /* GroupsMemberView.swift in Sources */,
 				751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
@@ -347,6 +354,7 @@
 				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
 				754536322B042C6C00567E8D /* GoalView.swift in Sources */,
+				7F173D632B0A7A8B0066E2A5 /* GroupCellView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
 				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
