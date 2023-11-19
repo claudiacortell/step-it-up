@@ -14,12 +14,14 @@ import FirebaseStorage
 import SwiftUI
 
 class UserVM: ObservableObject {
+    var healthModel: HealthVM
     @Published var currentUser: User?
     @Published var userSession: FirebaseAuth.User?
     
     var imageUtil = ImageUtils()
     
-    init() {
+    init(healthModel: HealthVM) {
+        self.healthModel = healthModel
         DispatchQueue.main.async{
             self.userSession = Auth.auth().currentUser
         }
@@ -31,6 +33,7 @@ class UserVM: ObservableObject {
                         switch result{
                         case .success(let user):
                             self.currentUser = user
+                            self.healthModel.fetchAllHealthData()
                         case .failure(let error):
                             print(error)
                         }
@@ -155,7 +158,7 @@ class UserVM: ObservableObject {
             print("SUCCESS: Fetched the user")
             return .success(user)
         } else {
-            return .failure("Could not decode")
+            return .failure("Could not decode a user")
         }
         
     }

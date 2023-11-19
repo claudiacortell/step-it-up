@@ -63,25 +63,27 @@ struct ProfileView: View {
                 StatsCard(title: "Daily Steps", value: "0")
             }
             if healthModel.healthData.dailyMileage != nil{
-                StatsCard(title: "Daily Distance (mi)", value: "\(healthModel.healthData.dailyMileage!)")
+                StatsCard(title: "Daily Distance (mi)", value: String(format: "%.1f", "\(healthModel.healthData.dailyMileage!)"))
             } else{
                 //TODO: Need to remove later, just for testing
-                StatsCard(title: "Daily Steps", value: "0")
+                StatsCard(title: "Daily Distance (mi)", value: "0")
             }
             if healthModel.healthData.weeklyStep != nil{
                 StatsCard(title: "Weekly Steps", value: "\(healthModel.healthData.weeklyStep!)")
             } else{
                 //TODO: Need to remove later, just for testing
-                StatsCard(title: "Daily Steps", value: "0)")
+                StatsCard(title: "Weekly Steps", value: "0)")
             }
             if healthModel.healthData.weeklyMileage != nil{
-                StatsCard(title: "Weekly Distance (mi)", value: "0")
+                StatsCard(title: "Weekly Distance (mi)", value: String(format: "%.1f", "\(healthModel.healthData.weeklyMileage!)"))
             } else {
                 //TODO: Need to remove later, just for testing
-                StatsCard(title: "Daily Steps", value: "0")
+                StatsCard(title: "Weekly Distance (mi)", value: "0")
             }
         }.onAppear{
-            healthModel.fetchAllHealthData()
+//            healthModel.fetchAllHealthData()
+            print("Write")
+            healthModel.writeHealthData()
         }
         
     }
@@ -200,11 +202,11 @@ struct StatsCard: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-            .environmentObject(UserVM())
-            .environmentObject(HealthVM())
-        
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//            .environmentObject(UserVM())
+//            .environmentObject(HealthVM())
+//        
+//    }
+//}

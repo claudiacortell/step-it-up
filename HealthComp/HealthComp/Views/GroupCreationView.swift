@@ -69,12 +69,12 @@ struct GroupCreationView: View {
         }
         
         print("New Group: \(name)")
-        print("Members: \(groupMembers.map { $0.name })")
+        print("Members: \(groupMembers.map { $0.user.name })")
         // TODO: Use ViewModel to create group
         // groupVM.createGroup(name, groupMembers)
     }
     
-    private func binding(for friend: User) -> Binding<Bool> {
+    private func binding(for friend: UserHealth) -> Binding<Bool> {
         Binding<Bool>(
             get: { self.selectedMembers[friend.id, default: false] },
             set: { self.selectedMembers[friend.id] = $0 }
@@ -84,7 +84,7 @@ struct GroupCreationView: View {
 
 struct GroupFriend: View {
     @Binding var isSelected: Bool
-    var friend: User
+    var friend: UserHealth
     
     var body: some View {
         ZStack {
@@ -96,7 +96,7 @@ struct GroupFriend: View {
                 }
             HStack {
                 // TODO: add user photos
-                Text("\(friend.name)")
+                Text("\(friend.user.name)")
                     .padding(.horizontal)
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()

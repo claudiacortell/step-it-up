@@ -147,5 +147,5 @@ struct addFriendpfp: View {
 
 func getSearch (username: String) -> Search{
     print(username)
-    return .success(sample_friends)
+    return .success([])
 }

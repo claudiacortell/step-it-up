@@ -72,13 +72,16 @@ var sample_feed =
 ]
 
 
-var sample_friends: [User] = [
-    User(id: "1234567", name: "Claudia", email: "ccc2223@barnard.edu", username: "ccc373", pfp: "https://media.licdn.com/dms/image/C5603AQFUfmwgesrAeg/profile-displayphoto-shrink_800_800/0/1643164227597?e=1704931200&v=beta&t=SK36RgTxhuimEyFkg2TNgZbnH7cvInLzqTjzsRUbq2k", friends: [], groups: []),
-    User(id: "4567123", name: "Phillip", email: "pnl2113@columbia.edu", username: "pl123", pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg", friends: [], groups: []),
-    User(id: "4444443", name: "Teodora", email: "ts123@columbia.edu", username: "ts123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []),
-    User(id: "111111", name: "Eugenia", email: "eb123@columbia.edu", username: "eb123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []),
-    User(id: "77777", name: "Ben", email: "bz123@columbia.edu", username: "bz123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []),
+var sample_friends: [UserHealth] = [
+    UserHealth(id: "1234567", user: User(id: "1234567", name: "Claudia", email: "ccc2223@barnard.edu", username: "ccc373", pfp: "https://media.licdn.com/dms/image/C5603AQFUfmwgesrAeg/profile-displayphoto-shrink_800_800/0/1643164227597?e=1704931200&v=beta&t=SK36RgTxhuimEyFkg2TNgZbnH7cvInLzqTjzsRUbq2k", friends: [], groups: []), data: HealthData(dailyStep: 40, dailyMileage: 1.1, weeklyStep: 5300, weeklyMileage: 20.4)),
+    UserHealth(id: "4567123", user: User(id: "4567123", name: "Phillip", email: "pnl2113@columbia.edu", username: "pl123", pfp: "https://pbs.twimg.com/profile_images/1458771374311460866/aTRX-B1Q_400x400.jpg", friends: [], groups: []), data: HealthData(dailyStep: 9001, dailyMileage: 1.4, weeklyStep: 1840, weeklyMileage: 9.4)),
+    UserHealth(id: "4444443", user: User(id: "4444443", name: "Teodora", email: "ts123@columbia.edu", username: "ts123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []), data: HealthData(dailyStep: 4810, dailyMileage: 1.9, weeklyStep: 2300, weeklyMileage: 13.4)),
+    UserHealth(id: "111111", user:User(id: "111111", name: "Eugenia", email: "eb123@columbia.edu", username: "eb123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []), data: HealthData(dailyStep: 4000, dailyMileage: 4.1, weeklyStep: 5100, weeklyMileage: 18.4)),
+    UserHealth(id: "77777", user: User(id: "77777", name: "Ben", email: "bz123@columbia.edu", username: "bz123", pfp: "https://media.licdn.com/dms/image/D5603AQHTk3CmpjJm_w/profile-displayphoto-shrink_400_400/0/1694449266362?e=1704931200&v=beta&t=lsiOiDbg8JZqG3wbDk2pnoeyqnGRMe0cQFxinbXEz38", friends: [], groups: []), data: HealthData(dailyStep: 110, dailyMileage: 3.1, weeklyStep: 15000, weeklyMileage: 19.4))
 ]
 
 
 var currentUser = User(id: "1234", name: "Roaree the Lion", email: "roaree69@columbia.edu", username: "roaree69", pfp: "https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG", friends: [], groups: [])
+
+//
+//var currentUserHealth = UserHealth(id: "1234", user: currentUser, data: HealthData(dailyStep: 110, dailyMileage: 3.1, weeklyStep: 15000, weeklyMileage: 19.4))

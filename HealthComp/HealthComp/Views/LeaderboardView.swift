@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+
 struct LeaderboardView: View {
-    let sortedUsers = sample_friends
+//    var friendModel: FriendVM
+//    var userModel: UserVM
+        @EnvironmentObject var leaderboardModel: LeaderBoardVM
     
-    init(){
-        sample_friends.append(currentUser)
-//        sortedUsers = sample_friends.sorted { user1, user2 in
-//            return user1.data.dailyStep! > user2.data.dailyStep!
-//        }
-    }
+//    @EnvironmentObject var friendModel: FriendVM
+//    @EnvironmentObject var userModel: UserVM
+
+//    @State private var sortedUsers: [UserHealth] = []
+    
+//    init(){
+//        sample_friends.append(currentUser)
+////        sortedUsers = sample_friends.sorted { user1, user2 in
+////            return user1.data.dailyStep! > user2.data.dailyStep!
+////        }
+//    }
     
     
     var body: some View {
@@ -23,13 +31,15 @@ struct LeaderboardView: View {
             VStack{
                 ScrollView{
                     LeaderboardHeader().padding(.bottom, 5)
-                    LeaderboardMessage(currentUser: currentUser, sortedUsers: sortedUsers)
-                    
-                    ForEach(Array(sortedUsers.enumerated()), id: \.element.id) { index, user in
-                        let isCurrentUser = user.id == currentUser.id
-                        LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+                    if leaderboardModel.currentUserHealth != nil{
+                        LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: leaderboardModel.sortedUsers)
                         
+                        ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+                            let isCurrentUser = user.id == currentUser.id
+                            LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+                        }
                     }
+                    
                 }
             }
         }.navigationBarBackButtonHidden()
@@ -37,20 +47,20 @@ struct LeaderboardView: View {
 }
 
     
-#Preview {
-    LeaderboardView()
-}
+//#Preview {
+//    LeaderboardView()
+//}
     
 struct LeaderboardHeader: View {
     var body: some View {
-        ZStack {
-           Rectangle()
-               .fill(Color("medium-green"))
-               .frame(height:80)
-           Text("Leaderboard")
-                       .font(.system(size: 30, weight: .bold))
-                       .foregroundColor(.white)
-        }
+//        ZStack {
+//           Rectangle()
+//               .fill(Color("medium-green"))
+//               .frame(height:80)
+//           Text("Leaderboard")
+//                       .font(.system(size: 30, weight: .bold))
+//                       .foregroundColor(.white)
+//        }
 
         //Maybe change to each user's weekly steps once we calculate that in the ViewModel
         Text("Daily Steps").font(.system(size: 22, weight: .semibold)).foregroundColor(Color("dark-blue"))
@@ -58,10 +68,10 @@ struct LeaderboardHeader: View {
 }
 
 struct LeaderboardMessage: View {
-    let currentUser: User
-    let sortedUsers: [User]
+    let currentUser: UserHealth
+    let sortedUsers: [UserHealth]
 
-    init(currentUser: User, sortedUsers: [User]) {
+    init(currentUser: UserHealth, sortedUsers: [UserHealth]) {
         self.currentUser = currentUser
         self.sortedUsers = sortedUsers
     }
@@ -77,9 +87,8 @@ struct LeaderboardMessage: View {
                 return "Keep it up! You're on top!"
             } else {
                 if let userToBeat = userToBeat(leaderboardPosition) {
-                    return "Hello"
-//                    let numStepsToBeat = userToBeat.data.dailyStep! - currentUser.data.dailyStep!
-//                    return "\(numStepsToBeat) more steps to beat \(userToBeat.name)! Bring it on!"
+                    let numStepsToBeat = userToBeat.data.dailyStep! - currentUser.data.dailyStep!
+                    return "\(numStepsToBeat) more steps to beat \(userToBeat.user.name)! Bring it on!"
                 } else {
                     return "You're on top! Keep it up!"
                 }
@@ -92,7 +101,7 @@ struct LeaderboardMessage: View {
         return 0
     }
 
-    func userToBeat(_ leaderboardPosition: Int) -> User? {
+    func userToBeat(_ leaderboardPosition: Int) -> UserHealth? {
         guard leaderboardPosition > 0 && leaderboardPosition <= sortedUsers.count+1 else {
             return nil
         }
@@ -101,7 +110,7 @@ struct LeaderboardMessage: View {
 }
 
 struct LeaderboardCell: View{
-    let user: User
+    let user: UserHealth
     let leaderboardPosition: Int
     let isCurrentUser: Bool
     
@@ -114,12 +123,12 @@ struct LeaderboardCell: View{
             HStack {
                 Text("\(leaderboardPosition).").fontWeight(.bold).foregroundColor(Color("dark-blue"))
                                     .padding(.trailing, 8)
-                ProfileImage(pfp: user.pfp)
+                ProfileImage(pfp: user.user.pfp)
                 Spacer()
-                Text(user.name).foregroundColor(isCurrentUser ? .black : Color("dark-blue")).fontWeight(.semibold).frame(maxWidth: 300, alignment: .leading)
+                Text(user.user.name).foregroundColor(isCurrentUser ? .black : Color("dark-blue")).fontWeight(.semibold).frame(maxWidth: 300, alignment: .leading)
                     .padding(.leading, 8)
                 Spacer()
-//                Text("\(user.data.dailyStep!)").fontWeight(.bold).foregroundColor(Color("dark-blue"))
+                Text("\(user.data.dailyStep!)").fontWeight(.bold).foregroundColor(Color("dark-blue"))
             }.frame(width: UIScreen.main.bounds.width - 80)
         }
     }
