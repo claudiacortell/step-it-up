@@ -21,10 +21,9 @@ struct User: Identifiable, Codable {
     var groups: [String]?
 }
 
-struct UserHealth: Identifiable, Codable{
-    var id: String
-    var user: User
-    var data: HealthData
+struct User_Health: Codable{
+    var user: [User]
+    var data: [HealthData]
 }
 
 struct FriendRequest: Identifiable {

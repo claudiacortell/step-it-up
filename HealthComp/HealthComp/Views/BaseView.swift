@@ -28,6 +28,14 @@ struct BaseView: View {
                 .tabItem {
                     Label("", systemImage: "house.fill")
                 }
+            FriendSearchView()
+                .tabItem{
+                    Label("", systemImage: "magnifyingglass")
+                }
+            GroupCreationView()
+                .tabItem{
+                    Label("", systemImage: "plus.circle")
+                }
             FeedView(feed: sample_feed)
                 .tabItem {
                     Label("", systemImage: "heart")

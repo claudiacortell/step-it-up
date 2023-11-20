@@ -14,7 +14,7 @@ struct FriendsView: View {
         NavigationView {
             VStack {
                 ScrollView{
-                    FriendsHeader()
+                    //FriendsHeader()
                     NavigationLink {
 //                        FriendSearchView(friends: $friends)
                         FriendSearchView()
