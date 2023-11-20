@@ -91,4 +91,8 @@ class GroupVM: ObservableObject {
         // add a new member to an existing group
         return .success
     }
+    func refreshGroups()->Base{
+        // refresh groups after adding a new member
+        return .success
+    }
 }

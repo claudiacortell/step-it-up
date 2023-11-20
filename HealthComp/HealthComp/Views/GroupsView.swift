@@ -2,37 +2,43 @@ import SwiftUI
 
 struct GroupsView: View {
     let groups: [Group_user]
-//    @EnvironmentObject var groupModel: GroupVM
-
+    //    @EnvironmentObject var groupModel: GroupVM
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: UIScreen.main.bounds.height * 0.02) {
-                Text("My Groups")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-
-//                Text("Currently an active member of \(groupModel.user_groups.count) groups!")
-                Text("Currently an active member of \(groups.count) groups!")
-
-                LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
-//                    ForEach(groupModel.user_groups.indices) { index in
-//                        GroupCell(group: groupModel.user_groups[index], rowIndex: index / 2, columnIndex: index % 2)
+        ZStack(alignment: .topTrailing) {
+            ScrollView {
+                VStack(spacing: UIScreen.main.bounds.height * 0.02) {
+                    Text("My Groups")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding()
+                    
+                    //                Text("Currently an active member of \(groupModel.user_groups.count) groups!")
+                    Text("Currently an active member of \(groups.count) groups!")
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
+                        //                    ForEach(groupModel.user_groups.indices) { index in
+                        //                        GroupCell(group: groupModel.user_groups[index], rowIndex: index / 2, columnIndex: index % 2)
                         ForEach(groups.indices) { index in
                             GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
+            NavigationLink {
+                GroupCreationView()
+            } label: {
+               
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                        .padding()
+                        .font(.title)
+                
+            }
+            
         }
-        .navigationBarItems(trailing:  NavigationLink {
-            GroupCreationView()
-        } label: {
-            Image(systemName: "plus")
-                .font(.title)
-                .foregroundColor(.black)
-                .padding()
-        })
+        
     }
 }
 
