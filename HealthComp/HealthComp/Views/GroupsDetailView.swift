@@ -4,7 +4,7 @@ import SwiftUI
 
 struct GroupsDetailView: View {
     @State private var isMemberAdded: Bool = false
-    var group: Group_user
+    let group: Group_user
 
     var body: some View {
         VStack {
@@ -47,10 +47,6 @@ struct GroupsDetailView: View {
 
 
 
-struct GroupsDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            GroupsDetailView(group: sample_group)
-        }
-    }
+#Preview{
+    GroupsDetailView(group: sample_group)
 }
