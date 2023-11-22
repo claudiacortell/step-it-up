@@ -30,7 +30,6 @@ class LeaderBoardVM: ObservableObject {
         if let user = userModel.currentUser {
             if healthModel.validData{
                 self.currentUserHealth =  UserHealth(id: user.id, user: user, data: healthModel.healthData)
-
             }
         } else {
             print("Error")

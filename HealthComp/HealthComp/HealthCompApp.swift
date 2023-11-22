@@ -7,14 +7,14 @@ struct HealthCompApp: App {
     init() {
         FirebaseApp.configure()
     }
+    @StateObject var userModel = UserVM()
     @StateObject var healthModel = HealthVM()
-    @StateObject var userModel = UserVM(healthModel: self.healthModel)
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(userModel)
-//                .environmentObject(healthModel)
+                .environmentObject(healthModel)
         }
     }
 }

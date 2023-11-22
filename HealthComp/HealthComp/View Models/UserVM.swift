@@ -14,18 +14,16 @@ import FirebaseStorage
 import SwiftUI
 
 class UserVM: ObservableObject {
-    var healthModel: HealthVM
     @Published var currentUser: User?
     @Published var userSession: FirebaseAuth.User?
     
     var imageUtil = ImageUtils()
     
-    init(healthModel: HealthVM) {
-        self.healthModel = healthModel
+    init() {
         DispatchQueue.main.async{
             self.userSession = Auth.auth().currentUser
         }
-        Task.detached {
+        Task {
             if self.userSession != nil {
                 do {
                     let result = try await self.fetchUser(id: self.userSession!.uid)
@@ -33,7 +31,7 @@ class UserVM: ObservableObject {
                         switch result{
                         case .success(let user):
                             self.currentUser = user
-                            self.healthModel.fetchAllHealthData()
+                            UserDefaults.standard.set(user.id, forKey: "userId")
                         case .failure(let error):
                             print(error)
                         }

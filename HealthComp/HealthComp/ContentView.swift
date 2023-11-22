@@ -25,6 +25,7 @@ struct ContentView: View {
                     .environmentObject(leaderboardModel)
                     .onAppear {
                         userModel.checkUserSession()
+                        healthModel.fetchAllHealthData()
                     }
             } else {
                 StartupView()
