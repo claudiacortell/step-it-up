@@ -15,10 +15,11 @@ import SwiftUI
 
 
 class FriendVM: ObservableObject {
+    
     var userModel: UserVM
     @Published var user_friends: [String: User] = [:]
     @Published var user_reqs: [FriendRequest] = []
-
+    
     init(userModel: UserVM) {
         self.userModel = userModel
         Task{
@@ -28,7 +29,7 @@ class FriendVM: ObservableObject {
                 }
             }
         }
-
+        
     }
     
     func searchFriend(search: String, completion: @escaping (Search) -> Void){
@@ -38,7 +39,7 @@ class FriendVM: ObservableObject {
             .whereField("username", isEqualTo: search.trimmingCharacters(in: .whitespaces))
             .getDocuments{ (querySnapshot, error) in
                 if let error =  error {
-                    print("Error searching users \(error)")
+                    print("ERROR searchFriend(): \(error.localizedDescription)")
                     completion(.failure(error.localizedDescription))
                     return
                 }
@@ -52,7 +53,7 @@ class FriendVM: ObservableObject {
             .whereField("name", isEqualTo: search)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
-                    print("Error searching users by name: \(error)")
+                    print("ERROR searchFriend(): \(error.localizedDescription)")
                     completion(.failure(error.localizedDescription))
                     return
                 }
@@ -65,7 +66,7 @@ class FriendVM: ObservableObject {
             }
         completion(.success(matchingUsers))
     }
-
+    
     func fetchFriends(friend_ids: [String]) async {
         for user_id in friend_ids {
             do {
@@ -82,12 +83,32 @@ class FriendVM: ObservableObject {
         }
     }
     
-    // Not neccessary to display
-    func requestFriend(origin: User, dest: User) async throws -> Base{
-        // Store the friend request in db?? 
-        
-        return .success
+    func requestFriend(origin: String, dest: String) {
+        do {
+            let new_request = FriendRequest(id: String(from: UUID()), origin: origin, dest: dest, status: pending)
+            let encoded_request = try Firestore.Encoder().encode(new_request)
+            let await Firestore.firestore().collection("requests").document(new_request.id).setData(encoded_request)
+        } catch{
+            print("ERROR requestFriend(): \(error.localizedDescription)")
+        }
     }
     
-
+    func fetchRequests(id: String){
+        guard let snapshot = try? await Firestore.firestore().collection("requests").whereField("dest_id", isEqualTo: id.trimmingCharacters(in: .whitespaces)).getDocuments{ (querySnapshot, error) in
+            if let error = error {
+                print("ERROR fetchRequests(): \(error.localizedDescription)")
+                completion(.failure(error.localizedDescription))
+                return
+            }
+            for document in querySnapshot!.documents{
+                if let user = try? document.data(as: FriendRequest.self){
+                    user_reqs.append(user)
+                }
+            }
+            
+        }
+        
+    }
+    
 }
+    

@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum Status{
-    case accepted
-    case rejected
-}
 struct User: Identifiable, Codable {
     var id: String
     var name: String
@@ -26,9 +22,4 @@ struct User_Health: Codable{
     var data: [HealthData]
 }
 
-struct FriendRequest: Identifiable {
-    var id: String
-    var origin: User
-    var dest: User
-    var status: Status
-}
+

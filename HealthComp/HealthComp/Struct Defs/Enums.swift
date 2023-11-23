@@ -46,3 +46,8 @@ enum Base{
     case success
     case failure(String)
 }
+
+enum Status{
+    case accepted
+    case rejected
+}
