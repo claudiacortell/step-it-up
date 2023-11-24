@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftUICharts
 
 struct ProfileView: View {
     @EnvironmentObject var userModel: UserVM
@@ -154,22 +155,24 @@ struct ProgressBarView: View {
                
 
             ZStack {
-                Circle()
-                    .stroke(lineWidth: 20.0)
-                    .opacity(0.3)
-                    .foregroundColor(Color("light-green"))
-                    .padding()
-            
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(min(numProgress, 1.0)))
-                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color.white)
-                    .rotationEffect(Angle(degrees: 270.0))
-                    .padding()
-
-                Text(String(progress))
-                    .font(.subheadline)
-                    .bold()
+//                Circle()
+//                    .stroke(lineWidth: 20.0)
+//                    .opacity(0.3)
+//                    .foregroundColor(Color("light-green"))
+//                    .padding()
+//            
+//                Circle()
+//                    .trim(from: 0.0, to: CGFloat(min(numProgress, 1.0)))
+//                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+//                    .foregroundColor(Color.white)
+//                    .rotationEffect(Angle(degrees: 270.0))
+//                    .padding()
+                let startColor = Color("light-blue")
+                let endColor = Color("medium-blue")
+                let gradient = ColorGradient(startColor, endColor)
+                RingsChart()
+                    .data([numProgress * 100])
+                    .chartStyle(ChartStyle(backgroundColor: Color("medium-green"), foregroundColor: gradient))
             }
            
         }
