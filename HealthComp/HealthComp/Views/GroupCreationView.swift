@@ -61,7 +61,7 @@ struct GroupCreationView: View {
                             .onTapGesture {
                                 var groupMembers = selectedMembers.filter { $0.value }
                                     .compactMap { friendModel.user_friends[$0.key] }
-                                groupMembers.append(currentUser)
+//                                groupMembers.append(currentUser)
                                 let result = groupModel.createGroup(name: groupName, users: groupMembers)
 
                                 switch result {

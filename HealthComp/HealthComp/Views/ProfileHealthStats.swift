@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct ProfileHealthStats: View {
     var body: some View {

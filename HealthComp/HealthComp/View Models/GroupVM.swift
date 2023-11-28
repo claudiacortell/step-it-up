@@ -90,7 +90,7 @@ class GroupVM: ObservableObject {
         }
     }
     
-    func createGroup (name: String, users: [User]?)-> Base{
+    func createGroup (name: String, users: [UserHealth]?)-> Base{
         // Store the group in database
         // Add it to the User struct
         return .success
