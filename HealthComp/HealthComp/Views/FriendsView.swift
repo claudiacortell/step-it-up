@@ -57,6 +57,7 @@ struct FriendsView: View {
 //    }
 //}
 
+
 struct FriendCell: View {
     let friend: User
 

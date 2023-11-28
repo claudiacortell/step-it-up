@@ -19,22 +19,38 @@ struct FriendSearchView: View {
             VStack {
                 SearchBar(text: $searchText)
                     .padding()
-                Button {
-                    friendModel.searchFriend(search: searchText){ result in
-                        switch result {
-                        case .success(let matchingUsers):
-                            results = matchingUsers
-                            print(matchingUsers.count)
-                        case .failure (let errorMessage):
-                            print(errorMessage)
-                        case .no_results:
-                            print("No results")
+                    .onSubmit {
+                        friendModel.searchFriend(search: searchText) { result in
+                            switch result {
+                            case .success(let matchingUsers):
+                                results = matchingUsers
+                                print(matchingUsers.count)
+                            case .failure(let errorMessage):
+                                print(errorMessage)
+                            case .no_results:
+                                print("No results")
+                            }
                         }
                     }
-                } label: {
-                    Text("")
-                }
-                .submitLabel(.search)
+
+//                SearchBar(text: $searchText)
+//                    .padding()
+//                Button {
+//                    friendModel.searchFriend(search: searchText){ result in
+//                        switch result {
+//                        case .success(let matchingUsers):
+//                            results = matchingUsers
+//                            print(matchingUsers.count)
+//                        case .failure (let errorMessage):
+//                            print(errorMessage)
+//                        case .no_results:
+//                            print("No results")
+//                        }
+//                    }
+//                } label: {
+//                    Text("")
+//                }
+//                .submitLabel(.search)
 
                 List {
                     if let search_results = results{
