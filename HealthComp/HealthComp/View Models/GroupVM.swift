@@ -19,7 +19,7 @@ class GroupVM: ObservableObject {
     var groups_by_id: [Group_id] = []
     
     @Published var user_groups: [Group_user] = []
-    @Published var user_cache: [String: User] = [:]
+    @Published var user_cache: [String: UserHealth] = [:]
     
     init(userModel: UserVM, friendModel: FriendVM){
         self.userModel = userModel
@@ -51,8 +51,17 @@ class GroupVM: ObservableObject {
                             let result = try await self.userModel.fetchUser(id: id)
                             switch result {
                             case .success (let user):
-                                new_group.members.append(user)
-                                self.user_cache[user.id] = user
+                                do {
+                                    let healthResult = try await friendModel.fetchHealthData(id: id)
+                                    switch healthResult {
+                                    case .success(let healthData):
+                                        let loadedUserHealth = UserHealth(id: user.id, user: user, data: healthData)
+                                        self.user_cache[user.id] = loadedUserHealth
+                                        new_group.members.append(loadedUserHealth)
+                                    case .failure(_):
+                                        print("Error fetching data for \(id)")
+                                    }
+                                }
                             case .failure (_):
                                 print("Error fetching \(id)")
                             }

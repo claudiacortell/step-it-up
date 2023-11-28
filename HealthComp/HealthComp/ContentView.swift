@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var userModel: UserVM
-    @EnvironmentObject var manager: HealthVM
+    @EnvironmentObject var healthModel: HealthVM
     
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
         let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
-        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
+//        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
+//        let leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
 
         Group {
             if userModel.userSession != nil {
@@ -23,10 +24,16 @@ struct ContentView: View {
                     .environmentObject(groupModel)
                     .onAppear {
                         userModel.checkUserSession()
-                        }
+                        healthModel.fetchAllHealthData()
+//                        healthModel.validData = true
+//                        healthModel.writeHealthData()
+                    }
             } else {
                 StartupView()
                     .environmentObject(userModel)
+                    .environmentObject(friendModel)
+                    .environmentObject(groupModel)
+                
             }
         }
                 

@@ -61,6 +61,6 @@ struct Header: View {
 }
 
 
-#Preview{
-    FeedView(feed: sample_feed)
-}
+//#Preview{
+//    FeedView(feed: sample_feed)
+//}

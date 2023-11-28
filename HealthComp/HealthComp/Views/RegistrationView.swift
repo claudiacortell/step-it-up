@@ -30,9 +30,9 @@ struct RegistrationView: View {
                 CustomTextField(title: "Full name", placeholder: "Roaree the Lion", secure: false, autocap: true, text: $name)
                 
                 CustomTextField(title: "Email", placeholder: "your_email@columbia.edu", secure: false, autocap: false, text: $email)
-
+                
                 CustomTextField(title: "Password", placeholder: "Please not your birthday or dog's name", secure: true, autocap: false, text: $password)
-
+                
                 CustomTextField(title: "Confirm Password", placeholder: "", secure: true, autocap: false, text: $confirm)
                 
                 if error == true{
@@ -40,28 +40,26 @@ struct RegistrationView: View {
                 }
                 Spacer()
                 
-//                if name != "" && email != "" && password != "" && confirm != ""{
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            if checkPassword(confirm: confirm, password: password){
-                                self.next.toggle()
-                            } else {
-                                self.error.toggle()
-                            }
-                        }, label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 80, height: 40)
-                                    .foregroundColor(Color("medium-green"))
-                                Text("Next")
-                                    .font(.system(size: 15, weight: .bold))
-                            }
-                            
-                        }).accentColor(.white)
-                    }.padding()
-                    
-//                }
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        if checkPassword(confirm: confirm, password: password){
+                            self.next.toggle()
+                        } else {
+                            self.error.toggle()
+                        }
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 80, height: 40)
+                                .foregroundColor(Color("medium-green"))
+                            Text("Next")
+                                .font(.system(size: 15, weight: .bold))
+                        }
+                        
+                    }).accentColor(.white)
+                }.padding()
+                
             }
             
         }.navigationBarBackButtonHidden()
@@ -77,12 +75,6 @@ struct RegistrationView: View {
         }
     }
 }
-
-
-#Preview {
-    RegistrationView()
-}
-
 
 struct Registation_Header: View {
     var body: some View {

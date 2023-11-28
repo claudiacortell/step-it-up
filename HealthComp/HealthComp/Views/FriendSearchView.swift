@@ -12,34 +12,51 @@ struct FriendSearchView: View {
 
     @State private var searchText = ""
     @State var  results: [User]?
+    @EnvironmentObject var friendModel: FriendVM
     
     var body: some View {
         NavigationView {
             VStack {
-                //addFriendsHeader()
                 SearchBar(text: $searchText)
                     .padding()
-//                Button(action: {
-//                    let searchResult = getSearch(username: searchText)
-//                    switch searchResult {
-//                    case .success(let friends):
-//                        results = friends
-//                    case .failure(let error):
-//                        print("Error: \(error)")
-//                    case .no_results:
-//                        print("Nothing")
+//                    .onSubmit {
+//                        friendModel.searchFriend(search: searchText) { result in
+//                            switch result {
+//                            case .success(let matchingUsers):
+//                                results = matchingUsers
+//                                print(matchingUsers.count)
+//                            case .failure(let errorMessage):
+//                                print(errorMessage)
+//                            case .no_results:
+//                                print("No results")
+//                            }
+//                        }
 //                    }
-//                }, label: {
-//                    Text("Search")
-//                })
 
+//                SearchBar(text: $searchText)
+//                    .padding()
+                Button {
+                    friendModel.searchFriend(search: searchText){ result in
+                        switch result {
+                        case .success(let matchingUsers):
+                            results = matchingUsers
+                            print(matchingUsers.count)
+                        case .failure (let errorMessage):
+                            print(errorMessage)
+                        case .no_results:
+                            print("No results")
+                        }
+                    }
+                } label: {
+                    Text("Search")
+                }
+                
                 List {
                     if let search_results = results{
                         ForEach(search_results) { friend in
                             addFriendCell(friend: friend)
                         }
                     }
-                    
                 }
             }
         }
@@ -61,24 +78,41 @@ struct addFriendsHeader: View {
 
 struct SearchBar: View {
     @Binding var text: String
-    
+    @EnvironmentObject var friendModel: FriendVM
+
     var body: some View {
         HStack {
-            TextField("Search", text: $text)
-                .padding(8)
-                .background(Color(.systemGray5))
-                .cornerRadius(8)
-                .padding(.horizontal, 10)
-            
-            Button(action: {
-                self.text = ""
-            }) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.gray)
-            }
-            .padding(.trailing, 8)
-            .opacity(text.isEmpty ? 0 : 1)
-        }
+                   TextField("Search", text: $text)
+                       .padding(8)
+                       .background(Color(.systemGray5))
+                       .cornerRadius(8)
+                       .padding(.horizontal, 10)
+                       .onSubmit {
+                           // Call your friendModel.searchFriend function here
+                           friendModel.searchFriend(search: text) { result in
+                               switch result {
+                               case .success(let matchingUsers):
+                                   // Handle success
+                                   print(matchingUsers.count)
+                               case .failure(let errorMessage):
+                                   // Handle failure
+                                   print(errorMessage)
+                               case .no_results:
+                                   // Handle no results
+                                   print("No results")
+                               }
+                           }
+                       }
+                   
+                   Button(action: {
+                       self.text = ""
+                   }) {
+                       Image(systemName: "xmark.circle.fill")
+                           .foregroundColor(.gray)
+                   }
+                   .padding(.trailing, 8)
+                   .opacity(text.isEmpty ? 0 : 1)
+               }
     }
 }
 
@@ -144,8 +178,3 @@ struct addFriendpfp: View {
     }
 }
 
-
-func getSearch (username: String) -> Search{
-    print(username)
-    return .success(sample_friends)
-}

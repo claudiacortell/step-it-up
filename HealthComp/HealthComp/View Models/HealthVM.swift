@@ -7,29 +7,31 @@
 
 import Foundation
 import HealthKit
+import FirebaseStorage
+import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 
 class HealthVM: ObservableObject {
     var healthStore = HKHealthStore()
     @Published var validData: Bool = false
+    
     @Published var healthData: HealthData = HealthData(){
         didSet {
             if isValid(healthData){
-                validData.toggle()
-                print("Write")
+                validData = true
+                writeHealthData()
             }
         }
     }
-
-    // Because the fetching happens asynchronously and each object in the struct gets fetched on its own then we cant make it optional
     
     init() {
         let steps = HKQuantityType(.stepCount)
         let distance = HKQuantityType(.distanceWalkingRunning)
-        let flights = HKQuantityType(.flightsClimbed)
-        let healthTypes: Set = [steps, distance, flights]
-        
+        let healthTypes: Set = [steps, distance]
         Task{
+            print("In health init")
             do{
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
@@ -39,7 +41,7 @@ class HealthVM: ObservableObject {
     }
     
      func isValid(_ data: HealthData) -> Bool {
-         return data.dailyStep != nil && data.dailyMileage != nil && data.dailyFlights != nil && data.weeklyStep != nil
+         return data.dailyStep != nil && data.dailyMileage != nil && data.weeklyStep != nil
     }
     
     func fetchAllHealthData() {
@@ -47,15 +49,14 @@ class HealthVM: ObservableObject {
         readWeeklySteps()
         readTodaysMileage()
         readWeeklyMileage()
-        readTodaysFlights()
+        print("Done fetching health data")
     }
     
     
     func readTodaysSteps(){
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
-            return 
+            return
         }
-        
         let now = Date()
         let startDate = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(
@@ -72,7 +73,6 @@ class HealthVM: ObservableObject {
             _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
-                //HAVE A POPUP!!!
                 return
             }
             
@@ -93,12 +93,12 @@ class HealthVM: ObservableObject {
         let today = calendar.startOfDay(for: Date())
         //Find the start date (Monday) of the current week
         guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else {
-            print("Failed to calculate the start date of the week.")
+            print("ERROR readWeeklySteps(): could not get date")
             return
         }
         //Find the end date (Sunday) of the current week
         guard let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
-            print("Failed to calculate the end date of the week.")
+            print("ERROR readWeeklySteps(): could not get date")
             return
         }
 
@@ -115,7 +115,7 @@ class HealthVM: ObservableObject {
         ) { _, result, error in
           guard let result = result, let sum = result.sumQuantity() else {
             if let error = error {
-              print("An error occurred while retrieving weekly step count: \(error.localizedDescription)")
+                print("ERROR readWeeklySteps(): could not read weekly data, \(error.localizedDescription)")
             }
               return
           }
@@ -123,7 +123,6 @@ class HealthVM: ObservableObject {
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
             DispatchQueue.main.async{
                 self.healthData.weeklyStep = steps
-                print("Steps: \(steps)")
             }
         }
         healthStore.execute(query)
@@ -150,7 +149,9 @@ class HealthVM: ObservableObject {
         ) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 print("Failed to read walking/running distance: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
-                // HANDLE ERROR (e.g., show a popup)
+                DispatchQueue.main.async{
+                    self.healthData.dailyMileage = 0
+                }
                 return
             }
 
@@ -196,6 +197,10 @@ class HealthVM: ObservableObject {
           guard let result = result, let sum = result.sumQuantity() else {
             if let error = error {
               print("An error occurred while retrieving mileage: \(error.localizedDescription)")
+                DispatchQueue.main.async{
+                    self.healthData.weeklyMileage = 0.0
+                }
+
             }
               return
           }
@@ -209,38 +214,44 @@ class HealthVM: ObservableObject {
         healthStore.execute(query)
     }
     
-    
-    func readTodaysFlights(){
-        guard let flightsType = HKQuantityType.quantityType(forIdentifier: .flightsClimbed) else {
+
+    func writeHealthData() {
+        do {
+            guard let user_id = UserDefaults.standard.string(forKey: "userId") else {
+                print("User ID not found in UserDefaults")
+                return
+            }
+            let encoded_healthdata = try Firestore.Encoder().encode(healthData)
+                Firestore.firestore().collection("healthdata").document(user_id).setData(encoded_healthdata) { error in
+                if let error = error {
+                    print("Error writing health data to Firestore: \(error.localizedDescription)")
+                } else {
+                    print("Health data written to Firestore successfully")
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
             return
         }
         
-        let now = Date()
-        let startDate = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: now,
-            options: .strictStartDate
-        )
-        
-        let query = HKStatisticsQuery(
-            quantityType: flightsType,
-            quantitySamplePredicate: predicate,
-            options: .cumulativeSum
-        ) {
-            _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-                print("failed to read flights: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
-                //HAVE A POPUP!!!
-                return
-            }
-            
-            let flights = Int(sum.doubleValue(for: HKUnit.count()))
-            DispatchQueue.main.async{
-                self.healthData.dailyFlights = flights
-            }
-        }
-        healthStore.execute(query)
     }
+        
+//        do {
+//            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+//            DispatchQueue.main.async{
+//                self.userSession = result.user
+//            }
+//            UserDefaults.standard.set(result.user.uid, forKey: "userId")
+//            UserDefaults.standard.set(name, forKey: "name")
+//            let new_user = User(id: result.user.uid, name: name, email: email, username: username, pfp: pfp_uri)
+//            let encoded_user = try Firestore.Encoder().encode(new_user)
+//            try await Firestore.firestore().collection("users").document(result.user.uid).setData(encoded_user)
+//            return .success(new_user.id)
+//        } catch {
+//            print(error.localizedDescription)
+//            return .failure(error.localizedDescription)
+//        }
+
 }
+
 

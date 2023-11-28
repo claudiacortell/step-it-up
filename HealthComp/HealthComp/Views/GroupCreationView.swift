@@ -90,7 +90,7 @@ struct GroupCreationView: View {
 //        //groupModel.createGroup(name: name, users: groupMembers)
 //    }
     
-    private func binding(for friend: User) -> Binding<Bool> {
+    private func binding(for friend: UserHealth) -> Binding<Bool> {
         Binding<Bool>(
             get: { self.selectedMembers[friend.id, default: false] },
             set: { self.selectedMembers[friend.id] = $0 }
@@ -100,7 +100,7 @@ struct GroupCreationView: View {
 
 struct GroupFriend: View {
     @Binding var isSelected: Bool
-    var friend: User
+    var friend: UserHealth
     
     var body: some View {
         ZStack {
@@ -111,9 +111,8 @@ struct GroupFriend: View {
                     self.isSelected.toggle()
                 }
             HStack {
-                ProfileImage(pfp: friend.pfp)
-                    .padding(.leading)
-                Text("\(friend.name)")
+                // TODO: add user photos
+                Text("\(friend.user.name)")
                     .padding(.horizontal)
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()

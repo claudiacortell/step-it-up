@@ -15,7 +15,7 @@ struct GroupsDetailView: View {
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.02) {
                 ForEach(0..<group.members.count, id: \.self) { index in
-                    GroupMemberView(name: group.members[index].name, index: index)
+                    GroupMemberView(name: group.members[index].user.name, index: index)
                 }
             }
             .padding()

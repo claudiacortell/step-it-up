@@ -180,7 +180,7 @@ struct FriendIcon: View {
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size, height: size)
-                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
+//                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
                     .clipShape(Circle())
                 
             },
