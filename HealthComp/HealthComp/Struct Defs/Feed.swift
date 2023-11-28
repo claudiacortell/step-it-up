@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct Post: Identifiable, Codable {
     var id: String
     var userId: String

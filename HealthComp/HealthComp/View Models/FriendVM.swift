@@ -17,8 +17,8 @@ import SwiftUI
 class FriendVM: ObservableObject {
     
     var userModel: UserVM
-//    @Published var user_friends: [String: User] = [:]
-//    @Published var user_friends_healthdata: [String: HealthData] = [:]
+    //    @Published var user_friends: [String: User] = [:]
+    //    @Published var user_friends_healthdata: [String: HealthData] = [:]
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var user_reqs: [FriendRequest] = []
     
@@ -32,10 +32,6 @@ class FriendVM: ObservableObject {
                 }
             }
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/ccc2223
     }
     
     func searchFriend(search: String, completion: @escaping (Search) -> Void){
@@ -82,7 +78,7 @@ class FriendVM: ObservableObject {
                 let result = try await self.userModel.fetchUser(id: user_id)
                 switch result {
                 case .success(let user):
-//                    self.user_friends[user.id] = user
+                    //                    self.user_friends[user.id] = user
                     fetchedFriendUser = user
                 case .failure(let error):
                     print(error)
@@ -96,7 +92,7 @@ class FriendVM: ObservableObject {
                 switch result {
                 case .success(let healthdata):
                     fetchedFriendHealth = healthdata
-                 //   self.user_friends_healthdata[user_id] = healthdata
+                    //   self.user_friends_healthdata[user_id] = healthdata
                 case .failure(let error):
                     print(error)
                 }
@@ -114,33 +110,34 @@ class FriendVM: ObservableObject {
         print(self.user_friends)
     }
     
-<<<<<<< HEAD
-    func requestFriend(origin: String, dest: String) {
-        do {
-            let new_request = FriendRequest(id: String(from: UUID()), origin: origin, dest: dest, status: pending)
-            let encoded_request = try Firestore.Encoder().encode(new_request)
-            let await Firestore.firestore().collection("requests").document(new_request.id).setData(encoded_request)
-        } catch{
-            print("ERROR requestFriend(): \(error.localizedDescription)")
-        }
-    }
-    
-    func fetchRequests(id: String){
-        guard let snapshot = try? await Firestore.firestore().collection("requests").whereField("dest_id", isEqualTo: id.trimmingCharacters(in: .whitespaces)).getDocuments{ (querySnapshot, error) in
-            if let error = error {
-                print("ERROR fetchRequests(): \(error.localizedDescription)")
-                completion(.failure(error.localizedDescription))
-                return
-            }
-            for document in querySnapshot!.documents{
-                if let user = try? document.data(as: FriendRequest.self){
-                    user_reqs.append(user)
-                }
-            }
-            
-        }
-        
-=======
+//    func requestFriend(origin: String, dest: String) {
+//        do {
+//            let new_request = FriendRequest(id: String(from: UUID() as! Decoder), origin: origin, dest: dest, status: pending)
+//            let encoded_request = try Firestore.Encoder().encode(new_request)
+//            let await Firestore.firestore().collection("requests").document(new_request.id).setData(encoded_request)
+//        } catch{
+//            print("ERROR requestFriend(): \(error.localizedDescription)")
+//        }
+//    }
+//
+//    func fetchRequests(id: String){
+//        guard let snapshot = try? await Firestore.firestore().collection("requests").whereField("dest_id", isEqualTo: id.trimmingCharacters(in: .whitespaces)).getDocuments{ (querySnapshot, error) in
+//            if let error = error {
+//                print("ERROR fetchRequests(): \(error.localizedDescription)")
+//                completion(.failure(error.localizedDescription))
+//                return
+//            } else{
+//                print("weird")
+//            }
+//            for document in querySnapshot!.documents{
+//                if let user = try? document.data(as: FriendRequest.self){
+//                    user_reqs.append(user)
+//                }
+//            }
+//
+//        }
+//    }
+//
     func fetchHealthData(id: String) async throws -> FetchHealthData {
         guard let snapshot = try? await Firestore.firestore().collection("healthdata").document(id).getDocument() else {return .failure("Could not fetch a user's health data")}
         if let userHealthData = try? snapshot.data(as: HealthData.self){
@@ -150,14 +147,7 @@ class FriendVM: ObservableObject {
             return .failure("Could not decode a user's health data")
         }
     }
-
-    // Not neccessary to display
-    func requestFriend(origin: User, dest: User) async throws -> Base{
-        // Store the friend request in db?? 
-        
-        return .success
->>>>>>> origin/ccc2223
-    }
     
 }
-    
+
+
