@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftUICharts
 
 struct ProfileView: View {
     @EnvironmentObject var userModel: UserVM
