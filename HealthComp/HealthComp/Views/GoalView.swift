@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct GoalView: View {
-    var userModel = currentUser
+//    var userModel = currentUser
     // TODO: replace with stepGoal in User struct
     @State var stepGoal = 30000
+    @EnvironmentObject var userModel: UserVM
     @FocusState var isTextFieldFocused: Bool
     
     let circleWidth = UIScreen.main.bounds.width - 60
     
     var body: some View {
+    
         ZStack {
             VStack() {
                 ZStack {

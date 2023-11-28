@@ -9,23 +9,9 @@ import SwiftUI
 
 
 struct LeaderboardView: View {
-//    var friendModel: FriendVM
-//    var userModel: UserVM
-        @EnvironmentObject var leaderboardModel: LeaderBoardVM
-    
-//    @EnvironmentObject var friendModel: FriendVM
-//    @EnvironmentObject var userModel: UserVM
 
-//    @State private var sortedUsers: [UserHealth] = []
-    
-//    init(){
-//        sample_friends.append(currentUser)
-////        sortedUsers = sample_friends.sorted { user1, user2 in
-////            return user1.data.dailyStep! > user2.data.dailyStep!
-////        }
-//    }
-    
-    
+    @EnvironmentObject var leaderboardModel: LeaderBoardVM
+    @EnvironmentObject var userModel: UserVM
     var body: some View {
         NavigationStack{
             VStack{
@@ -35,11 +21,23 @@ struct LeaderboardView: View {
                         LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: leaderboardModel.sortedUsers)
                         
                         ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
-                            let isCurrentUser = user.id == currentUser.id
+                            let isCurrentUser = user.id == userModel.currentUser?.id
                             LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                         }
+                    } else {
+                        let filler_data = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
+                        if let user = userModel.currentUser{
+                            let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
+                            LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
+                            LeaderboardCell(user: filler_user, leaderboardPosition: 1, isCurrentUser: true)
+                        }
+
                     }
-                    
+                }
+            }.onAppear{
+                Task{
+                    await leaderboardModel.makeUserHealth()
+                    leaderboardModel.sortUsers()
                 }
             }
         }.navigationBarBackButtonHidden()

@@ -8,24 +8,33 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var name = ""
+    @State private var email = ""
+    @State private var pw = ""
+    @EnvironmentObject var userModel: UserVM
+
     var body: some View {
         NavigationStack{
             VStack(){
                 Logo()
-                TextField("Username", text: $name)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle)
-                    .padding()
-                Divider()
-                    .padding(.horizontal)
-                TextField("Password", text: $name)
-                    .padding()
-                NavigationLink {
-                    BaseView()
-                } label: {
+                CustomTextField(title: "email", placeholder: "", secure: false, autocap: false, text: $email)
+                CustomTextField(title: "Password", placeholder: "", secure: true, autocap: false, text: $pw)
+                Button {
+                    Task{
+                        if let result = try? await userModel.signIn(withEmail: email, password: pw){
+                            switch result{
+                            case .success:
+                                print("Success")
+                            case .failure(let message):
+//                                self.errorMsg =  message
+                                print(message)
+                            }
+                        }
+                        
+                    }
+                } label : {
                     LoginButton()
                 }.accentColor(.white)
-                    .padding(.top)
+
 
                 NavigationLink {
                     RegistrationView()

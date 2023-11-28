@@ -26,6 +26,7 @@ class FriendVM: ObservableObject {
         Task{
             if let friends_id = self.userModel.currentUser?.friends{
                 if friends_id.count > 0{
+                    print("Fetching friends")
                     await fetchFriends(friend_ids: friends_id)
                 }
             }
@@ -69,6 +70,7 @@ class FriendVM: ObservableObject {
 
     func fetchFriends(friend_ids: [String]) async {
         for user_id in friend_ids {
+            print("Fetching this person: \(user_id)")
             var fetchedFriendUser: User? = nil
             var fetchedFriendHealth: HealthData? = nil
             do {
@@ -104,6 +106,7 @@ class FriendVM: ObservableObject {
                 print("Error fetching friend for Id: \(user_id)")
             }
         }
+        print(self.user_friends)
     }
     
     func fetchHealthData(id: String) async throws -> FetchHealthData {
@@ -116,8 +119,6 @@ class FriendVM: ObservableObject {
         }
     }
 
-    
-    
     // Not neccessary to display
     func requestFriend(origin: User, dest: User) async throws -> Base{
         // Store the friend request in db?? 

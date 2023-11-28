@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
+    @EnvironmentObject var friendModel: FriendVM
     
     var body: some View {
         ScrollView{
@@ -12,17 +13,6 @@ struct ProfileView: View {
                     .padding(.top)
                 NavigationLink {
                     // use the view model
-                    FriendsView(friends: sample_friends)
-                } label: {
-                    StatsSquare(title: "Total Groups", value: "\(user.groups?.count ?? 0)")
-                }
-            } else {
-                //TODO: Need to remove later, just for testing
-                let user = currentUser
-                ProfileHeaderView(user: user)
-                EmbeddedFriendsView(friends: sample_friends)
-                    .padding(.top)
-                NavigationLink {
                     FriendsView(friends: sample_friends)
                 } label: {
                     StatsSquare(title: "Total Groups", value: "\(user.groups?.count ?? 0)")
@@ -81,9 +71,9 @@ struct ProfileView: View {
                 StatsCard(title: "Weekly Distance (mi)", value: "0")
             }
         }.onAppear{
-//            healthModel.fetchAllHealthData()
-            print("Write")
-            healthModel.writeHealthData()
+            healthModel.fetchAllHealthData()
+//            healthModel.writeHealthData()
+            
         }
         
     }

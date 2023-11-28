@@ -40,6 +40,6 @@ struct Icon: View{
         }
     }
 }
-#Preview {
-    EmbeddedFriendsView(friends: sample_friends)
-}
+//#Preview {
+//    EmbeddedFriendsView(friends: sample_friends)
+//}

@@ -27,7 +27,6 @@
 		7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578312E2B032890009B1CD1 /* FeedVM.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
 		758B751B2B04750C00230CCC /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751A2B04750C00230CCC /* Health.swift */; };
-		758B751D2B047C8000230CCC /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751C2B047C8000230CCC /* HealthModel.swift */; };
 		758B751F2B04A80700230CCC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751E2B04A80700230CCC /* Header.swift */; };
 		758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */; };
 		758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75222B04AF1900230CCC /* UserGoalView.swift */; };
@@ -54,7 +53,6 @@
 		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
 		7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
-		9D35B2012B09B73D003903C4 /* FetchTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D35B2002B09B73D003903C4 /* FetchTestView.swift */; };
 		9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF207072AFFF92600C8AE37 /* HealthVM.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +80,6 @@
 		7578312E2B032890009B1CD1 /* FeedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVM.swift; sourceTree = "<group>"; };
 		757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		758B751A2B04750C00230CCC /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
-		758B751C2B047C8000230CCC /* HealthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
 		758B751E2B04A80700230CCC /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedFriendsView.swift; sourceTree = "<group>"; };
 		758B75222B04AF1900230CCC /* UserGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserGoalView.swift; path = ../../UserGoalView.swift; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		9D35B2002B09B73D003903C4 /* FetchTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTestView.swift; sourceTree = "<group>"; };
 		9DF207072AFFF92600C8AE37 /* HealthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthVM.swift; sourceTree = "<group>"; };
 		9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthComp.entitlements; sourceTree = "<group>"; };
 		9DF2070A2AFFFA2400C8AE37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -170,7 +166,6 @@
 		7542556B2AF5CC9600E9DB17 /* HealthComp */ = {
 			isa = PBXGroup;
 			children = (
-				758B751C2B047C8000230CCC /* HealthModel.swift */,
 				75B809B42B00555B0009D84A /* GoogleService-Info.plist */,
 				9DF2070A2AFFFA2400C8AE37 /* Info.plist */,
 				9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */,
@@ -200,7 +195,6 @@
 			children = (
 				751F04D62AFC8E4F00382FD3 /* Reusable Views */,
 				7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */,
-				9D35B2002B09B73D003903C4 /* FetchTestView.swift */,
 				758B75222B04AF1900230CCC /* UserGoalView.swift */,
 				75B7D2822B007361004E5DE0 /* RegistrationView2.swift */,
 				751F04D92AFC9E7700382FD3 /* BaseView.swift */,
@@ -341,7 +335,6 @@
 				751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
-				758B751D2B047C8000230CCC /* HealthModel.swift in Sources */,
 				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,
@@ -353,7 +346,6 @@
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
 				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
-				9D35B2012B09B73D003903C4 /* FetchTestView.swift in Sources */,
 				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */,
 				758B751F2B04A80700230CCC /* Header.swift in Sources */,
