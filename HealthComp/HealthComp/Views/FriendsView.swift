@@ -8,76 +8,61 @@
 import SwiftUI
 
 struct FriendsView: View {
+<<<<<<< HEAD
 //    @State var friends: [User]
     var friends: [UserHealth]
+=======
+    var friends: [User]
+>>>>>>> origin/ts3356
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView{
-                    //FriendsHeader()
-                    NavigationLink {
-//                        FriendSearchView(friends: $friends)
-                        FriendSearchView()
-
-                    } label: {
-                        AddFriends()
-                    }
-                    LazyVGrid(columns: [GridItem(), GridItem()], spacing: 10){
+                    LazyVGrid(columns: [GridItem(), GridItem(), GridItem()], spacing: 2){
                         ForEach(friends){ friend in
                             FriendCell(friend: friend)
                         }
-                        .padding(.vertical, 3)
                     }
-                }
+                    .padding(.horizontal, 10)
+                    .padding(.top)
                 }
             }
         }
     }
+}
 
 //#Preview {
 //    FriendsView(friends: sample_friends)
 //}
 
+//struct AddFriends: View {
+//    var body: some View {
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 10.0)
+//                .fill(Color("dark-blue")) 
+//                .frame(height: 50)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10.0)
+//                        .stroke(Color("dark-gray"), lineWidth: 1)
+//                )
+//            HStack {
+//                Image(systemName: "person.badge.plus")
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 20, weight: .bold))
+//                    .padding(.leading, 10)
+//                
+//                Text("Add Friends")
+//                    .font(.system(size: 20, weight: .bold))
+//                    .foregroundColor(.white)
+//                
+//                Spacer()
+//            }
+//        }
+//        .padding(.horizontal, 20)
+//    }
+//}
 
-struct FriendsHeader: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10.0)
-                .fill(Color("medium-green"))
-                .frame(height:80)
-            Text("My Friends")
-                .font(.system(size: 30, weight: .bold))
-                .foregroundColor(.white)
-        }
-    }
-}
-struct AddFriends: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10.0)
-                .fill(Color("light-blue"))
-                .frame(height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(Color("dark-blue"), lineWidth: 1)
-                )
-            
-            HStack {
-                Image(systemName: "person.badge.plus")
-                    .foregroundColor(.white)
-                    .font(.system(size: 20, weight: .bold))
-                    .padding(.leading, 10)
-                
-                Text("Add Friends")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                
-                Spacer()
-            }
-        }
-        .padding(.horizontal, 20)
-    }
-}
+
 struct FriendCell: View {
     let friend: UserHealth
 
@@ -97,13 +82,10 @@ struct FriendCell: View {
                 .foregroundColor(Color("dark-blue"))
                 .multilineTextAlignment(.center)
         }
-        //.frame(maxWidth: .infinity, alignment: .center)
-        .background(RoundedRectangle(cornerRadius: 10.0)
+        .background(RoundedRectangle(cornerRadius: 25.0)
                         .foregroundColor(Color("light-green"))
-                       .frame(width: UIScreen.main.bounds.width / 2.5, height: 200))
-        //.overlay(RoundedRectangle(cornerRadius: 10.0)
-                   //.stroke(Color("dark-blue"), lineWidth: 1))
-        .padding(20)
+                       .frame(width: 120, height: 180))
+        .padding(12)
     }
 }
 struct pfpImage: View {

@@ -40,6 +40,7 @@ enum FetchHealthData{
 enum Search{
     case success([User])
     case failure(String)
+    case no_results
 }
 
 enum CreateUser{

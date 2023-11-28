@@ -12,26 +12,45 @@ struct FriendSearchView: View {
 
     @State private var searchText = ""
     @State var  results: [User]?
+    @EnvironmentObject var friendModel: FriendVM
     
     var body: some View {
         NavigationView {
             VStack {
-                //addFriendsHeader()
                 SearchBar(text: $searchText)
                     .padding()
-//                Button(action: {
-//                    let searchResult = getSearch(username: searchText)
-//                    switch searchResult {
-//                    case .success(let friends):
-//                        results = friends
-//                    case .failure(let error):
-//                        print("Error: \(error)")
-//                    case .no_results:
-//                        print("Nothing")
+                    .onSubmit {
+                        friendModel.searchFriend(search: searchText) { result in
+                            switch result {
+                            case .success(let matchingUsers):
+                                results = matchingUsers
+                                print(matchingUsers.count)
+                            case .failure(let errorMessage):
+                                print(errorMessage)
+                            case .no_results:
+                                print("No results")
+                            }
+                        }
+                    }
+
+//                SearchBar(text: $searchText)
+//                    .padding()
+//                Button {
+//                    friendModel.searchFriend(search: searchText){ result in
+//                        switch result {
+//                        case .success(let matchingUsers):
+//                            results = matchingUsers
+//                            print(matchingUsers.count)
+//                        case .failure (let errorMessage):
+//                            print(errorMessage)
+//                        case .no_results:
+//                            print("No results")
+//                        }
 //                    }
-//                }, label: {
-//                    Text("Search")
-//                })
+//                } label: {
+//                    Text("")
+//                }
+//                .submitLabel(.search)
 
                 List {
                     if let search_results = results{
@@ -39,7 +58,6 @@ struct FriendSearchView: View {
                             addFriendCell(friend: friend)
                         }
                     }
-                    
                 }
             }
         }
@@ -144,8 +162,3 @@ struct addFriendpfp: View {
     }
 }
 
-
-func getSearch (username: String) -> Search{
-    print(username)
-    return .success([])
-}
