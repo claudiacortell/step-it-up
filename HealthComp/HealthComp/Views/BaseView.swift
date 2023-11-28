@@ -21,9 +21,11 @@ struct CircularProfileIcon: View {
 struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
-    @EnvironmentObject var leaderboardModel: LeaderBoardVM
+    @EnvironmentObject var friendModel: FriendVM
 
     var body: some View {
+        @StateObject var leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
+
         TabView {
             ProfileView()
                 .tabItem {
@@ -42,6 +44,7 @@ struct BaseView: View {
                     Label("", systemImage: "heart")
                 }
             LeaderboardView()
+                .environmentObject(LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel))
                 .tabItem {
                     Label("", systemImage: "chart.bar.fill")
                 }

@@ -26,28 +26,28 @@ class LeaderBoardVM: ObservableObject {
         }
     }
     
-    func makeUserHealth() {
+    func makeUserHealth () {
         if let user = userModel.currentUser {
             if healthModel.validData{
                 self.currentUserHealth =  UserHealth(id: user.id, user: user, data: healthModel.healthData)
+                print("This is done, 33")
             }
         } else {
-            print("Error")
+            print("Error, could not make user health")
         }
     }
     
     func sortUsers() {
         var loadingSortedUsers = Array(friendModel.user_friends.values)
+        print(loadingSortedUsers)
         if let userHealth = self.currentUserHealth{
             loadingSortedUsers.append(userHealth)
-
+            print("Inside 44")
         }
         loadingSortedUsers = loadingSortedUsers.sorted { user1, user2 in
             return user1.data.dailyStep! > user2.data.dailyStep!
         }
 //        print(loadingSortedUsers[0].data)
-        print("hi from LeaderBoardVM")
-        
         self.sortedUsers = loadingSortedUsers
     }
     

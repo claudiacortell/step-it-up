@@ -27,7 +27,6 @@
 		7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578312E2B032890009B1CD1 /* FeedVM.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
 		758B751B2B04750C00230CCC /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751A2B04750C00230CCC /* Health.swift */; };
-		758B751D2B047C8000230CCC /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751C2B047C8000230CCC /* HealthModel.swift */; };
 		758B751F2B04A80700230CCC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751E2B04A80700230CCC /* Header.swift */; };
 		758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75202B04AA8300230CCC /* EmbeddedFriendsView.swift */; };
 		758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B75222B04AF1900230CCC /* UserGoalView.swift */; };
@@ -341,7 +340,6 @@
 				751F04D82AFC8E5E00382FD3 /* Buttons.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
-				758B751D2B047C8000230CCC /* HealthModel.swift in Sources */,
 				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,

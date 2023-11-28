@@ -9,22 +9,8 @@ import SwiftUI
 
 
 struct LeaderboardView: View {
-//    var friendModel: FriendVM
-//    var userModel: UserVM
-        @EnvironmentObject var leaderboardModel: LeaderBoardVM
-    
-//    @EnvironmentObject var friendModel: FriendVM
-//    @EnvironmentObject var userModel: UserVM
 
-//    @State private var sortedUsers: [UserHealth] = []
-    
-//    init(){
-//        sample_friends.append(currentUser)
-////        sortedUsers = sample_friends.sorted { user1, user2 in
-////            return user1.data.dailyStep! > user2.data.dailyStep!
-////        }
-//    }
-    
+    @EnvironmentObject var leaderboardModel: LeaderBoardVM
     
     var body: some View {
         NavigationStack{
@@ -38,6 +24,8 @@ struct LeaderboardView: View {
                             let isCurrentUser = user.id == currentUser.id
                             LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                         }
+                    } else {
+                        Text("Here")
                     }
                     
                 }

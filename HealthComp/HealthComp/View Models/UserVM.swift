@@ -22,6 +22,7 @@ class UserVM: ObservableObject {
     init() {
         DispatchQueue.main.async{
             self.userSession = Auth.auth().currentUser
+            print("In user init")
         }
         Task {
             if self.userSession != nil {

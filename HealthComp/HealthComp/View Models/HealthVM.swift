@@ -16,6 +16,7 @@ import FirebaseFirestoreSwift
 class HealthVM: ObservableObject {
     var healthStore = HKHealthStore()
     @Published var validData: Bool = false
+    
     @Published var healthData: HealthData = HealthData(){
         didSet {
             if isValid(healthData){
@@ -29,8 +30,8 @@ class HealthVM: ObservableObject {
         let steps = HKQuantityType(.stepCount)
         let distance = HKQuantityType(.distanceWalkingRunning)
         let healthTypes: Set = [steps, distance]
-        
         Task{
+            print("In health init")
             do{
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
