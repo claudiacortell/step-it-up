@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var name = ""
+    @State private var pw = ""
+
     var body: some View {
         NavigationStack{
             VStack(){
@@ -18,7 +20,7 @@ struct LoginView: View {
                     .padding()
                 Divider()
                     .padding(.horizontal)
-                TextField("Password", text: $name)
+                TextField("Password", text: $pw)
                     .padding()
                 NavigationLink {
                     BaseView()

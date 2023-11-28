@@ -14,22 +14,26 @@ struct ContentView: View {
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
         let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
-        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
-        let leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
+//        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
+//        let leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
 
         Group {
             if userModel.userSession != nil {
                 BaseView()
                     .environmentObject(friendModel)
                     .environmentObject(groupModel)
-                    .environmentObject(leaderboardModel)
                     .onAppear {
                         userModel.checkUserSession()
                         healthModel.fetchAllHealthData()
+//                        healthModel.validData = true
+//                        healthModel.writeHealthData()
                     }
             } else {
                 StartupView()
                     .environmentObject(userModel)
+                    .environmentObject(friendModel)
+                    .environmentObject(groupModel)
+                
             }
         }
                 

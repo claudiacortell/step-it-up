@@ -20,7 +20,7 @@ class HealthVM: ObservableObject {
     @Published var healthData: HealthData = HealthData(){
         didSet {
             if isValid(healthData){
-                validData.toggle()
+                validData = true
                 writeHealthData()
             }
         }
@@ -49,6 +49,7 @@ class HealthVM: ObservableObject {
         readWeeklySteps()
         readTodaysMileage()
         readWeeklyMileage()
+        print("Done fetching health data")
     }
     
     
@@ -148,6 +149,9 @@ class HealthVM: ObservableObject {
         ) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 print("Failed to read walking/running distance: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
+                DispatchQueue.main.async{
+                    self.healthData.dailyMileage = 0
+                }
                 return
             }
 
@@ -193,6 +197,10 @@ class HealthVM: ObservableObject {
           guard let result = result, let sum = result.sumQuantity() else {
             if let error = error {
               print("An error occurred while retrieving mileage: \(error.localizedDescription)")
+                DispatchQueue.main.async{
+                    self.healthData.weeklyMileage = 0.0
+                }
+
             }
               return
           }
@@ -214,7 +222,7 @@ class HealthVM: ObservableObject {
                 return
             }
             let encoded_healthdata = try Firestore.Encoder().encode(healthData)
-            Firestore.firestore().collection("healthdata").document(user_id).setData(encoded_healthdata) { error in
+                Firestore.firestore().collection("healthdata").document(user_id).setData(encoded_healthdata) { error in
                 if let error = error {
                     print("Error writing health data to Firestore: \(error.localizedDescription)")
                 } else {

@@ -34,9 +34,9 @@ struct FriendsView: View {
         }
     }
 
-#Preview {
-    FriendsView(friends: sample_friends)
-}
+//#Preview {
+//    FriendsView(friends: sample_friends)
+//}
 
 
 struct FriendsHeader: View {

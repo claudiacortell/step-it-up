@@ -22,9 +22,9 @@ struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
     @EnvironmentObject var friendModel: FriendVM
-
+    
     var body: some View {
-        @StateObject var leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
+//        @StateObject var leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
 
         TabView {
             ProfileView()

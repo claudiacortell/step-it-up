@@ -20,17 +20,18 @@ class LeaderBoardVM: ObservableObject {
         self.userModel = userModel
         self.friendModel = friendModel
         self.healthModel = healthModel
-        Task {
-            self.makeUserHealth()
-            self.sortUsers()
-        }
+//        Task {
+//            self.makeUserHealth()
+//            self.sortUsers()
+//        }
     }
     
     func makeUserHealth () {
         if let user = userModel.currentUser {
-            if healthModel.validData{
+            print("First loop, 31")
+            if healthModel.isValid(healthModel.healthData){
+                print("Second loop, 33")
                 self.currentUserHealth =  UserHealth(id: user.id, user: user, data: healthModel.healthData)
-                print("This is done, 33")
             }
         } else {
             print("Error, could not make user health")
@@ -39,7 +40,7 @@ class LeaderBoardVM: ObservableObject {
     
     func sortUsers() {
         var loadingSortedUsers = Array(friendModel.user_friends.values)
-        print(loadingSortedUsers)
+        print("Count: \(loadingSortedUsers.count)")
         if let userHealth = self.currentUserHealth{
             loadingSortedUsers.append(userHealth)
             print("Inside 44")

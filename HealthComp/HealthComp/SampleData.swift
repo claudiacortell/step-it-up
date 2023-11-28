@@ -37,7 +37,7 @@ var sample_feed =
                     message: "Goals pookie",
                     date: "2023-11-07")
                 ]),
-        Post(id: "623123",
+        Post(id: "1241231",
             userId: "6231134523",
 //            name: "Eugenia",
             date: "2023-11-06",
@@ -81,7 +81,7 @@ var sample_friends: [UserHealth] = [
 ]
 
 
-var currentUser = User(id: "1234", name: "Roaree the Lion", email: "roaree69@columbia.edu", username: "roaree69", pfp: "https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG", friends: [], groups: [])
+//var currentUser = User(id: "1234", name: "Roaree the Lion", email: "roaree69@columbia.edu", username: "roaree69", pfp: "https://gocolumbialions.com/images/2019/10/11/20170916ColumbiaFootball_0700.JPG", friends: [], groups: [])
 
 //
 //var currentUserHealth = UserHealth(id: "1234", user: currentUser, data: HealthData(dailyStep: 110, dailyMileage: 3.1, weeklyStep: 15000, weeklyMileage: 19.4))

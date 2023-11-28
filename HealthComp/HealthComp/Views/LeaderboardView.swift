@@ -11,7 +11,7 @@ import SwiftUI
 struct LeaderboardView: View {
 
     @EnvironmentObject var leaderboardModel: LeaderBoardVM
-    
+    @EnvironmentObject var userModel: UserVM
     var body: some View {
         NavigationStack{
             VStack{
@@ -21,13 +21,18 @@ struct LeaderboardView: View {
                         LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: leaderboardModel.sortedUsers)
                         
                         ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
-                            let isCurrentUser = user.id == currentUser.id
+                            let isCurrentUser = user.id == userModel.currentUser?.id
                             LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                         }
                     } else {
                         Text("Here")
                     }
                     
+                }
+            }.onAppear{
+                Task{
+                    await leaderboardModel.makeUserHealth()
+                    leaderboardModel.sortUsers()
                 }
             }
         }.navigationBarBackButtonHidden()
