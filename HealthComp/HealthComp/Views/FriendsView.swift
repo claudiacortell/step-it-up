@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FriendsView: View {
 //    @State var friends: [User]
-    var friends: [User]
+    var friends: [UserHealth]
     var body: some View {
         NavigationView {
             VStack {
@@ -34,9 +34,9 @@ struct FriendsView: View {
         }
     }
 
-#Preview {
-    FriendsView(friends: sample_friends)
-}
+//#Preview {
+//    FriendsView(friends: sample_friends)
+//}
 
 
 struct FriendsHeader: View {
@@ -79,21 +79,21 @@ struct AddFriends: View {
     }
 }
 struct FriendCell: View {
-    let friend: User
+    let friend: UserHealth
 
     var body: some View {
         VStack(spacing: 10) {
-            pfpImage(pfp: friend.pfp)
+            pfpImage(pfp: friend.user.pfp)
                 .clipShape(Circle())
                 .frame(width: 100, height: 100)
                 .overlay(Circle().stroke(Color("light-green"), lineWidth: 4))
 
-            Text(friend.name)
+            Text(friend.user.name)
                 .foregroundColor(Color("dark-blue"))
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
 
-            Text(friend.username)
+            Text(friend.user.username)
                 .foregroundColor(Color("dark-blue"))
                 .multilineTextAlignment(.center)
         }

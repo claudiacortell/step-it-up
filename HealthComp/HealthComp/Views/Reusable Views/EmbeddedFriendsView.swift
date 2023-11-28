@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmbeddedFriendsView: View {
-    let friends: [User]
+    let friends: [UserHealth]
     var body: some View {
         VStack{
             HStack{
@@ -33,15 +33,15 @@ struct EmbeddedFriendsView: View {
 }
 
 struct Icon: View{
-    let friend: User
+    let friend: UserHealth
     var body: some View {
         VStack{
-            FriendIcon(pfp: friend.pfp, size: 60)
-            Text("\(friend.name)")
+            FriendIcon(pfp: friend.user.pfp, size: 60)
+            Text("\(friend.user.name)")
                 .font(.system(size: 12))
         }
     }
 }
-#Preview {
-    EmbeddedFriendsView(friends: sample_friends)
-}
+//#Preview {
+//    EmbeddedFriendsView(friends: sample_friends)
+//}
