@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct FriendsView: View {
-<<<<<<< HEAD
-//    @State var friends: [User]
     var friends: [UserHealth]
-=======
-    var friends: [User]
->>>>>>> origin/ts3356
+
     var body: some View {
         NavigationView {
             VStack {

@@ -38,6 +38,6 @@ struct ProfileHeaderView: View {
 }
 
 
-#Preview {
-    ProfileHeaderView(user: currentUser)
-}
+//#Preview {
+//    ProfileHeaderView(user: currentUser)
+//}
