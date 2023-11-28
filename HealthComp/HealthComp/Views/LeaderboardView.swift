@@ -25,9 +25,14 @@ struct LeaderboardView: View {
                             LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                         }
                     } else {
-                        Text("Here")
+                        let filler_data = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
+                        if let user = userModel.currentUser{
+                            let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
+                            LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
+                            LeaderboardCell(user: filler_user, leaderboardPosition: 1, isCurrentUser: true)
+                        }
+
                     }
-                    
                 }
             }.onAppear{
                 Task{

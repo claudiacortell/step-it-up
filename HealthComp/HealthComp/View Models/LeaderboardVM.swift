@@ -20,10 +20,6 @@ class LeaderBoardVM: ObservableObject {
         self.userModel = userModel
         self.friendModel = friendModel
         self.healthModel = healthModel
-//        Task {
-//            self.makeUserHealth()
-//            self.sortUsers()
-//        }
     }
     
     func makeUserHealth () {
