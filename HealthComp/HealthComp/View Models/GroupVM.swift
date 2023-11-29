@@ -35,7 +35,7 @@ class GroupVM: ObservableObject {
     // Make sure that the current user is in the list
     func fillGroupStruct(groups: [Group_id]) async {
         for group in groups{
-            var new_group = Group_user(id: group.id, name: group.name, pfp: group.pfp, members: [])
+            var new_group = Group_user(id: group.id, name: group.name, pfp: "", members: [])
             do {
                 // Iterate through all the id's
                 for id in group.members{

@@ -9,31 +9,32 @@ import SwiftUI
 
 struct FeedView: View {
     let feed: [Post]
-//    let posts: [Post]
-    @State private var local = true
+    @State private var sheetPresented = false
+    // New state to control focus
+
     var body: some View {
         NavigationStack{
-            ZStack{
-                Color("light-green")
-                    .ignoresSafeArea()
-                ScrollView{
-                    FeedViewHeader()
-                        .padding(.bottom, 2)
-
-                    ForEach(feed) {post in
-                        PostView(post: post)
-                            .padding(.horizontal)
-                    }
-                }
+            AppName()
+            Button(action: {
+                sheetPresented.toggle()
+            }, label: {
+                MakePostView()
+            })
+            .sheet(isPresented: $sheetPresented) {
+                print("Sheet dismissed!")
+            } content: {
+                CreatePostView()
             }
-        }.navigationBarBackButtonHidden()
+            ForEach(feed) {post in
+                PostView(post: post)
+            }
 
+            
+        }
     }
+
 }
 
-
-
-
-//#Preview{
-//    FeedView(feed: sample_feed)
-//}
+#Preview{
+    FeedView(feed: sample_feed)
+}

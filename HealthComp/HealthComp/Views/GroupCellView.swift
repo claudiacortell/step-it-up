@@ -31,11 +31,10 @@ struct GroupCell: View {
             // Members' Images
             ScrollView{
                 HStack(spacing: UIScreen.main.bounds.width * 0.005 ){
-                   
-                    ForEach(Array(group.members.prefix(2))) { friend in
-                        FriendIcon(pfp: friend.pfp, size:UIScreen.main.bounds.width * 0.1)
-                            .padding( UIScreen.main.bounds.width * 0.005)
-                    }
+//                    ForEach(Array(group.members.prefix(2))) { friend in
+//                        ProfileIcon(pfp: friend.pfp, size: 20)
+////                            .padding( UIScreen.main.bounds.width * /*0.005*/)
+//                    }
                     
                     if group.members.count > 2 {
                         Text("+\(group.members.count - 2)")

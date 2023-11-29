@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GroupsView: View {
-//    let groups: [Group_user]
+    let groups: [Group_user]
         @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {
@@ -48,15 +48,15 @@ struct GroupsView: View {
 
 
 #if DEBUG
-struct GroupsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let userModel = UserVM()
-        let groupModel = GroupVM(userModel: userModel, friendModel: FriendVM(userModel: userModel))
-
-        GroupsView()
-            .environmentObject(groupModel)
-    }
-}
+//struct GroupsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let userModel = UserVM()
+//        let groupModel = GroupVM(userModel: userModel, friendModel: FriendVM(userModel: userModel))
+//
+//        GroupsView()
+//            .environmentObject(groupModel)
+//    }
+//}
 ////#else
 //struct GroupsView_Previews: PreviewProvider {
 //    static var previews: some View {

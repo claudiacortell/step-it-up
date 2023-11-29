@@ -16,11 +16,11 @@ struct GroupsDetailView: View {
             Text("Total Members: \(group.members.count)")
                 .font(.title3)
             ScrollView{
-                LazyHGrid(rows: [GridItem(), GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.01) {
-                    ForEach(group.members) { friend in
-                        GroupsMemberView(curr_user: friend)
-                    }
-                }
+//                LazyHGrid(rows: [GridItem(), GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.01) {
+//                    ForEach(group.members) { friend in
+//                        GroupsMemberView(curr_user: friend)
+//                    }
+//                }
             }
             .padding()
         }

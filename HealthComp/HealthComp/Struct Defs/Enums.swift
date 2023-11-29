@@ -24,7 +24,7 @@ enum HealthKitRetrievalHealthData{
 
 enum Upload{
     case success(String)
-    case failure(String)
+    case failure
 }
 
 enum FetchUser{

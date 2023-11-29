@@ -24,6 +24,8 @@
 		7545362F2B042C5800567E8D /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545362D2B042C5700567E8D /* FriendSearchView.swift */; };
 		754536322B042C6C00567E8D /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754536302B042C6C00567E8D /* GoalView.swift */; };
 		754536332B042C6C00567E8D /* GroupCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754536312B042C6C00567E8D /* GroupCreationView.swift */; };
+		7564CF8E2B170F700036C17F /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF8D2B170F700036C17F /* AppName.swift */; };
+		7564CF902B17193E0036C17F /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF8F2B17193E0036C17F /* CreatePostView.swift */; };
 		7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578312E2B032890009B1CD1 /* FeedVM.swift */; };
 		757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */; };
 		758B751B2B04750C00230CCC /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B751A2B04750C00230CCC /* Health.swift */; };
@@ -62,6 +64,7 @@
 		75B809D12B005FF70009D84A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D02B005FF70009D84A /* FirebaseFirestoreSwift */; };
 		75B809D32B0060020009D84A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D22B0060020009D84A /* FirebaseFirestore */; };
 		75B809D52B0060090009D84A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75B809D42B0060090009D84A /* FirebaseStorage */; };
+		75E5629A2B170E7D002DD8BC /* MakePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E562992B170E7D002DD8BC /* MakePostView.swift */; };
 		7F173D612B0A793D0066E2A5 /* GroupsMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D602B0A793D0066E2A5 /* GroupsMemberView.swift */; };
 		7F173D632B0A7A8B0066E2A5 /* GroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D622B0A7A8B0066E2A5 /* GroupCellView.swift */; };
 		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
@@ -91,6 +94,8 @@
 		7545362D2B042C5700567E8D /* FriendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
 		754536302B042C6C00567E8D /* GoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		754536312B042C6C00567E8D /* GroupCreationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreationView.swift; sourceTree = "<group>"; };
+		7564CF8D2B170F700036C17F /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
+		7564CF8F2B17193E0036C17F /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		7578312E2B032890009B1CD1 /* FeedVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVM.swift; sourceTree = "<group>"; };
 		757CCFCE2AFAE32F00CBE7E5 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		758B751A2B04750C00230CCC /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 		75B7D2842B008A59004E5DE0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		75B7D2862B009D88004E5DE0 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		75B809B42B00555B0009D84A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75E562992B170E7D002DD8BC /* MakePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostView.swift; sourceTree = "<group>"; };
 		7F173D602B0A793D0066E2A5 /* GroupsMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsMemberView.swift; sourceTree = "<group>"; };
 		7F173D622B0A7A8B0066E2A5 /* GroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellView.swift; sourceTree = "<group>"; };
 		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 				758B75262B092C8B00230CCC /* StatsSquare.swift */,
 				758B75242B092C3500230CCC /* ProfileViewHeader.swift */,
 				751F04D72AFC8E5E00382FD3 /* Buttons.swift */,
+				7564CF8D2B170F700036C17F /* AppName.swift */,
 				758B75282B092D0A00230CCC /* ProgressView.swift */,
 				75B7D2842B008A59004E5DE0 /* TextField.swift */,
 				9D8409262B16E88B005FF535 /* ProfileIcon.swift */,
@@ -276,8 +283,10 @@
 			isa = PBXGroup;
 			children = (
 				75A8B7102AFAA34A001D6E74 /* FeedView.swift */,
+				75E562992B170E7D002DD8BC /* MakePostView.swift */,
 				7594E1FF2B16D7CD00E33A10 /* FeedViewHeader.swift */,
 				75AD00982AFB0551004F28D2 /* PostView.swift */,
+				7564CF8F2B17193E0036C17F /* CreatePostView.swift */,
 				7594E2012B16D7FD00E33A10 /* ContentPost.swift */,
 				7594E2032B16D87300E33A10 /* NoContentPost.swift */,
 				7594E2052B16D9E700E33A10 /* CommentView.swift */,
@@ -400,11 +409,13 @@
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
 				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
+				7564CF902B17193E0036C17F /* CreatePostView.swift in Sources */,
 				7594E1FC2B16D71800E33A10 /* ProgressBarView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,
 				758B75292B092D0A00230CCC /* ProgressView.swift in Sources */,
 				7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */,
+				75E5629A2B170E7D002DD8BC /* MakePostView.swift in Sources */,
 				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
 				7594E2002B16D7CD00E33A10 /* FeedViewHeader.swift in Sources */,
@@ -423,6 +434,7 @@
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
 				7594E2022B16D7FD00E33A10 /* ContentPost.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
+				7564CF8E2B170F700036C17F /* AppName.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
 				754436852AFFD71600880413 /* SampleData.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,

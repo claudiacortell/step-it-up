@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
         let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
-//        let _ = FeedVM(userModel: userModel, friendModel: friendModel)
+        let feedModel = FeedVM(userModel: userModel, friendModel: friendModel)
 //        let leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
 
         Group {
@@ -22,6 +22,7 @@ struct ContentView: View {
                 BaseView()
                     .environmentObject(friendModel)
                     .environmentObject(groupModel)
+                    .environmentObject(feedModel)
                     .onAppear {
                         userModel.checkUserSession()
                         healthModel.fetchAllHealthData()

@@ -18,28 +18,28 @@ class FeedVM: ObservableObject {
     var userModel: UserVM
     var friendModel: FriendVM
     let dateFormatter = DateFormatter()
-    
+    let imageUtil = ImageUtils()
     @Published var user_feed: [Post] = []
     
     init(userModel: UserVM, friendModel: FriendVM){
         self.userModel = userModel
         self.friendModel = friendModel
         self.dateFormatter.dateFormat = "yyy-MM-dd HH:mm:ss"
-        Task{
-            if let user = self.userModel.currentUser?.id{
-                if var user_ids = self.userModel.currentUser?.friends{
-                    user_ids.append(user)
-                    await fetchFeed(users: user_ids)
-                }
-            }
-        }
+//        Task{
+//            if let user = self.userModel.currentUser?.id{
+//                if var user_ids = self.userModel.currentUser?.friends{
+//                    user_ids.append(user)
+//                    await fetchFeed(users: user_ids)
+//                }
+//            }
+//        }
     }
     
     func sortPost(){
         self.user_feed.sort {$0.date_swift! < $1.date_swift!}
     }
     
-    func makePost(id: String, caption: String) {
+    func makePost(id: String, caption: String, image: UIImage?) {
         do {
             let today_date = Date()
             let date_string = dateFormatter.string(from: today_date)
