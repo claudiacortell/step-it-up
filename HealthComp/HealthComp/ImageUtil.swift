@@ -26,8 +26,20 @@ class ImageUtils {
                     // Handle any errors that occur during the upload
                     print("Error uploading image:", error.localizedDescription)
                 } else {
-                    db.collection("users").document(userId).setData(["pfpLocation": "profile-images/\(userId)-pfp.jpg"], merge: true)
-                    print("Worked")
+                    
+                    // Fetch the download URL
+                    fileRef.downloadURL { url, error in
+                      if let error = error {
+                        // Handle any errors
+                          print(error.localizedDescription)
+                      } else {
+                          print("URL is \(String(describing: url))")
+                          
+                          db.collection("users").document(userId).setData(["pfp": url?.absoluteString], merge: true)
+                          print("Worked")
+                      }
+                    }
+                        
                 }
             }
         }

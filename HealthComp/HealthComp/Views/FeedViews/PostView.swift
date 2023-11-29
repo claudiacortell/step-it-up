@@ -21,47 +21,7 @@ struct PostView: View {
     }
 }
 
-struct ProfileImage: View {
-    let pfp : String
-    var size: CGFloat = 40
-    var body: some View {
-        AsyncImage(
-            url: URL(string:pfp),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height: size)
-                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-                    .clipShape(Circle())
-                
-            },
-            placeholder: {
-                ProgressView()
-            }
-        )
-    }
-}
 
-struct FriendIcon: View {
-    let pfp : String
-    var size: CGFloat?
-    var body: some View {
-        AsyncImage(
-            url: URL(string:pfp),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height: size)
-//                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-                    .clipShape(Circle())
-                
-            },
-            placeholder: {
-                ProgressView()
-            }
-        )
-    }
-}
 
 struct InteractButtons: View {
     let likes: Int

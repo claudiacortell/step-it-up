@@ -65,6 +65,7 @@
 		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
 		7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
+		9D8409272B16E88B005FF535 /* ProfileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8409262B16E88B005FF535 /* ProfileIcon.swift */; };
 		9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF207072AFFF92600C8AE37 /* HealthVM.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9D8409262B16E88B005FF535 /* ProfileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIcon.swift; sourceTree = "<group>"; };
 		9DF207072AFFF92600C8AE37 /* HealthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthVM.swift; sourceTree = "<group>"; };
 		9DF207092AFFF9F800C8AE37 /* HealthComp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthComp.entitlements; sourceTree = "<group>"; };
 		9DF2070A2AFFFA2400C8AE37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				751F04D72AFC8E5E00382FD3 /* Buttons.swift */,
 				758B75282B092D0A00230CCC /* ProgressView.swift */,
 				75B7D2842B008A59004E5DE0 /* TextField.swift */,
+				9D8409262B16E88B005FF535 /* ProfileIcon.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				7594E2042B16D87300E33A10 /* NoContentPost.swift in Sources */,
 				7545362F2B042C5800567E8D /* FriendSearchView.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
+				9D8409272B16E88B005FF535 /* ProfileIcon.swift in Sources */,
 				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
 				75B7D2832B007361004E5DE0 /* RegistrationView2.swift in Sources */,
 				7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */,
