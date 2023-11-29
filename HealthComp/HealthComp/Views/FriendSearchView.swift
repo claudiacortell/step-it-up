@@ -22,6 +22,8 @@ struct FriendSearchView: View {
 //                List {
                     ForEach(results){ friend in
                         addFriendCell(friend: friend)
+                        Divider()
+                            .padding(.horizontal, 20)
                     }
 //                }
                 Spacer()
@@ -84,9 +86,7 @@ struct addFriendCell: View {
     @State private var isFriendAdded = false
     var body: some View {
         HStack {
-            addFriendpfp(pfp: friend.pfp)
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
+            ProfileIcon(pfp: friend.pfp, size: 40)
             
             VStack(alignment: .leading) {
                 Text(friend.name)
@@ -101,39 +101,18 @@ struct addFriendCell: View {
                     isFriendAdded.toggle()
                 }) {
                     Image(systemName: "plus.circle")
+                        .resizable()
                         .foregroundColor(Color("medium-green"))
-                        .font(.title)
+                        .frame(width: 20, height: 20)
                 }
             }else{
                 Image(systemName: "checkmark.circle.fill")
+                    .resizable()
                     .foregroundColor(Color("dark-blue"))
-                    .font(.title)
+                    .frame(width: 20, height: 20)
             }
-           
-         // .padding(.trailing, 8)
         }
         .padding(.vertical, 5)
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
     }
 }
-
-struct addFriendpfp: View {
-    let pfp : String
-    var size: CGFloat = 90
-    var body: some View {
-        AsyncImage(
-            url: URL(string:pfp),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
-                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-                    .clipShape(Circle())
-            },
-            placeholder: {
-                ProgressView()
-            }
-        )
-    }
-}
-

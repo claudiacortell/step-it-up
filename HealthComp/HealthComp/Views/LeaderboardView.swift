@@ -28,9 +28,27 @@ struct LeaderboardView: View {
                         let filler_data = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
                         if let user = userModel.currentUser{
                             let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
+                            
                             LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
-                            LeaderboardCell(user: filler_user, leaderboardPosition: 1, isCurrentUser: true)
+                            
+                            ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+                                LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: false)
+                            }
+                            LeaderboardCell(user: filler_user, leaderboardPosition: Array(leaderboardModel.sortedUsers).count+1, isCurrentUser: true)
                         }
+                        
+                        
+                        
+                        
+//                        if let user = userModel.currentUser{
+//                            let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
+//                            LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
+//                            ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+//                                let isCurrentUser = user.id == userModel.currentUser?.id
+//                                LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+//                            }
+////                            LeaderboardCell(user: filler_user, leaderboardPosition: 1, isCurrentUser: true)
+//                        }
 
                     }
                 }
@@ -51,14 +69,6 @@ struct LeaderboardView: View {
     
 struct LeaderboardHeader: View {
     var body: some View {
-//        ZStack {
-//           Rectangle()
-//               .fill(Color("medium-green"))
-//               .frame(height:80)
-//           Text("Leaderboard")
-//                       .font(.system(size: 30, weight: .bold))
-//                       .foregroundColor(.white)
-//        }
 
         //Maybe change to each user's weekly steps once we calculate that in the ViewModel
         Text("Daily Steps").font(.system(size: 22, weight: .semibold)).foregroundColor(Color("dark-blue"))
@@ -86,9 +96,9 @@ struct LeaderboardMessage: View {
             } else {
                 if let userToBeat = userToBeat(leaderboardPosition) {
                     let numStepsToBeat = userToBeat.data.dailyStep! - currentUser.data.dailyStep!
-                    return "\(numStepsToBeat) more steps to beat \(userToBeat.user.name)! Bring it on!"
+                    return "\(numStepsToBeat) more steps to beat \(userToBeat.user.name)! Step it up!"
                 } else {
-                    return "You're on top! Keep it up!"
+                    return "Get moving! Step it up!"
                 }
             }
         }
@@ -121,7 +131,7 @@ struct LeaderboardCell: View{
             HStack {
                 Text("\(leaderboardPosition).").fontWeight(.bold).foregroundColor(Color("dark-blue"))
                                     .padding(.trailing, 8)
-                ProfileImage(pfp: user.user.pfp)
+                ProfileIcon(pfp: user.user.pfp, size: 40)
                 Spacer()
                 Text(user.user.name).foregroundColor(isCurrentUser ? .black : Color("dark-blue")).fontWeight(.semibold).frame(maxWidth: 300, alignment: .leading)
                     .padding(.leading, 8)

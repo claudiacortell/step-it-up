@@ -16,17 +16,21 @@ struct ProfileHeaderView: View {
                     .font(.system(size: 25, weight: .bold))
                 Spacer()
             }.padding(.horizontal)
-            ZStack {
-                Circle()
-//                    .stroke(Color("medium-blue"), lineWidth: 2)
-                    .frame(width: 120, height: 120)
-                
-                Image(systemName: user.pfp)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:  120, height: 120)
-                    .clipShape(Circle())
-            }
+            
+            ProfileIcon(pfp: user.pfp, size: 120)
+            
+//            ZStack {
+//                Circle()
+////                    .stroke(Color("medium-blue"), lineWidth: 2)
+//                    .frame(width: 120, height: 120)
+//                
+////                Image(systemName: user.pfp)
+//                AsyncImage(url: URL(string: user.pfp))
+////                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width:  120, height: 120)
+//                    .clipShape(Circle())
+//            }
             Text("\(user.name)")
                 .font(.system(size: 18, weight: .semibold))
                 .padding(.top, 15)

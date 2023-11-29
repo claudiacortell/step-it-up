@@ -28,9 +28,9 @@ struct TodayStats: View {
                 }
                 
             } else {
-                //TODO: remove
+
                 HStack{
-                    Text("2000")
+                    Text("0")
                         .font(.custom("DIN Alternate",fixedSize: 35))
                     Text("steps")
                         .font(.custom("DIN Alternate",fixedSize: 12))
@@ -49,7 +49,7 @@ struct TodayStats: View {
             } else {
                 //TODO: remove
                 HStack{
-                    Text("1.0")
+                    Text("0.0")
                         .font(.custom("DIN Alternate",fixedSize: 35))
                     Text("miles")
                         .font(.custom("DIN Alternate",fixedSize: 12))

@@ -36,7 +36,7 @@ struct Icon: View{
     let friend: UserHealth
     var body: some View {
         VStack{
-            FriendIcon(pfp: friend.user.pfp, size: 60)
+            ProfileIcon(pfp: friend.user.pfp, size: 60)
             Text("\(friend.user.name)")
                 .font(.system(size: 12))
         }

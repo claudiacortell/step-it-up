@@ -100,22 +100,22 @@ class UserVM: ObservableObject {
     }
 
     
-    func uploadImage(userId: UUID, selectedImage: UIImage?) async{
-        guard let selectedImage = selectedImage else { return }
-        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else { return }
-        
-        let db = Firestore.firestore()
-        let storageRef = Storage.storage().reference()
-        let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
-        _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
-            if let error = error {
-                // Handle any errors that occur during the upload
-                print("Error uploading image:", error.localizedDescription)
-            } else {
-                db.collection("users").document(userId.uuidString).setData(["pfpLocation": "profile-images/\(userId)-pfp.jpg"], merge: true)
-            }
-        }
-    }
+//    func uploadImage(userId: UUID, selectedImage: UIImage?) async{
+//        guard let selectedImage = selectedImage else { return }
+//        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+//        
+//        let db = Firestore.firestore()
+//        let storageRef = Storage.storage().reference()
+//        let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
+//        _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
+//            if let error = error {
+//                // Handle any errors that occur during the upload
+//                print("Error uploading image:", error.localizedDescription)
+//            } else {
+//                db.collection("users").document(userId.uuidString).setData(["pfpLocation": "profile-images/\(userId)-pfp.jpg"], merge: true)
+//            }
+//        }
+//    }
     
     func fetchUser(id: String) async throws -> FetchUser {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(id).getDocument() else {return .failure("Could not fetch user")}

@@ -36,7 +36,7 @@ struct BaseView: View {
                 .tabItem {
                     Label("", systemImage: "chart.bar.fill")
                 }
-        }
+        }.padding(.top)
     }
 
 }

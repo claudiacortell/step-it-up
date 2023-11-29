@@ -32,45 +32,26 @@ struct FriendCell: View {
     let friend: UserHealth
 
     var body: some View {
-        VStack(spacing: 10) {
-            pfpImage(pfp: friend.user.pfp)
-                .clipShape(Circle())
-                .frame(width: 100, height: 100)
-                .overlay(Circle().stroke(Color("light-green"), lineWidth: 4))
+        VStack(){
+            ProfileIcon(pfp: friend.user.pfp, size: 75)
+                .padding(.bottom, 2)
 
+            Text("@\(friend.user.username)")
+                .foregroundColor(.black)
+                .font(.system(size: 14, weight: .semibold))
+                .multilineTextAlignment(.center)
+                
+                 
             Text(friend.user.name)
                 .foregroundColor(Color("dark-blue"))
-                .fontWeight(.semibold)
+                .font(.system(size: 12))
                 .multilineTextAlignment(.center)
 
-            Text(friend.user.username)
-                .foregroundColor(Color("dark-blue"))
-                .multilineTextAlignment(.center)
         }
         .background(RoundedRectangle(cornerRadius: 25.0)
                         .foregroundColor(Color("light-green"))
                        .frame(width: 120, height: 180))
         .padding(12)
-    }
-}
-struct pfpImage: View {
-    let pfp : String
-    var size: CGFloat = 90
-    var body: some View {
-        AsyncImage(
-            url: URL(string:pfp),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size, height: size)
-                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-                    .clipShape(Circle())
-                
-            },
-            placeholder: {
-                ProgressView()
-            }
-        )
     }
 }
 
