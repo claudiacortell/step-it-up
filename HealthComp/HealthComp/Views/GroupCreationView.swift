@@ -105,7 +105,7 @@ struct GroupFriend: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(isSelected ? Color("light-green") : Color("light-gray"))
+                .fill(isSelected ? Color("light-green") : Color("gray"))
                 .frame(height: 60)
                 .onTapGesture {
                     self.isSelected.toggle()

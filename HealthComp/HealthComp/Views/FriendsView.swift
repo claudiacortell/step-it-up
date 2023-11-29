@@ -27,37 +27,6 @@ struct FriendsView: View {
     }
 }
 
-//#Preview {
-//    FriendsView(friends: sample_friends)
-//}
-
-//struct AddFriends: View {
-//    var body: some View {
-//        ZStack {
-//            RoundedRectangle(cornerRadius: 10.0)
-//                .fill(Color("dark-blue")) 
-//                .frame(height: 50)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10.0)
-//                        .stroke(Color("dark-gray"), lineWidth: 1)
-//                )
-//            HStack {
-//                Image(systemName: "person.badge.plus")
-//                    .foregroundColor(.white)
-//                    .font(.system(size: 20, weight: .bold))
-//                    .padding(.leading, 10)
-//                
-//                Text("Add Friends")
-//                    .font(.system(size: 20, weight: .bold))
-//                    .foregroundColor(.white)
-//                
-//                Spacer()
-//            }
-//        }
-//        .padding(.horizontal, 20)
-//    }
-//}
-
 
 struct FriendCell: View {
     let friend: UserHealth

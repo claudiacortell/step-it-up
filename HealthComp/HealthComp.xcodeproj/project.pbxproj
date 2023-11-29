@@ -18,7 +18,6 @@
 		7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */; };
 		7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542557C2AF5CCB000E9DB17 /* LoginView.swift */; };
 		7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542557E2AF5CCB900E9DB17 /* StartupView.swift */; };
-		754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255802AF5CCC700E9DB17 /* HomeView.swift */; };
 		754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754255832AF5CCF900E9DB17 /* UserVM.swift */; };
 		754436852AFFD71600880413 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754436842AFFD71600880413 /* SampleData.swift */; };
 		7545362E2B042C5800567E8D /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545362C2B042C5700567E8D /* FriendsView.swift */; };
@@ -38,6 +37,11 @@
 		7594E1F62B16A19D00E33A10 /* WeeklyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E1F52B16A19D00E33A10 /* WeeklyStat.swift */; };
 		7594E1F82B16A1D200E33A10 /* ProfileHealthStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E1F72B16A1D200E33A10 /* ProfileHealthStats.swift */; };
 		7594E1FA2B16A20000E33A10 /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E1F92B16A20000E33A10 /* FriendRequest.swift */; };
+		7594E1FC2B16D71800E33A10 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E1FB2B16D71800E33A10 /* ProgressBarView.swift */; };
+		7594E2002B16D7CD00E33A10 /* FeedViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E1FF2B16D7CD00E33A10 /* FeedViewHeader.swift */; };
+		7594E2022B16D7FD00E33A10 /* ContentPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E2012B16D7FD00E33A10 /* ContentPost.swift */; };
+		7594E2042B16D87300E33A10 /* NoContentPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E2032B16D87300E33A10 /* NoContentPost.swift */; };
+		7594E2062B16D9E700E33A10 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594E2052B16D9E700E33A10 /* CommentView.swift */; };
 		75A8B7112AFAA34A001D6E74 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7102AFAA34A001D6E74 /* FeedView.swift */; };
 		75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */; };
 		75AD00972AFAE747004F28D2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00962AFAE747004F28D2 /* Feed.swift */; };
@@ -78,7 +82,6 @@
 		7542557A2AF5CCA800E9DB17 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		7542557C2AF5CCB000E9DB17 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7542557E2AF5CCB900E9DB17 /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupView.swift; sourceTree = "<group>"; };
-		754255802AF5CCC700E9DB17 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		754255832AF5CCF900E9DB17 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		754436842AFFD71600880413 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		7545362C2B042C5700567E8D /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -98,6 +101,11 @@
 		7594E1F52B16A19D00E33A10 /* WeeklyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStat.swift; sourceTree = "<group>"; };
 		7594E1F72B16A1D200E33A10 /* ProfileHealthStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHealthStats.swift; sourceTree = "<group>"; };
 		7594E1F92B16A20000E33A10 /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
+		7594E1FB2B16D71800E33A10 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		7594E1FF2B16D7CD00E33A10 /* FeedViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewHeader.swift; sourceTree = "<group>"; };
+		7594E2012B16D7FD00E33A10 /* ContentPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPost.swift; sourceTree = "<group>"; };
+		7594E2032B16D87300E33A10 /* NoContentPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentPost.swift; sourceTree = "<group>"; };
+		7594E2052B16D9E700E33A10 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		75A8B7102AFAA34A001D6E74 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		75AD00962AFAE747004F28D2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -223,15 +231,12 @@
 				758B751E2B04A80700230CCC /* Header.swift */,
 				7542557E2AF5CCB900E9DB17 /* StartupView.swift */,
 				7542557C2AF5CCB000E9DB17 /* LoginView.swift */,
-				754255802AF5CCC700E9DB17 /* HomeView.swift */,
 				7545362D2B042C5700567E8D /* FriendSearchView.swift */,
 				7545362C2B042C5700567E8D /* FriendsView.swift */,
 				754536302B042C6C00567E8D /* GoalView.swift */,
-				75A8B7102AFAA34A001D6E74 /* FeedView.swift */,
-				75AD00982AFB0551004F28D2 /* PostView.swift */,
+				7594E1FE2B16D7C000E33A10 /* FeedViews */,
 				75A8B7122AFAA352001D6E74 /* LeaderboardView.swift */,
-				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
-				7594E1F72B16A1D200E33A10 /* ProfileHealthStats.swift */,
+				7594E1FD2B16D76E00E33A10 /* ProfileViews */,
 				7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */,
 				754536312B042C6C00567E8D /* GroupCreationView.swift */,
 				7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */,
@@ -246,6 +251,29 @@
 				73432F9B2AFFDAE9000FF355 /* FriendSearchView.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		7594E1FD2B16D76E00E33A10 /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */,
+				7594E1FB2B16D71800E33A10 /* ProgressBarView.swift */,
+				7594E1F72B16A1D200E33A10 /* ProfileHealthStats.swift */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
+		7594E1FE2B16D7C000E33A10 /* FeedViews */ = {
+			isa = PBXGroup;
+			children = (
+				75A8B7102AFAA34A001D6E74 /* FeedView.swift */,
+				7594E1FF2B16D7CD00E33A10 /* FeedViewHeader.swift */,
+				75AD00982AFB0551004F28D2 /* PostView.swift */,
+				7594E2012B16D7FD00E33A10 /* ContentPost.swift */,
+				7594E2032B16D87300E33A10 /* NoContentPost.swift */,
+				7594E2052B16D9E700E33A10 /* CommentView.swift */,
+			);
+			path = FeedViews;
 			sourceTree = "<group>";
 		};
 		75AD00A42AFC05C5004F28D2 /* View Models */ = {
@@ -362,29 +390,33 @@
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
 				751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */,
 				758B75212B04AA8300230CCC /* EmbeddedFriendsView.swift in Sources */,
+				7594E1FC2B16D71800E33A10 /* ProgressBarView.swift in Sources */,
 				7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */,
 				758B75232B04AF1900230CCC /* UserGoalView.swift in Sources */,
 				758B75292B092D0A00230CCC /* ProgressView.swift in Sources */,
 				7542557D2AF5CCB000E9DB17 /* LoginView.swift in Sources */,
 				9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */,
 				7578312F2B032890009B1CD1 /* FeedVM.swift in Sources */,
+				7594E2002B16D7CD00E33A10 /* FeedViewHeader.swift in Sources */,
 				75A8B7132AFAA352001D6E74 /* LeaderboardView.swift in Sources */,
 				754536322B042C6C00567E8D /* GoalView.swift in Sources */,
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				7594E1F42B16A12300E33A10 /* TodayStats.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
 				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
-				754255812AF5CCC700E9DB17 /* HomeView.swift in Sources */,
 				75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */,
 				758B751F2B04A80700230CCC /* Header.swift in Sources */,
 				758B751B2B04750C00230CCC /* Health.swift in Sources */,
+				7594E2062B16D9E700E33A10 /* CommentView.swift in Sources */,
 				75B7D2852B008A59004E5DE0 /* TextField.swift in Sources */,
 				7542557F2AF5CCB900E9DB17 /* StartupView.swift in Sources */,
+				7594E2022B16D7FD00E33A10 /* ContentPost.swift in Sources */,
 				757CCFCF2AFAE32F00CBE7E5 /* Logo.swift in Sources */,
 				75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */,
 				754436852AFFD71600880413 /* SampleData.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */,
+				7594E2042B16D87300E33A10 /* NoContentPost.swift in Sources */,
 				7545362F2B042C5800567E8D /* FriendSearchView.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
 				751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */,
@@ -532,7 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthComp/Preview Content\"";
-				DEVELOPMENT_TEAM = KBDA7SPY7B;
+				DEVELOPMENT_TEAM = 3FMGY5Z7S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HealthComp/Info.plist;
@@ -563,7 +595,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthComp/Preview Content\"";
-				DEVELOPMENT_TEAM = KBDA7SPY7B;
+				DEVELOPMENT_TEAM = 3FMGY5Z7S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HealthComp/Info.plist;

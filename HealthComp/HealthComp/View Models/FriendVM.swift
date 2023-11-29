@@ -17,8 +17,7 @@ import SwiftUI
 class FriendVM: ObservableObject {
     
     var userModel: UserVM
-    //    @Published var user_friends: [String: User] = [:]
-    //    @Published var user_friends_healthdata: [String: HealthData] = [:]
+
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var user_reqs: [FriendRequest] = []
     
@@ -31,43 +30,60 @@ class FriendVM: ObservableObject {
                     await fetchFriends(friend_ids: friends_id)
                 }
             }
+            
         }
     }
     
-    func searchFriend(search: String, completion: @escaping (Search) -> Void){
+    func searchFriend(search: String, completion: @escaping (Result<[User], Error>) -> Void) {
         var matchingUsers: [User] = []
-        //TO-DO: change is equal to something like starts with
+        print("Attempting to search for: \(search)")
+
+        let searchValue = search.trimmingCharacters(in: .whitespaces)
+        let searchEndValue = searchValue + "\u{f8ff}" // Unicode character that is higher than any other character
+
         Firestore.firestore().collection("users")
-            .whereField("username", isEqualTo: search.trimmingCharacters(in: .whitespaces))
-            .getDocuments{ (querySnapshot, error) in
-                if let error =  error {
-                    print("ERROR searchFriend(): \(error.localizedDescription)")
-                    completion(.failure(error.localizedDescription))
-                    return
-                }
-                for document in querySnapshot!.documents {
-                    if let user = try? document.data(as: User.self){
-                        matchingUsers.append(user)
-                    }
-                }
-            }
-        Firestore.firestore().collection("users")
-            .whereField("name", isEqualTo: search)
+            .whereField("username", isGreaterThanOrEqualTo: searchValue)
+            .whereField("username", isLessThan: searchEndValue)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
                     print("ERROR searchFriend(): \(error.localizedDescription)")
-                    completion(.failure(error.localizedDescription))
+                    completion(.failure(error))
                     return
                 }
-                for document in querySnapshot!.documents{
-                    if let user = try? document.data(as: User.self){
+                for document in querySnapshot!.documents {
+                    if let user = try? document.data(as: User.self) {
                         matchingUsers.append(user)
+                    } else {
+                        print("Error decoding user data")
                     }
                 }
-                
+
+                // If no matches found by username, search by name
+                if matchingUsers.isEmpty {
+                    Firestore.firestore().collection("users")
+                        .whereField("name", isGreaterThanOrEqualTo: searchValue)
+                        .whereField("name", isLessThan: searchEndValue)
+                        .getDocuments { (querySnapshot, error) in
+                            if let error = error {
+                                print("ERROR searchFriend(): \(error.localizedDescription)")
+                                completion(.failure(error))
+                                return
+                            }
+                            for document in querySnapshot!.documents {
+                                if let user = try? document.data(as: User.self) {
+                                    matchingUsers.append(user)
+                                } else {
+                                    print("Error decoding user data")
+                                }
+                            }
+                            completion(.success(matchingUsers))
+                        }
+                } else {
+                    completion(.success(matchingUsers))
+                }
             }
-        completion(.success(matchingUsers))
     }
+
     
     func fetchFriends(friend_ids: [String]) async {
         for user_id in friend_ids {
