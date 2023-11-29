@@ -1,85 +1,66 @@
 import SwiftUI
 
 struct GroupsView: View {
-    let groups: [Group_user]
-
+//    let groups: [Group_user]
+        @EnvironmentObject var groupModel: GroupVM
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: UIScreen.main.bounds.height * 0.02) {
-                Text("My Groups")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-
-                Text("Currently an active member of \(groups.count) groups!")
-
-                LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
-                    ForEach(groups.indices) { index in
-                        GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
+        ZStack(alignment: .topTrailing) {
+            ScrollView {
+                VStack(spacing: UIScreen.main.bounds.height * 0.02) {
+                    Text("My Groups")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding()
+                    
+                    Text("Currently an active member of \(groupModel.user_groups.count) groups!")
+//                    Text("Currently an active member of \(groups.count) groups!")
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
+                                ForEach(groupModel.user_groups.indices) { index in
+                                    NavigationLink{
+                                        GroupsDetailView(group: groupModel.user_groups[index])
+                                    }label: {
+                                        GroupCell(group: groupModel.user_groups[index], rowIndex: index / 2, columnIndex: index % 2)}
+//                        ForEach(groups.indices) { index in
+//                            GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
+                        }
                     }
-                }
-                .padding()
-            }
-        }
-        .navigationBarItems(trailing: NavigationLink(destination: Text("Add Member")) {
-            Image(systemName: "plus")
-                .font(.title)
-                .foregroundColor(Color("medium-green"))
-                .padding()
-        })
-    }
-}
-
-struct GroupCell: View {
-    let group: Group_user
-    let rowIndex: Int
-    let columnIndex: Int
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: UIScreen.main.bounds.height * 0.01) {
-            // Group Image
-            Image(systemName: "photo") // Replace with actual group image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.25)
-                .cornerRadius(10)
-
-            // Group Name
-            Text(group.name)
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-
-            // Members' Images
-            HStack(spacing: UIScreen.main.bounds.width * 0.01) {
-                ForEach(group.members.prefix(3)) { member in
-                    Image(systemName: "person.circle") // Replace with actual member image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width * 0.08, height: UIScreen.main.bounds.width * 0.08)
-                        .clipShape(Circle())
-                }
-
-                if group.members.count > 3 {
-                    Text("+\(group.members.count - 3)")
-                        .font(.footnote)
-                        .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.08, height: UIScreen.main.bounds.width * 0.08)
-                        .background(Color.blue)
-                        .clipShape(Circle())
+                    .padding()
                 }
             }
+            NavigationLink {
+                GroupCreationView()
+            } label: {
+               
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                        .padding()
+                        .font(.title)
+                
+            }
+            
         }
-        .padding()
-        .background(groupCellColor(row: rowIndex, column: columnIndex))
-        .cornerRadius(15)
-    }
-
-    private func groupCellColor(row: Int, column: Int) -> Color {
-        return (row + column) % 2 == 0 ? Color("medium-green") : Color("light-green")
+        
     }
 }
 
-#Preview {
-    GroupsView(groups: [sample_group, sample_group, sample_group, sample_group])
+
+
+#if DEBUG
+struct GroupsView_Previews: PreviewProvider {
+    static var previews: some View {
+        let userModel = UserVM()
+        let groupModel = GroupVM(userModel: userModel, friendModel: FriendVM(userModel: userModel))
+
+        GroupsView()
+            .environmentObject(groupModel)
+    }
 }
+////#else
+//struct GroupsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GroupsView(groups:[sample_group, sample_group, sample_group, sample_group, sample_group])
+//    }
+//}
+#endif

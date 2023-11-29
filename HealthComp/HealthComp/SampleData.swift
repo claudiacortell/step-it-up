@@ -7,7 +7,7 @@
 
 import Foundation
 
-var sample_group = Group_user(id: "123412321", name: "HealthApp", members: sample_friends)
+var sample_group = Group_user(id: "123412321", name: "HealthApp", pfp: "",members: sample_friends)
 var sample_feed =
         [Post(id: "62311343",
              userId: "6231134523",
