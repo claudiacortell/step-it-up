@@ -14,22 +14,22 @@ struct FeedView: View {
 
     var body: some View {
         NavigationStack{
-            AppName()
-            Button(action: {
-                sheetPresented.toggle()
-            }, label: {
-                MakePostView()
-            })
-            .sheet(isPresented: $sheetPresented) {
-                print("Sheet dismissed!")
-            } content: {
-                CreatePostView()
+            ScrollView{
+                AppName()
+                Button(action: {
+                    sheetPresented.toggle()
+                }, label: {
+                    MakePostView()
+                })
+                .sheet(isPresented: $sheetPresented) {
+                    print("Sheet dismissed!")
+                } content: {
+                    CreatePostView()
+                }
+                ForEach(feed) {post in
+                    PostView(post: post)
+                }
             }
-            ForEach(feed) {post in
-                PostView(post: post)
-            }
-
-            
         }
     }
 

@@ -14,45 +14,45 @@ struct TodayStats: View {
             HStack{
                 Spacer()
                 Text("Today")
-                    .font(.custom("DIN Alternate",fixedSize: 14))
+                    .font(.custom("DIN Alternate",fixedSize: 16))
                 Spacer()
             }.padding(.bottom, 3)
             Text("Steps")
-                .font(.custom("DIN Alternate",fixedSize: 14))
+                .font(.custom("DIN Alternate",fixedSize: 18))
             if healthModel.healthData.dailyStep != nil{
                 HStack{
                     Text("\(healthModel.healthData.dailyStep!)")
-                        .font(.custom("DIN Alternate",fixedSize: 35))
+                        .font(.custom("DIN Alternate",fixedSize: 40))
                     Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
                 
             } else {
 
                 HStack{
                     Text("0")
-                        .font(.custom("DIN Alternate",fixedSize: 35))
+                        .font(.custom("DIN Alternate",fixedSize: 40))
                     Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
             }
             Text("Distance")
-                .font(.custom("DIN Alternate",fixedSize: 14))
+                .font(.custom("DIN Alternate",fixedSize: 18))
             if healthModel.healthData.dailyMileage != nil{
                 HStack{
                     Text(String(format: "%.1f", healthModel.healthData.dailyMileage!))
-                        .font(.custom("DIN Alternate", fixedSize: 35))
+                        .font(.custom("DIN Alternate", fixedSize: 40))
                     Text("miles")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
                 
             } else {
                 //TODO: remove
                 HStack{
                     Text("0.0")
-                        .font(.custom("DIN Alternate",fixedSize: 35))
+                        .font(.custom("DIN Alternate",fixedSize: 40))
                     Text("miles")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
             }
             

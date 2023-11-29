@@ -12,10 +12,11 @@ struct ProfileView: View {
             ScrollView{
                 if let user = userModel.currentUser{
                     ProfileHeaderView(user: user)
-                    HStack(spacing: 15){
+                    HStack(){
                         ProfileHealthStats()
-                        ProgressBarView(numProgress: 0.7, progress: "1000/10000")
-                    }.padding(.vertical)
+                        ProgressBarView()
+                    }.padding(.horizontal)
+                    
                     NavigationLink {
                         // use the view model
                         FriendsView(friends: Array(friendModel.user_friends.values))

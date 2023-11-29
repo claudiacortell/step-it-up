@@ -25,36 +25,67 @@ class FeedVM: ObservableObject {
         self.userModel = userModel
         self.friendModel = friendModel
         self.dateFormatter.dateFormat = "yyy-MM-dd HH:mm:ss"
-//        Task{
-//            if let user = self.userModel.currentUser?.id{
-//                if var user_ids = self.userModel.currentUser?.friends{
-//                    user_ids.append(user)
-//                    await fetchFeed(users: user_ids)
-//                }
-//            }
-//        }
+        Task{
+            if let user = self.userModel.currentUser?.id{
+                if var user_ids = self.userModel.currentUser?.friends{
+                    user_ids.append(user)
+                    await fetchFeed(users: user_ids)
+                }
+            }
+        }
     }
     
     func sortPost(){
-        self.user_feed.sort {$0.date_swift! < $1.date_swift!}
+        DispatchQueue.main.async{
+            self.user_feed.sort {$0.date_swift! > $1.date_swift!}
+        }
     }
+    
     
     func makePost(id: String, caption: String, image: UIImage?) {
         do {
-            let today_date = Date()
-            let date_string = dateFormatter.string(from: today_date)
-            let post_id = UUID().uuidString
-            var data = Post(id: post_id, userId: id, date: date_string, likes: 0, caption: caption)
-            let encoded_data = try Firestore.Encoder().encode(data)
-            Firestore.firestore().collection("users").document(id).collection("posts").document(post_id).setData(encoded_data)
-            data.date = nil
-            data.date_swift = today_date
-            self.user_feed.append(data)
-            self.sortPost()
+            let todayDate = Date()
+            let dateString = dateFormatter.string(from: todayDate)
+            let postId = UUID().uuidString
+            
+            var data = Post(id: postId, userId: id, date: dateString, likes: 0, caption: caption, comments: [])
+            
+            if let image = image {
+                imageUtil.uploadPostPhoto(postId: postId, selectedImage: image) { result in
+                    switch result {
+                    case .success(let urlString):
+                        // Handle success (e.g., use the URL)
+                        print("Uploaded image URL: \(urlString)")
+                        data.attatchment = urlString // Corrected the property name to 'attachment'
+                        // Set the post data and append to user_feed inside the closure
+                        let encoded_data = try? Firestore.Encoder().encode(data)
+                        Firestore.firestore().collection("users").document(id).collection("posts").document(postId).setData(encoded_data ?? [:])
+                        data.date = nil
+                        data.date_swift = todayDate
+                        self.user_feed.append(data)
+                        self.userModel.addPost(postId: postId)
+                        self.sortPost()
+                        
+                    case .failure(let error):
+                        // Handle error cases
+                        print("Error uploading image: \(error)")
+                        // You might want to provide a default value or handle the error case
+                    }
+                }
+            }else {
+                let encoded_data = try? Firestore.Encoder().encode(data)
+                Firestore.firestore().collection("users").document(id).collection("posts").document(postId).setData(encoded_data ?? [:])
+                data.date = nil
+                data.date_swift = todayDate
+                self.user_feed.append(data)
+                self.userModel.addPost(postId: postId)
+                self.sortPost()
+            }
         } catch {
             print(error.localizedDescription)
         }
     }
+
 
     
     func fetchFeed(users: [String]) async {

@@ -15,6 +15,7 @@ struct User: Identifiable, Codable {
     var pfp: String
     var friends: [String]?
     var groups: [String]?
+    var posts: [String]?
 }
 
 
