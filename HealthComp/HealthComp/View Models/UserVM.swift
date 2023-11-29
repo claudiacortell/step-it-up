@@ -98,6 +98,17 @@ class UserVM: ObservableObject {
             }
         }
     }
+    
+    func getStepGoal() -> Int {
+        if let stepGoal = UserDefaults.standard.object(forKey: "stepGoal") {
+            return UserDefaults.standard.integer(forKey: "stepGoal")
+        }
+        return 10000
+    }
+    
+    func setStepGoal(stepGoal: Int) {
+        UserDefaults.standard.set(stepGoal, forKey: "stepGoal")
+    }
 
     
 //    func uploadImage(userId: UUID, selectedImage: UIImage?) async{

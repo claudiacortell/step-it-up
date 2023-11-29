@@ -14,7 +14,9 @@ struct ProfileView: View {
                     ProfileHeaderView(user: user)
                     HStack(spacing: 15){
                         ProfileHealthStats()
-                        ProgressBarView(numProgress: 0.7, progress: "1000/10000")
+                        let weeklySteps = healthModel.healthData.weeklyStep!
+                        let stepGoal = userModel.getStepGoal()
+                        ProgressBarView(numProgress: (Double(weeklySteps) / Double(stepGoal)), progress: "\(weeklySteps)/\(stepGoal)")
                     }.padding(.vertical)
                     NavigationLink {
                         // use the view model
