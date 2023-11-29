@@ -51,9 +51,8 @@ struct RegistrationView2: View {
                 }.onChange(of: selectedItem) { newValue in
                     Task {
                         if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                            if let ui_selectedImage = UIImage(data: data) {
-                                selectedImage = Image(uiImage: ui_selectedImage)
-                            }
+                            ui_selectedImage = UIImage(data: data)
+                            selectedImage = Image(uiImage: ui_selectedImage!)
                         }
                     }
                 }
@@ -86,6 +85,7 @@ struct RegistrationView2: View {
                             if let result = try? await userModel.createUser(email: email, password: password, username: username, name: name, pfp_uri: ""){ switch result {
                             case .success(let id):
                                 if let image = ui_selectedImage {
+                                    print("Here inside line 89")
                                     await userModel.imageUtil.uploadPhoto(userId: id, selectedImage: image)
                                 }
                                 print("yay")

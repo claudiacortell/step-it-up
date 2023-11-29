@@ -1,37 +1,13 @@
 //
-//  FeedView.swift
+//  FeedViewHeader.swift
 //  HealthComp
 //
-//  Created by Phillip Le on 11/7/23.
+//  Created by Phillip Le on 11/28/23.
 //
 
 import SwiftUI
 
-struct FeedView: View {
-    let feed: [Post]
-//    let posts: [Post]
-    @State private var local = true
-    var body: some View {
-        NavigationStack{
-            ZStack{
-                Color("light-green")
-                    .ignoresSafeArea()
-                ScrollView{
-                    Header()
-                        .padding(.bottom, 2)
-
-                    ForEach(feed) {post in
-                        PostView(post: post)
-                            .padding(.horizontal)
-                    }
-                }
-            }
-        }.navigationBarBackButtonHidden()
-
-    }
-}
-
-struct Header: View {
+struct FeedViewHeader: View {
     var body: some View {
         HStack{
             Text("Hey, Roaree! See what everyone is up to")
@@ -58,9 +34,4 @@ struct Header: View {
                 .frame(width:UIScreen.main.bounds.width-20)
         }
     }
-}
-
-
-#Preview{
-    FeedView(feed: sample_feed)
 }

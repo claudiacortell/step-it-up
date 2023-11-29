@@ -17,8 +17,7 @@ struct Group_id: Identifiable, Codable{
 struct Group_user: Identifiable, Codable{
     var id: String
     var name: String
-    var pfp: String
-    var members: [User] = []
+    var members: [UserHealth] = []
 }
 
 //struct Group2: Identifiable {

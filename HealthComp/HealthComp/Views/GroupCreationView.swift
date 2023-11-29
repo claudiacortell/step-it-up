@@ -10,17 +10,20 @@ import SwiftUI
 struct GroupCreationView: View {
     @State var groupName = ""
     @State var selectedMembers: [String: Bool] = [:]
+
+    @EnvironmentObject var friendModel: FriendVM
+    @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {
         VStack {
-            ZStack {
-                Rectangle()
-                    .fill(Color("medium-green"))
-                    .frame(height:80)
-                Text("New Group")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(Color("dark-blue"))
-            }
+//            ZStack {
+//                Rectangle()
+//                    .fill(Color("medium-green"))
+//                    .frame(height:80)
+//                Text("New Group")
+//                    .font(.system(size: 36, weight: .bold))
+//                    .foregroundColor(Color("dark-blue"))
+//            }
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color("light-green"))
@@ -37,8 +40,11 @@ struct GroupCreationView: View {
             ZStack {
                 ScrollView {
                     VStack {
-                        ForEach(sample_friends) { friend in
+                        let friends = sample_friends
+                        //let friends = Array(friendModel.user_friends.values)
+                        ForEach(friends) { friend in
                             GroupFriend(isSelected: self.binding(for: friend), friend: friend)
+                                .padding(.horizontal)
                         }
                     }
                 }
@@ -53,7 +59,17 @@ struct GroupCreationView: View {
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(Color("dark-blue"))
                             .onTapGesture {
-                                self.createGroup()
+                                var groupMembers = selectedMembers.filter { $0.value }
+                                    .compactMap { friendModel.user_friends[$0.key] }
+//                                groupMembers.append(currentUser)
+                                let result = groupModel.createGroup(name: groupName, users: groupMembers)
+
+                                switch result {
+                                case .success:
+                                    print("success!")
+                                case .failure(let msg):
+                                    print(msg)
+                                }
                             }
                     }
                 }
@@ -62,19 +78,19 @@ struct GroupCreationView: View {
         }
     }
     
-    private func createGroup() {
-        let name = groupName
-        let groupMembers = sample_friends.filter {
-            selectedMembers[$0.id, default: false]
-        }
-        
-        print("New Group: \(name)")
-        print("Members: \(groupMembers.map { $0.name })")
-        // TODO: Use ViewModel to create group
-        // groupVM.createGroup(name, groupMembers)
-    }
+//    private func createGroup() {
+//        let name = groupName
+//        let groupMembers = sample_friends.filter {
+//            selectedMembers[$0.id, default: false]
+//        }
+//        
+//        print("New Group: \(name)")
+//        print("Members: \(groupMembers.map { $0.name })")
+//        // TODO: Use ViewModel to create group
+//        //groupModel.createGroup(name: name, users: groupMembers)
+//    }
     
-    private func binding(for friend: User) -> Binding<Bool> {
+    private func binding(for friend: UserHealth) -> Binding<Bool> {
         Binding<Bool>(
             get: { self.selectedMembers[friend.id, default: false] },
             set: { self.selectedMembers[friend.id] = $0 }
@@ -84,25 +100,25 @@ struct GroupCreationView: View {
 
 struct GroupFriend: View {
     @Binding var isSelected: Bool
-    var friend: User
+    var friend: UserHealth
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(isSelected ? Color("light-green") : Color("light-gray"))
-                .frame(height: 80)
+                .fill(isSelected ? Color("light-green") : Color("gray"))
+                .frame(height: 60)
                 .onTapGesture {
                     self.isSelected.toggle()
                 }
             HStack {
                 // TODO: add user photos
-                Text("\(friend.name)")
+                Text("\(friend.user.name)")
                     .padding(.horizontal)
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()
                 Circle()
                     .fill(isSelected ? Color("medium-green") : .gray)
-                    .frame(width: 36)
+                    .frame(width: 28)
                     .padding(.horizontal)
             }
         }

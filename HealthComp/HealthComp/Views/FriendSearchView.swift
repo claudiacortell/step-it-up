@@ -11,76 +11,71 @@ import SwiftUI
 struct FriendSearchView: View {
 
     @State private var searchText = ""
-    @State var  results: [User]?
+    @State private var results: [User] = []
+    @EnvironmentObject var friendModel: FriendVM
     
     var body: some View {
         NavigationView {
             VStack {
-                //addFriendsHeader()
-                SearchBar(text: $searchText)
+                SearchBar(text: $searchText, searchResults: $results)
                     .padding()
-//                Button(action: {
-//                    let searchResult = getSearch(username: searchText)
-//                    switch searchResult {
-//                    case .success(let friends):
-//                        results = friends
-//                    case .failure(let error):
-//                        print("Error: \(error)")
-//                    case .no_results:
-//                        print("Nothing")
-//                    }
-//                }, label: {
-//                    Text("Search")
-//                })
-
-                List {
-                    if let search_results = results{
-                        ForEach(search_results) { friend in
-                            addFriendCell(friend: friend)
-                        }
+//                List {
+                    ForEach(results){ friend in
+                        addFriendCell(friend: friend)
+                        Divider()
+                            .padding(.horizontal, 20)
                     }
-                    
-                }
+//                }
+                Spacer()
             }
         }
     }
 }
 
-struct addFriendsHeader: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10.0)
-                .fill(Color("light-blue"))
-                .frame(height:80)
-            Text("Add Friends")
-                .font(.system(size: 30, weight: .bold))
-                .foregroundColor(.white)
-        }
-    }
-}
 
 struct SearchBar: View {
     @Binding var text: String
+    @Binding var searchResults: [User]
+    @EnvironmentObject var friendModel: FriendVM
     
     var body: some View {
         HStack {
-            TextField("Search", text: $text)
-                .padding(8)
+            TextField(" Search", text: $text)
+                .padding(6)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .background(Color(.systemGray5))
-                .cornerRadius(8)
-                .padding(.horizontal, 10)
-            
+                .cornerRadius(10)
+                .onSubmit {
+                    friendModel.searchFriend(search: text) { result in
+                        switch result {
+                        case .success(let matchingUsers):
+                            self.searchResults = matchingUsers
+                            // Update your UI or perform other operations with the matchingUsers array
+                        case .failure(let error):
+                            // Handle error
+                            print("Error during search: \(error.localizedDescription)")
+                            // Show an alert or update UI to indicate an error
+                        }
+                    }
+                }
             Button(action: {
                 self.text = ""
             }) {
                 Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: text.isEmpty ? 0: 15, height: text.isEmpty ? 0:15)
                     .foregroundColor(.gray)
             }
             .padding(.trailing, 8)
             .opacity(text.isEmpty ? 0 : 1)
         }
+        
+            
+            
+        }
     }
-}
+
 
 #Preview {
     FriendSearchView()
@@ -91,13 +86,11 @@ struct addFriendCell: View {
     @State private var isFriendAdded = false
     var body: some View {
         HStack {
-            addFriendpfp(pfp: friend.pfp)
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
+            ProfileIcon(pfp: friend.pfp, size: 40)
             
             VStack(alignment: .leading) {
                 Text(friend.name)
-                    .font(.headline)
+                    .font(.system(size: 14))
                 Text(friend.username)
             }
             
@@ -108,44 +101,18 @@ struct addFriendCell: View {
                     isFriendAdded.toggle()
                 }) {
                     Image(systemName: "plus.circle")
+                        .resizable()
                         .foregroundColor(Color("medium-green"))
-                        .font(.title)
+                        .frame(width: 20, height: 20)
                 }
             }else{
                 Image(systemName: "checkmark.circle.fill")
+                    .resizable()
                     .foregroundColor(Color("dark-blue"))
-                    .font(.title)
+                    .frame(width: 20, height: 20)
             }
-           
-         // .padding(.trailing, 8)
         }
         .padding(.vertical, 5)
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
     }
-}
-
-struct addFriendpfp: View {
-    let pfp : String
-    var size: CGFloat = 90
-    var body: some View {
-        AsyncImage(
-            url: URL(string:pfp),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
-                    .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
-                    .clipShape(Circle())
-            },
-            placeholder: {
-                ProgressView()
-            }
-        )
-    }
-}
-
-
-func getSearch (username: String) -> Search{
-    print(username)
-    return .success(sample_friends)
 }

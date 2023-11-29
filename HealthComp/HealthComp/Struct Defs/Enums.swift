@@ -32,9 +32,15 @@ enum FetchUser{
     case failure(String)
 }
 
+enum FetchHealthData{
+    case success(HealthData)
+    case failure(String)
+}
+
 enum Search{
     case success([User])
     case failure(String)
+    case no_results
 }
 
 enum CreateUser{
@@ -45,4 +51,9 @@ enum CreateUser{
 enum Base{
     case success
     case failure(String)
+}
+
+enum Status{
+    case accepted
+    case rejected
 }

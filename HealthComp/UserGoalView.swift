@@ -27,15 +27,11 @@ struct UserGoalView: View {
                             .foregroundColor(.white)
 
                     }
-                    ProgressBarView(progressText: progressText, numProgress: numProgress, progress: progress)
+                    ProgressRoundView(progressText: progressText, numProgress: numProgress, progress: progress)
                 }
                 .padding()
             )
     }
 }
 
-//struct UserGoalView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserGoalView()
-//    }
-//}
+
