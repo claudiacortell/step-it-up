@@ -158,4 +158,10 @@ class GroupVM: ObservableObject {
         // refresh groups after adding a new member
         return .success
     }
+    
+    func signOut() {
+        self.user_groups = [:]
+        self.user_cache = [:]
+        self.groups_by_id = []
+    }
 }

@@ -122,6 +122,10 @@ class FeedVM: ObservableObject {
         }
         self.sortPost()
     }
+    
+    func signOut() {
+        self.user_feed = []
+    }
 
     
 }

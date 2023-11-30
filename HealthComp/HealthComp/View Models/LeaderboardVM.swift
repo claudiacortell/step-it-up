@@ -48,4 +48,9 @@ class LeaderBoardVM: ObservableObject {
         self.sortedUsers = loadingSortedUsers
     }
     
+    func signOut(){
+        self.sortedUsers = []
+        self.currentUserHealth = nil
+    }
+    
 }

@@ -18,7 +18,7 @@ class FriendVM: ObservableObject {
     var userModel: UserVM
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var pfpUrl: [String: String] = [:]
-    @Published var user_reqs: [FriendRequest] = []
+    
     
     init(userModel: UserVM) {
         self.userModel = userModel
@@ -164,6 +164,10 @@ class FriendVM: ObservableObject {
         } else{
             return .failure("Could not decode a user's health data")
         }
+    }
+    func signOut() {
+        self.user_friends = [:]
+        self.pfpUrl = [:]
     }
     
 }

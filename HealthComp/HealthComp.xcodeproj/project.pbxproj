@@ -60,7 +60,6 @@
 		75AD00992AFB0551004F28D2 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00982AFB0551004F28D2 /* PostView.swift */; };
 		75AD009D2AFBE93E004F28D2 /* LeaderboardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */; };
 		75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD009E2AFC0557004F28D2 /* GroupVM.swift */; };
-		75AD00A12AFC0571004F28D2 /* NotificationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A02AFC0571004F28D2 /* NotificationVM.swift */; };
 		75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A22AFC0582004F28D2 /* FriendVM.swift */; };
 		75AD00A62AFC0746004F28D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A52AFC0746004F28D2 /* User.swift */; };
 		75AD00A82AFC0CE1004F28D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD00A72AFC0CE1004F28D2 /* Group.swift */; };
@@ -90,7 +89,7 @@
 		751F04D22AFC0E2900382FD3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		751F04D72AFC8E5E00382FD3 /* SmallSignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSignupButton.swift; sourceTree = "<group>"; };
 		751F04D92AFC9E7700382FD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		754255692AF5CC9600E9DB17 /* HealthComp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthComp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		754255692AF5CC9600E9DB17 /* StepItUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepItUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCompApp.swift; sourceTree = "<group>"; };
 		7542556E2AF5CC9600E9DB17 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		754255702AF5CC9700E9DB17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +139,6 @@
 		75AD00982AFB0551004F28D2 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVM.swift; sourceTree = "<group>"; };
 		75AD009E2AFC0557004F28D2 /* GroupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVM.swift; sourceTree = "<group>"; };
-		75AD00A02AFC0571004F28D2 /* NotificationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVM.swift; sourceTree = "<group>"; };
 		75AD00A22AFC0582004F28D2 /* FriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVM.swift; sourceTree = "<group>"; };
 		75AD00A52AFC0746004F28D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75AD00A72AFC0CE1004F28D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -223,7 +221,7 @@
 		7542556A2AF5CC9600E9DB17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				754255692AF5CC9600E9DB17 /* HealthComp.app */,
+				754255692AF5CC9600E9DB17 /* StepItUp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,7 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				75AD00A22AFC0582004F28D2 /* FriendVM.swift */,
-				75AD00A02AFC0571004F28D2 /* NotificationVM.swift */,
 				7578312E2B032890009B1CD1 /* FeedVM.swift */,
 				75AD009C2AFBE93E004F28D2 /* LeaderboardVM.swift */,
 				75A558032B17A5EF00AB0640 /* GoalVM.swift */,
@@ -419,7 +416,7 @@
 				463624FE2B1132B8006E9975 /* SwiftUICharts */,
 			);
 			productName = HealthComp;
-			productReference = 754255692AF5CC9600E9DB17 /* HealthComp.app */;
+			productReference = 754255692AF5CC9600E9DB17 /* StepItUp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -482,7 +479,6 @@
 				75A558162B18447100AB0640 /* SearchCell.swift in Sources */,
 				7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */,
 				7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */,
-				75AD00A12AFC0571004F28D2 /* NotificationVM.swift in Sources */,
 				7F173D612B0A793D0066E2A5 /* GroupMember.swift in Sources */,
 				751F04D82AFC8E5E00382FD3 /* SmallSignupButton.swift in Sources */,
 				7594E1F82B16A1D200E33A10 /* ProfileHealthStats.swift in Sources */,
@@ -691,7 +687,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HealthComp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StepItUp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -722,7 +718,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HealthComp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StepItUp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

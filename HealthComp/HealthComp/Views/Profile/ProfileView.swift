@@ -6,11 +6,35 @@ struct ProfileView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
     @EnvironmentObject var friendModel: FriendVM
+    @EnvironmentObject var feedModel: FeedVM
+    @EnvironmentObject var leaderboardModel: LeaderBoardVM
+    @EnvironmentObject var groupModel: GroupVM
+    
+    
+    private func signOutAction() {
+        healthModel.signOut()
+        friendModel.signOut()
+        feedModel.signOut()
+        groupModel.signOut()
+        userModel.signOut()
+    }
     
     var body: some View {
         NavigationStack{
             ScrollView{
-                AppName()
+                ZStack{
+                    AppName()
+                    HStack{
+                        Spacer()
+                        Button {
+                            signOutAction()
+                        } label: {
+                            Image(systemName: "gearshape.fill")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }.accentColor(Color("button-accent"))
+                    }.padding(.trailing)
+                }
                 if let user = userModel.currentUser{
                     ProfileHeaderView(user: user)
                         .padding(.bottom, 20)
