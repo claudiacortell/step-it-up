@@ -27,6 +27,11 @@ enum Upload{
     case failure
 }
 
+enum CreatedGroup{
+    case success(String)
+    case failure(String)
+}
+
 enum FetchUser{
     case success(User)
     case failure(String)

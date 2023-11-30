@@ -116,24 +116,35 @@ class GroupVM: ObservableObject {
         }
     }
     
-    func createGroup (name: String, users: [User]?) async -> Base{
+    func createGroup (name: String, users: [User]) async -> CreatedGroup{
         // Store the group in database
         do {
             let newGroupRef = Firestore.firestore().collection("groups").document()
             let groupID = newGroupRef.documentID
-            let memberIDs = users!.map {$0.id}
+            let memberIDs = users.map {$0.id}
             let newGroup = Group_id(id: groupID, name: name, pfp: "", members: memberIDs)
             let encodedGroup = try Firestore.Encoder().encode(newGroup)
             try await Firestore.firestore().collection("groups").document(groupID).setData(encodedGroup)
-            // Add it to the User structs
-            for (index, _) in users!.enumerated() {
-                var user = users![index]
-                user.groups?.append(groupID)
+            
+            // This is going through each user and adding it to firebase
+            for (index, _) in users.enumerated() {
+                var user = users[index]
+                if user.groups == nil{
+                    user.groups = [groupID]
+                } else {
+                    user.groups?.append(groupID)
+                }
                 let encodedUser = try Firestore.Encoder().encode(user)
                 try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             }
             
-            return .success
+            DispatchQueue.main.async{
+                self.groups_by_id.append(newGroup)
+            }
+            
+            await fillGroupStruct(groups: [newGroup])
+            return .success(groupID)
+            
         } catch {
             return .failure(error.localizedDescription)
         }
