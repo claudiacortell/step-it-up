@@ -11,6 +11,7 @@ struct GroupCreationView: View {
     @State var groupName = ""
     @State var selectedMembers: [String: Bool] = [:]
 
+    @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var friendModel: FriendVM
     @EnvironmentObject var groupModel: GroupVM
     
@@ -40,8 +41,8 @@ struct GroupCreationView: View {
             ZStack {
                 ScrollView {
                     VStack {
-                        let friends = sample_friends
-                        //let friends = Array(friendModel.user_friends.values)
+                        //let friends = sample_friends
+                        let friends = Array(friendModel.user_friends.values)
                         ForEach(friends) { friend in
                             GroupFriend(isSelected: self.binding(for: friend), friend: friend)
                                 .padding(.horizontal)
@@ -59,16 +60,19 @@ struct GroupCreationView: View {
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(Color("dark-blue"))
                             .onTapGesture {
-                                var groupMembers = selectedMembers.filter { $0.value }
-                                    .compactMap { friendModel.user_friends[$0.key] }
-//                                groupMembers.append(currentUser)
-                                let result = groupModel.createGroup(name: groupName, users: groupMembers)
-
-                                switch result {
-                                case .success:
-                                    print("success!")
-                                case .failure(let msg):
-                                    print(msg)
+                                Task {
+                                    var groupMembers = selectedMembers.filter { $0.value }
+                                        .compactMap { friendModel.user_friends[$0.key]?.user }
+                                    //                                groupMembers.append(currentUser)
+                                    groupMembers.append(userModel.currentUser!)
+                                    let result = await groupModel.createGroup(name: groupName, users: groupMembers)
+                                    
+                                    switch result {
+                                    case .success:
+                                        print("success!")
+                                    case .failure(let msg):
+                                        print(msg)
+                                    }
                                 }
                             }
                     }
@@ -111,7 +115,8 @@ struct GroupFriend: View {
                     self.isSelected.toggle()
                 }
             HStack {
-                // TODO: add user photos
+                ProfileIcon(pfp: friend.user.pfp, size: 40)
+                    .padding(.leading)
                 Text("\(friend.user.name)")
                     .padding(.horizontal)
                     .font(.system(size: 18, weight: .semibold))
