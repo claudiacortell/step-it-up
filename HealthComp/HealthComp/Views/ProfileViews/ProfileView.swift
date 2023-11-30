@@ -10,20 +10,22 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+                AppName()
                 if let user = userModel.currentUser{
                     ProfileHeaderView(user: user)
-                    HStack(spacing: 15){
+                        .padding(.bottom, 20)
+                    HStack(){
                         ProfileHealthStats()
-                        let weeklySteps = healthModel.healthData.weeklyStep!
-                        let stepGoal = userModel.getStepGoal()
-                        ProgressBarView(numProgress: (Double(weeklySteps) / Double(stepGoal)), progress: "\(weeklySteps)/\(stepGoal)")
-                    }.padding(.vertical)
+                        ProgressBarView()
+                    }.padding(.horizontal)
+                    
                     NavigationLink {
                         // use the view model
                         FriendsView(friends: Array(friendModel.user_friends.values))
                     } label: {
                         EmbeddedFriendsView(friends: Array(friendModel.user_friends.values))
                     }.accentColor(Color("button-accent"))
+                        .padding(.vertical)
                 }
 
 

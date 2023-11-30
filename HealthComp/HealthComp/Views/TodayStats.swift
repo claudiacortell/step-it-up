@@ -14,36 +14,31 @@ struct TodayStats: View {
             HStack{
                 Spacer()
                 Text("Today")
-                    .font(.custom("DIN Alternate",fixedSize: 14))
+                    .font(.custom("DIN Alternate",fixedSize: 16))
                 Spacer()
             }.padding(.bottom, 3)
             Text("Steps")
-                .font(.custom("DIN Alternate",fixedSize: 14))
+                .font(.custom("DIN Alternate",fixedSize: 18))
             if healthModel.healthData.dailyStep != nil{
                 HStack{
                     Text("\(healthModel.healthData.dailyStep!)")
                         .font(.custom("DIN Alternate",fixedSize: 35))
-                    Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
                 }
                 
             } else {
-
                 HStack{
                     Text("0")
                         .font(.custom("DIN Alternate",fixedSize: 35))
-                    Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
                 }
             }
             Text("Distance")
-                .font(.custom("DIN Alternate",fixedSize: 14))
+                .font(.custom("DIN Alternate",fixedSize: 18))
             if healthModel.healthData.dailyMileage != nil{
                 HStack{
                     Text(String(format: "%.1f", healthModel.healthData.dailyMileage!))
                         .font(.custom("DIN Alternate", fixedSize: 35))
                     Text("miles")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
                 
             } else {
@@ -52,7 +47,7 @@ struct TodayStats: View {
                     Text("0.0")
                         .font(.custom("DIN Alternate",fixedSize: 35))
                     Text("miles")
-                        .font(.custom("DIN Alternate",fixedSize: 12))
+                        .font(.custom("DIN Alternate",fixedSize: 14))
                 }
             }
             

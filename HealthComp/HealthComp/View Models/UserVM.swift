@@ -99,17 +99,41 @@ class UserVM: ObservableObject {
         }
     }
     
-    func getStepGoal() -> Int {
-        if let stepGoal = UserDefaults.standard.object(forKey: "stepGoal") {
-            return UserDefaults.standard.integer(forKey: "stepGoal")
+    func addPost(postId: String) {
+        if self.currentUser?.posts == nil {
+            self.currentUser?.posts = [postId]
+        } else {
+            // Safely unwrap the posts array, append postId, and update 'currentUser' posts
+            if var posts = self.currentUser?.posts {
+                posts.append(postId)
+                self.currentUser?.posts = posts
+            }
         }
-        return 10000
-    }
-    
-    func setStepGoal(stepGoal: Int) {
-        UserDefaults.standard.set(stepGoal, forKey: "stepGoal")
     }
 
+    func addGroup(groupId: String) {
+        if self.currentUser?.groups == nil {
+            self.currentUser?.groups = [groupId]
+        } else {
+            // Safely unwrap the posts array, append postId, and update 'currentUser' posts
+            if var groups = self.currentUser?.posts {
+                groups.append(groupId)
+                self.currentUser?.groups = groups
+            }
+        }
+    }
+    
+    func addFriend(userId: String) {
+        if self.currentUser?.friends == nil {
+            self.currentUser?.friends = [userId]
+        } else {
+            // Safely unwrap the posts array, append postId, and update 'currentUser' posts
+            if var friends = self.currentUser?.posts {
+                friends.append(userId)
+                self.currentUser?.friends = friends
+            }
+        }
+    }
     
 //    func uploadImage(userId: UUID, selectedImage: UIImage?) async{
 //        guard let selectedImage = selectedImage else { return }

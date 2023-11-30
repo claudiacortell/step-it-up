@@ -13,11 +13,11 @@ struct Post: Identifiable, Codable {
     // Store it as a Date() but convert to string
     var date: String?
     var date_swift: Date?
-    var likes: Int
+    var likes: Int = 0
     // Link that we will use to load the image
     var attatchment: String?
     var caption: String
-    var comments: [Comment]?
+    var comments: [Comment]
 }
 
 struct Comment: Identifiable, Codable {
