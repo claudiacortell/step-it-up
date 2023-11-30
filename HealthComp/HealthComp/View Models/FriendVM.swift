@@ -20,7 +20,6 @@ class FriendVM: ObservableObject {
     @Published var pfpUrl: [String: String] = [:]
     @Published var names: [String: String] = [:]
     @Published var usernames: [String: String] = [:]
-
     
     init(userModel: UserVM) {
         self.userModel = userModel
@@ -139,9 +138,25 @@ class FriendVM: ObservableObject {
                 } else {
                     user.friends?.append(friendId)
                 }
+                // curr user
                 let encodedUser = try Firestore.Encoder().encode(user)
                 try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-                try await Firestore.firestore().collection("users").document(friendId).setData(["friends": [user.id]], merge: true)
+                // friend
+                let result = try await self.userModel.fetchUser(id: friendId)
+                switch result {
+                case .success (var friend):
+                    if friend.friends == nil{
+                        friend.friends = [user.id]
+                    } else {
+                        friend.friends?.append(user.id)
+                    }
+                    let encodedFriend = try Firestore.Encoder().encode(friend)
+                    try await Firestore.firestore().collection("users").document(friend.id).setData(encodedFriend)
+                    print("Added friend")
+                case .failure (_):
+                    print("Could not add friend")
+                }
+//                try await Firestore.firestore().collection("users").document(friendId).setData(["friends": [user.id]], merge: true)
                 await fetchFriends(friend_ids: [friendId])
                 userModel.addFriend(userId: friendId)
             }
@@ -149,6 +164,8 @@ class FriendVM: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    
     
     func fetchHealthData(id: String) async throws -> FetchHealthData {
         guard let snapshot = try? await Firestore.firestore().collection("healthdata").document(id).getDocument() else {return .failure("Could not fetch a user's health data")}

@@ -49,7 +49,6 @@ class HealthVM: ObservableObject {
         readWeeklySteps()
         readTodaysMileage()
         readWeeklyMileage()
-        print("Done fetching health data")
     }
     
     

@@ -11,7 +11,7 @@ struct ProfileIcon: View {
     
     let pfp : String
     var size: CGFloat
-
+    
     
     var body: some View {
         if pfp.isEmpty{
