@@ -12,66 +12,113 @@ struct LeaderboardView: View {
 
     @EnvironmentObject var leaderboardModel: LeaderBoardVM
     @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var groupModel: GroupVM
+    
     var body: some View {
-        NavigationStack{
-            VStack{
-                ScrollView{
-                    LeaderboardHeader().padding(.bottom, 5)
-                    if leaderboardModel.currentUserHealth != nil{
-                        LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: leaderboardModel.sortedUsers)
+        ZStack{
+            
+            Color("dark-blue")
+            
+            NavigationStack{
+                VStack{
+                    TabView{
+                        //showing friends
+                        LeaderboardInnerView()
                         
-                        ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+                        //showing groups
+                        ForEach(groupModel.user_groups.keys.sorted(), id: \.self) { groupId in
+                            LeaderboardInnerView(groupId: groupId)
+                        }
+                    }
+                    .tabViewStyle(.page)
+
+                
+                }
+                
+            }.navigationBarBackButtonHidden().tint(.black)
+        }
+    }
+}
+
+
+struct LeaderboardInnerView: View {
+    @EnvironmentObject var leaderboardModel: LeaderBoardVM
+    @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var groupModel: GroupVM
+    
+    var groupId: String?
+    
+    var body: some View {
+        ScrollView{
+            
+            if let groupId = groupId{
+                if groupModel.user_groups.keys.contains(groupId) {
+                    LeaderboardHeader(friendGroupName: groupModel.user_groups[groupId]!.name).padding(.bottom, 5)
+                    
+                    if leaderboardModel.currentUserHealth != nil{
+                        LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: groupModel.user_groups[groupId]!.members)
+                        
+                        ForEach(Array(groupModel.user_groups[groupId]!.members.enumerated()), id: \.element.id) { index, user in
                             let isCurrentUser = user.id == userModel.currentUser?.id
                             LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                         }
+                        
                     } else {
+//                        Text("else")
                         let filler_data = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
                         if let user = userModel.currentUser{
                             let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
                             
-                            LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
+                            LeaderboardMessage(currentUser: filler_user, sortedUsers: groupModel.user_groups[groupId]!.members)
                             
-                            ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
-                                LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: false)
+                            ForEach(Array(groupModel.user_groups[groupId]!.members.enumerated()), id: \.element.id) { index, user in
+                                let isCurrentUser = user.id == userModel.currentUser?.id
+                                LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
                             }
-                            LeaderboardCell(user: filler_user, leaderboardPosition: Array(leaderboardModel.sortedUsers).count+1, isCurrentUser: true)
                         }
-                        
-                        
-                        
-                        
-//                        if let user = userModel.currentUser{
-//                            let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
-//                            LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
-//                            ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
-//                                let isCurrentUser = user.id == userModel.currentUser?.id
-//                                LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
-//                            }
-////                            LeaderboardCell(user: filler_user, leaderboardPosition: 1, isCurrentUser: true)
-//                        }
-
                     }
                 }
-            }.onAppear{
-                Task{
-                    await leaderboardModel.makeUserHealth()
-                    leaderboardModel.sortUsers()
+            } else {
+                LeaderboardHeader(friendGroupName: "Friends").padding(.bottom, 5)
+                
+                if leaderboardModel.currentUserHealth != nil{
+                    LeaderboardMessage(currentUser: leaderboardModel.currentUserHealth!, sortedUsers: leaderboardModel.sortedUsers)
+                    
+                    ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+                        let isCurrentUser = user.id == userModel.currentUser?.id
+                        LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: isCurrentUser)
+                    }
+                } else {
+                    let filler_data = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
+                    if let user = userModel.currentUser{
+                        let filler_user = UserHealth(id: user.id, user: user, data: filler_data)
+                        
+                        LeaderboardMessage(currentUser: filler_user, sortedUsers: leaderboardModel.sortedUsers)
+                        
+                        ForEach(Array(leaderboardModel.sortedUsers.enumerated()), id: \.element.id) { index, user in
+                            LeaderboardCell(user: user, leaderboardPosition: index+1, isCurrentUser: false)
+                        }
+                        LeaderboardCell(user: filler_user, leaderboardPosition: Array(leaderboardModel.sortedUsers).count+1, isCurrentUser: true)
+                    }
                 }
             }
-        }.navigationBarBackButtonHidden()
+        
+            
+        }.onAppear{
+            Task{
+                await leaderboardModel.makeUserHealth()
+                leaderboardModel.sortUsers()
+            }
+        }
     }
-}
-
     
-//#Preview {
-//    LeaderboardView()
-//}
+}
     
 struct LeaderboardHeader: View {
+    var friendGroupName: String
+    
     var body: some View {
-
-        //Maybe change to each user's weekly steps once we calculate that in the ViewModel
-        Text("Daily Steps").font(.system(size: 22, weight: .semibold)).foregroundColor(Color("dark-blue"))
+        Text(friendGroupName).font(.system(size: 22, weight: .semibold)).foregroundColor(Color("dark-blue"))
     }
 }
 
@@ -86,7 +133,7 @@ struct LeaderboardMessage: View {
 
     var body: some View {
         Text(messageText()).font(.system(size: 16, weight: .semibold)).foregroundColor(Color("dark-blue")).padding(.bottom, 10).multilineTextAlignment(.center)
-            .lineLimit(nil).frame(width: UIScreen.main.bounds.width - 100)
+            .lineLimit(nil).frame(width: UIScreen.main.bounds.width - 100, height: 100)
     }
     
     func messageText() -> String {

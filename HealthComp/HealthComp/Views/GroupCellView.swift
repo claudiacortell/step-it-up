@@ -15,7 +15,7 @@ struct GroupCell: View {
     var body: some View {
         VStack(alignment: .leading,spacing: UIScreen.main.bounds.height * 0.005) { 
             // Group Image
-            Image(systemName: group.pfp) 
+            Image(systemName: group.pfp ?? "person.circle.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.width * 0.2)

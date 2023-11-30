@@ -17,11 +17,18 @@ struct GroupsView: View {
 //                    Text("Currently an active member of \(groups.count) groups!")
                     
                     LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
-                                ForEach(groupModel.user_groups.indices) { index in
-                                    NavigationLink{
-                                        GroupsDetailView(group: groupModel.user_groups[index])
-                                    }label: {
-                                        GroupCell(group: groupModel.user_groups[index], rowIndex: index / 2, columnIndex: index % 2)}
+//                                ForEach(groupModel.user_groups.indices) { index in
+//                                    NavigationLink{
+//                                        GroupsDetailView(group: groupModel.user_groups[index])
+//                                    }label: {
+//                                        GroupCell(group: groupModel.user_groups[index], rowIndex: index / 2, columnIndex: index % 2)}
+                        ForEach(Array(groupModel.user_groups.values.enumerated()), id: \.element.id) { index, group in
+                            NavigationLink {
+                                GroupsDetailView(group: group)
+                            } label: {
+                                GroupCell(group: group, rowIndex: index / 2, columnIndex: index % 2)
+                            }
+                        
 //                        ForEach(groups.indices) { index in
 //                            GroupCell(group: groups[index], rowIndex: index / 2, columnIndex: index % 2)
                         }
