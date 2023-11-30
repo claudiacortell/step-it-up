@@ -15,18 +15,23 @@ import SwiftUI
 
 class GroupVM: ObservableObject {
     var userModel: UserVM
+    var healthModel: HealthVM
     var friendModel: FriendVM
     var groups_by_id: [Group_id] = []
     
-    @Published var user_groups: [Group_user] = []
+    @Published var user_groups: [String: Group_user] = [:]
     @Published var user_cache: [String: UserHealth] = [:]
     
-    init(userModel: UserVM, friendModel: FriendVM){
+    init(userModel: UserVM, healthModel: HealthVM, friendModel: FriendVM){
         self.userModel = userModel
+        self.healthModel = healthModel
         self.friendModel = friendModel
         Task{
             if let groups = userModel.currentUser?.groups{
                 await fetchGroups(groups: groups)
+//                print(" here is groups by id: \(groups_by_id)")
+                await fillGroupStruct(groups: groups_by_id)
+                print(" here is user_groups: \(user_groups)")
             }
         }
         
@@ -39,14 +44,29 @@ class GroupVM: ObservableObject {
             do {
                 // Iterate through all the id's
                 for id in group.members{
+//                    print("\(id) in group \(group.id)")
+                    //When it finds the current user in group
+                    if id == userModel.currentUser?.id{
+                        if let user = userModel.currentUser{
+                            var hd = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
+                            if healthModel.isValid(healthModel.healthData){
+                                hd = healthModel.healthData
+                            }
+                            let loadedUserHealth = UserHealth(id: id, user: user, data: hd)
+                            new_group.members.append(loadedUserHealth)
+                        }
                     // This means that we already have the data for this user, aka, they are the friends of the user
-                    if let user = self.friendModel.user_friends[id]{
+                    } else if let user = self.friendModel.user_friends[id]{
+//                        print("\(id) user found in friends")
                         new_group.members.append(user)
                         continue
                     } else if let user = self.user_cache[id]{
+//                        print("\(id) user found in cache")
                         new_group.members.append(user)
                         continue
+                    //A non-friend and noncached user
                     } else {
+                        print("else fetching the group user")
                         do{
                             let result = try await self.userModel.fetchUser(id: id)
                             switch result {
@@ -57,35 +77,41 @@ class GroupVM: ObservableObject {
                                     case .success(let healthData):
                                         let loadedUserHealth = UserHealth(id: user.id, user: user, data: healthData)
                                         self.user_cache[user.id] = loadedUserHealth
+                                        print("this is loaded user health: \(loadedUserHealth)")
                                         new_group.members.append(loadedUserHealth)
+                                        
                                     case .failure(_):
-                                        print("Error fetching data for \(id)")
+                                        print("Error fetching data in fillGroupStruct for \(id)")
                                     }
                                 }
                             case .failure (_):
-                                print("Error fetching \(id)")
+                                print("Error fetching \(id) in fillGroupStruct")
                             }
                         } catch {
-                            print("An error occured")
+                            print("An error occured in fillGroupStruct")
                         }
                     }
                 }
+                new_group.members.sort { $0.data.dailyStep ?? 0 > $1.data.dailyStep ?? 0 }
             }
+            self.user_groups[group.id] = new_group
         }
     }
     
     func fetchGroups(groups: [String]) async {
+        print("Fetching groups... \(groups.count) group to fetch")
         for group_id in groups{
+            
             do {
-                let document = try await Firestore.firestore().collection("users").document(group_id).getDocument()
+                let document = try await Firestore.firestore().collection("groups").document(group_id).getDocument()
                 if document.exists {
                     let group = try document.data(as: Group_id.self)
                     self.groups_by_id.append(group)
                 } else {
-                    print("User not found for ID: \(group_id)")
+                    print("Group not found for ID: \(group_id)")
                 }
             } catch {
-                print("Error fetching user data for ID: \(group_id), Error: \(error)")
+                print("Error fetching group data for ID: \(group_id), Error: \(error)")
             }
         }
     }

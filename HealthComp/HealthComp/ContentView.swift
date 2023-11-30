@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         let friendModel = FriendVM(userModel: userModel)
-        let groupModel = GroupVM(userModel: userModel, friendModel: friendModel)
+        let groupModel = GroupVM(userModel: userModel, healthModel: healthModel, friendModel: friendModel)
         let feedModel = FeedVM(userModel: userModel, friendModel: friendModel)
         let goalModel = GoalVM()
 //        let leaderboardModel = LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel)
@@ -28,8 +28,6 @@ struct ContentView: View {
                     .onAppear {
                         userModel.checkUserSession()
                         healthModel.fetchAllHealthData()
-//                        healthModel.validData = true
-//                        healthModel.writeHealthData()
                     }
             } else {
                 StartupView()
