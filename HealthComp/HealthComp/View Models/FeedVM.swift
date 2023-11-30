@@ -59,10 +59,7 @@ class FeedVM: ObservableObject {
                 imageUtil.uploadPostPhoto(postId: postId, selectedImage: image) { result in
                     switch result {
                     case .success(let urlString):
-                        // Handle success (e.g., use the URL)
-                        print("Uploaded image URL: \(urlString)")
-                        data.attatchment = urlString // Corrected the property name to 'attachment'
-                        // Set the post data and append to user_feed inside the closure
+                        data.attatchment = urlString
                         let encoded_data = try? Firestore.Encoder().encode(data)
                         Firestore.firestore().collection("users").document(id).collection("posts").document(postId).setData(encoded_data ?? [:])
                         data.date = nil
@@ -70,11 +67,8 @@ class FeedVM: ObservableObject {
                         self.user_feed.append(data)
                         self.userModel.addPost(postId: postId)
                         self.sortPost()
-                        
                     case .failure(let error):
-                        // Handle error cases
                         print("Error uploading image: \(error)")
-                        // You might want to provide a default value or handle the error case
                     }
                 }
             }else {

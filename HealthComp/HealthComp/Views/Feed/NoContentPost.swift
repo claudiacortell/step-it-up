@@ -13,14 +13,24 @@ struct NoContentPost: View{
     var body: some View{
         VStack(alignment: .leading, spacing: 10) { // Adjust the spacing as needed
             VStack (alignment: .leading){
-                HStack {
-                    if let pfp = friendModel.pfpUrl[post.userId]{
-                        ProfileIcon(pfp: pfp, size: 50)
+                HStack{
+                    if let pfpUrl = friendModel.pfpUrl[post.userId]{
+                        ProfileIcon(pfp: pfpUrl, size: 40)
                     }
-                    Text(post.caption)
-                        .font(.system(size: 20))
+                    VStack(alignment:.leading){
+                        if let username = friendModel.usernames[post.userId]{
+                            Text("@\(username)")
+                                .font(.system(size: 14, weight: .semibold))
+                        }
+                        if let name = friendModel.names[post.userId]{
+                            Text("\(name)")
+                                .font(.system(size: 12))
+                        }
+                    }
                     Spacer()
                 }
+                Text(post.caption)
+                    .font(.system(size: 20))
                 
                     if post.comments.count > 2 {
                         Text("View all \(post.comments.count) comments")

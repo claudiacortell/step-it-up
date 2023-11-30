@@ -18,7 +18,8 @@ class GroupVM: ObservableObject {
     var healthModel: HealthVM
     var friendModel: FriendVM
     var groups_by_id: [Group_id] = []
-    
+    let imageUtil = ImageUtils()
+
     @Published var user_groups: [String: Group_user] = [:]
     @Published var user_cache: [String: UserHealth] = [:]
     
@@ -31,7 +32,6 @@ class GroupVM: ObservableObject {
                 await fetchGroups(groups: groups)
 //                print(" here is groups by id: \(groups_by_id)")
                 await fillGroupStruct(groups: groups_by_id)
-                print(" here is user_groups: \(user_groups)")
             }
         }
         
@@ -40,12 +40,11 @@ class GroupVM: ObservableObject {
     // Make sure that the current user is in the list
     func fillGroupStruct(groups: [Group_id]) async {
         for group in groups{
+            print(group.name)
             var new_group = Group_user(id: group.id, name: group.name, pfp: "", members: [])
             do {
-                // Iterate through all the id's
                 for id in group.members{
-//                    print("\(id) in group \(group.id)")
-                    //When it finds the current user in group
+
                     if id == userModel.currentUser?.id{
                         if let user = userModel.currentUser{
                             var hd = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
@@ -55,16 +54,12 @@ class GroupVM: ObservableObject {
                             let loadedUserHealth = UserHealth(id: id, user: user, data: hd)
                             new_group.members.append(loadedUserHealth)
                         }
-                    // This means that we already have the data for this user, aka, they are the friends of the user
                     } else if let user = self.friendModel.user_friends[id]{
-//                        print("\(id) user found in friends")
                         new_group.members.append(user)
                         continue
                     } else if let user = self.user_cache[id]{
-//                        print("\(id) user found in cache")
                         new_group.members.append(user)
                         continue
-                    //A non-friend and noncached user
                     } else {
                         print("else fetching the group user")
                         do{
@@ -116,17 +111,44 @@ class GroupVM: ObservableObject {
         }
     }
     
-    func createGroup (name: String, users: [User]) async -> CreatedGroup{
+    func createGroup (name: String, users: [User], image: UIImage?) async -> Base{
         // Store the group in database
         do {
             let newGroupRef = Firestore.firestore().collection("groups").document()
             let groupID = newGroupRef.documentID
             let memberIDs = users.map {$0.id}
-            let newGroup = Group_id(id: groupID, name: name, pfp: "", members: memberIDs)
-            let encodedGroup = try Firestore.Encoder().encode(newGroup)
-            try await Firestore.firestore().collection("groups").document(groupID).setData(encodedGroup)
+            var newGroup = Group_id(id: groupID, name: name, pfp: "", members: memberIDs)
+            if let image = image {
+                imageUtil.uploadGroupPhoto(groupId: groupID, selectedImage: image) { result in
+                    switch result{
+                    case .success(let urlString):
+                        newGroup.pfp = urlString
+                        let encodedGroup = try? Firestore.Encoder().encode(newGroup)
+                        Firestore.firestore().collection("groups").document(groupID).setData(encodedGroup ?? [:])
+                        self.groups_by_id.append(newGroup)
+                        self.userModel.addGroup(groupId: groupID)
+                    case .failure(let error):
+                        print("Error uploading photo: \(error)")
+                    }
+                }
+            } else {
+                let encodedGroup = try? Firestore.Encoder().encode(newGroup)
+                try await Firestore.firestore().collection("groups").document(groupID).setData(encodedGroup ?? [:])
+                self.groups_by_id.append(newGroup)
+                self.userModel.addGroup(groupId: groupID)
+            }
             
-            // This is going through each user and adding it to firebase
+            await populateOtherUsers(users: users, groupID: groupID)
+            await fillGroupStruct(groups: [newGroup])
+            return .success
+            
+        } catch {
+            return .failure(error.localizedDescription)
+        }
+    }
+    
+    func populateOtherUsers(users: [User], groupID: String) async{
+        do{
             for (index, _) in users.enumerated() {
                 var user = users[index]
                 if user.groups == nil{
@@ -137,16 +159,8 @@ class GroupVM: ObservableObject {
                 let encodedUser = try Firestore.Encoder().encode(user)
                 try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             }
-            
-            DispatchQueue.main.async{
-                self.groups_by_id.append(newGroup)
-            }
-            
-            await fillGroupStruct(groups: [newGroup])
-            return .success(groupID)
-            
-        } catch {
-            return .failure(error.localizedDescription)
+        }catch{
+            print(error.localizedDescription)
         }
     }
     

@@ -14,25 +14,36 @@ import FirebaseStorage
 import SwiftUI
 
 class GoalVM: ObservableObject {
-//    var userModel: UserVM
-    @Published var userGoal: Int = 10000
-
-//    init(userModel: UserVM){
-//        self.userModel = userModel
-//    }
+    @Published var userGoal: Goal?
     
-    func getchGoal(userId: String){
-        
+    init(){
+        Task{
+            await self.fetchGoal()
+        }
     }
     
-    func writeGoal(userId: String){
-        
+    func fetchGoal() async{
+        guard let user_id = UserDefaults.standard.string(forKey: "userId") else {
+            print("User ID not found in UserDefaults")
+            return
+        }
+        guard let snapshot = try? await Firestore.firestore().collection("goals").document(user_id).getDocument() else {return}
+        if let goal = try? snapshot.data(as: Goal.self){
+            self.userGoal = goal
+            print(self.userGoal!)
+        } else {
+            return
+        }
     }
     
-    func updateGoal(userId: String){
-        
+    func writeGoal(userId: String, goal: Goal) async{
+        do{
+            let encoded_goal = try Firestore.Encoder().encode(goal)
+            try await Firestore.firestore().collection("goals").document(userId).setData(encoded_goal)
+            self.userGoal = goal
+            return
+        }catch{
+            print(error.localizedDescription)
+        }
     }
-    
-    
-    
 }

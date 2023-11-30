@@ -32,9 +32,12 @@ struct ProgressBarView: View {
                 HStack{
                     VStack (alignment: .leading){
                         VStack(alignment: .leading){
-                            Text("\(goalModel.userGoal) steps")
-                                .font(.system(size: 18, weight: .semibold))
-                                .foregroundColor(.white)
+                            if let goal = goalModel.userGoal{
+                                Text("\(goal.goal) steps")
+                                    .font(.system(size: 18, weight: .semibold))
+                                    .foregroundColor(.white)
+                            }
+                            
                             Text("Your current goal")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(Color("gray"))
@@ -100,22 +103,25 @@ struct ProgressBarView: View {
                     }
                 }
                 }.onReceive(healthModel.$healthData) { newData in
-                    if let dailyStep = newData.dailyStep {
-                        dailySteps = dailyStep
-                        dailyProgress = Double(dailySteps) / Double(goalModel.userGoal)
-                        print(dailyProgress)
-                        print(dailySteps)
-                    } else {
-                        dailyProgress = 0.0
-                    }
-                    if let weeklyStep = newData.weeklyStep{
-                        weeklySteps = weeklyStep/7
-                        weeklyProgress = Double(weeklySteps) / Double(goalModel.userGoal)
-                        print(weeklyProgress)
+                    if let goal = goalModel.userGoal{
+                        if let dailyStep = newData.dailyStep {
+                            dailySteps = dailyStep
+                            dailyProgress = Double(dailySteps) / Double(goal.goal)
+                            print(dailyProgress)
+                            print(dailySteps)
+                        } else {
+                            dailyProgress = 0.0
+                        }
+                        if let weeklyStep = newData.weeklyStep{
+                            weeklySteps = weeklyStep/7
+                            weeklyProgress = Double(weeklySteps) / Double(goal.goal)
+                            print(weeklyProgress)
 
-                    } else {
-                        weeklyProgress = 0.0
+                        } else {
+                            weeklyProgress = 0.0
+                        }
                     }
+                   
                 }
 
             }

@@ -12,7 +12,7 @@ struct BaseView: View {
     @EnvironmentObject var healthModel: HealthVM
     @EnvironmentObject var friendModel: FriendVM
     @EnvironmentObject var feedModel: FeedVM
-
+    
     var body: some View {
 
         TabView {

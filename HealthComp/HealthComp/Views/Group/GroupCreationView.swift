@@ -6,21 +6,53 @@
 //
 
 import SwiftUI
-
+import PhotosUI
 struct GroupCreationView: View {
     @State var groupName = ""
     @State var selectedMembers: [String: Bool] = [:]
     @State private var sheetPresented = false
+    
     @State var buttonColor: Color = Color("medium-green")
     @State var buttonTextColor: Color = Color("dark-blue")
+    
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: Image?
+    @State private var ui_selectedImage: UIImage?
+    
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var friendModel: FriendVM
     @EnvironmentObject var groupModel: GroupVM
-
     
     var body: some View {
         VStack {
+            PhotosPicker(selection: $selectedItem, matching: .images){
+                if let selectedImage {
+                    selectedImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                        .overlay(Circle().stroke(Color("medium-green"), lineWidth: 4))
+                        .clipShape(Circle())
+                    
+                } else{
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 25.0)
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(Color("light-green"))
+                        Image(systemName: "camera.fill")
+                            .foregroundColor(Color("medium-green"))
+                    }
+                }
+                
+            }.onChange(of: selectedItem) { newValue in
+                Task {
+                    if let data = try? await newValue?.loadTransferable(type: Data.self) {
+                        ui_selectedImage = UIImage(data: data)
+                        selectedImage = Image(uiImage: ui_selectedImage!)
+                    }
+                }
+            }
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
                     .fill(Color("gray"))
@@ -63,12 +95,9 @@ struct GroupCreationView: View {
                                         if let user = userModel.currentUser{
                                             groupMembers.append(user)
                                         }
-                                        let result = await groupModel.createGroup(name: groupName, users: groupMembers)
+                                        let result = await groupModel.createGroup(name: groupName, users: groupMembers, image: ui_selectedImage)
                                         switch result {
-                                        case .success(let groupId):
-                                            if let _ = userModel.currentUser{
-                                                userModel.addGroup(groupId: groupId)
-                                            }
+                                        case .success:
                                             sheetPresented.toggle()
                                             groupName = ""
                                             selectedMembers = [:]

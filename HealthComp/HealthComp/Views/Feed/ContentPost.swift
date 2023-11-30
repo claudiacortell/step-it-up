@@ -9,15 +9,33 @@ import SwiftUI
 
 struct ContentPost: View {
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var friendModel: FriendVM
     let post: Post
     var body: some View {
         VStack(alignment: .leading, spacing: 10) { // Adjust the spacing as needed
+            HStack{
+                if let pfpUrl = friendModel.pfpUrl[post.userId]{
+                    ProfileIcon(pfp: pfpUrl, size: 40)
+                }
+                VStack(alignment:.leading){
+                    if let username = friendModel.usernames[post.userId]{
+                        Text("@\(username)")
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                    if let name = friendModel.names[post.userId]{
+                        Text("\(name)")
+                            .font(.system(size: 12))
+                    }
+                }
+                Spacer()
+            }
+            Divider()
             AsyncImage(
                 url: URL(string: post.attatchment!),
                 content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: UIScreen.main.bounds.width)
+                        .frame(maxWidth: UIScreen.main.bounds.width - 30)
                 },
                 placeholder: {
                     ProgressView()
@@ -27,13 +45,8 @@ struct ContentPost: View {
             LikeCommentButton(likes: post.likes, comments: post.comments.count)
                 .padding(.top)
             VStack (alignment: .leading){
-                HStack {
-                    //                    Text(post.name)
-                    //                        .font(.system(size: 14, weight: .semibold))
-                    Text(post.caption)
-                        .font(.system(size: 14))
-                    Spacer()
-                }
+                Text(post.caption)
+                    .font(.system(size: 14))
                 
                 if post.comments.count > 2 {
                     Text("View all \(post.comments.count) comments")
@@ -49,10 +62,6 @@ struct ContentPost: View {
                 }
                 .padding(.leading, 1)
                 .padding(.top, 1)
-                
-                
-                
-                
             }
             
 
@@ -60,6 +69,7 @@ struct ContentPost: View {
         .background(
             RoundedRectangle(cornerRadius: 25.0)
                 .fill(Color("gray"))
+
         )
     }
 }

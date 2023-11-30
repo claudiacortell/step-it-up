@@ -18,17 +18,20 @@ class FriendVM: ObservableObject {
     var userModel: UserVM
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var pfpUrl: [String: String] = [:]
-    
+    @Published var names: [String: String] = [:]
+    @Published var usernames: [String: String] = [:]
+
     
     init(userModel: UserVM) {
         self.userModel = userModel
         Task{
             if let friends_id = self.userModel.currentUser?.friends{
                 if friends_id.count > 0{
-                    print("Fetching friends")
                     await fetchFriends(friend_ids: friends_id)
                     if let user = self.userModel.currentUser{
                         self.pfpUrl[user.id] = user.pfp
+                        self.names[user.id] = user.name
+                        self.usernames[user.id] = user.username
                     }
                 }
             }
@@ -38,8 +41,6 @@ class FriendVM: ObservableObject {
     
     func searchFriend(search: String, completion: @escaping (Result<[User], Error>) -> Void) {
         var matchingUsers: [User] = []
-        print("Attempting to search for: \(search)")
-
         let searchValue = search.trimmingCharacters(in: .whitespaces)
         let searchEndValue = searchValue + "\u{f8ff}" // Unicode character that is higher than any other character
 
@@ -89,7 +90,6 @@ class FriendVM: ObservableObject {
     
     func fetchFriends(friend_ids: [String]) async {
         for user_id in friend_ids {
-            print("Fetching this person: \(user_id)")
             var fetchedFriendUser: User? = nil
             var fetchedFriendHealth: HealthData? = nil
             do {
@@ -121,6 +121,8 @@ class FriendVM: ObservableObject {
             if fetchedFriendUser != nil && fetchedFriendHealth != nil{
                 self.user_friends[user_id] = UserHealth(id: user_id, user: fetchedFriendUser!, data: fetchedFriendHealth!)
                 self.pfpUrl[user_id] = fetchedFriendUser!.pfp
+                self.names[user_id]=fetchedFriendUser!.name
+                self.usernames[user_id]=fetchedFriendUser!.username
             } else {
                 print("Error fetching friend for Id: \(user_id)")
             }
@@ -128,34 +130,6 @@ class FriendVM: ObservableObject {
         print(self.user_friends)
     }
     
-//    func requestFriend(origin: String, dest: String) {
-//        do {
-//            let new_request = FriendRequest(id: String(from: UUID() as! Decoder), origin: origin, dest: dest, status: pending)
-//            let encoded_request = try Firestore.Encoder().encode(new_request)
-//            let await Firestore.firestore().collection("requests").document(new_request.id).setData(encoded_request)
-//        } catch{
-//            print("ERROR requestFriend(): \(error.localizedDescription)")
-//        }
-//    }
-//
-//    func fetchRequests(id: String){
-//        guard let snapshot = try? await Firestore.firestore().collection("requests").whereField("dest_id", isEqualTo: id.trimmingCharacters(in: .whitespaces)).getDocuments{ (querySnapshot, error) in
-//            if let error = error {
-//                print("ERROR fetchRequests(): \(error.localizedDescription)")
-//                completion(.failure(error.localizedDescription))
-//                return
-//            } else{
-//                print("weird")
-//            }
-//            for document in querySnapshot!.documents{
-//                if let user = try? document.data(as: FriendRequest.self){
-//                    user_reqs.append(user)
-//                }
-//            }
-//
-//        }
-//    }
-//
     func fetchHealthData(id: String) async throws -> FetchHealthData {
         guard let snapshot = try? await Firestore.firestore().collection("healthdata").document(id).getDocument() else {return .failure("Could not fetch a user's health data")}
         if let userHealthData = try? snapshot.data(as: HealthData.self){

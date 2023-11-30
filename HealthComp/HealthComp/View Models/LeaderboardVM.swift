@@ -24,9 +24,7 @@ class LeaderBoardVM: ObservableObject {
     
     func makeUserHealth () {
         if let user = userModel.currentUser {
-            print("First loop, 31")
             if healthModel.isValid(healthModel.healthData){
-                print("Second loop, 33")
                 self.currentUserHealth =  UserHealth(id: user.id, user: user, data: healthModel.healthData)
             }
         } else {
@@ -36,15 +34,12 @@ class LeaderBoardVM: ObservableObject {
     
     func sortUsers() {
         var loadingSortedUsers = Array(friendModel.user_friends.values)
-        print("Count: \(loadingSortedUsers.count)")
         if let userHealth = self.currentUserHealth{
             loadingSortedUsers.append(userHealth)
-            print("Inside 44")
         }
         loadingSortedUsers = loadingSortedUsers.sorted { user1, user2 in
             return user1.data.dailyStep! > user2.data.dailyStep!
         }
-//        print(loadingSortedUsers[0].data)
         self.sortedUsers = loadingSortedUsers
     }
     

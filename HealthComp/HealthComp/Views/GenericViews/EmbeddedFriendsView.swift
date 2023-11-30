@@ -13,7 +13,7 @@ struct EmbeddedFriendsView: View {
         VStack{
             HStack{
                 Text("\(friends.count) FRIENDS")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
                 Spacer()
                 Text("View all")
                     .font(.system(size: 14, weight: .semibold))

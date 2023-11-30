@@ -51,7 +51,7 @@ class ImageUtils {
                         if let urlString = url?.absoluteString {
                             completion(.success(urlString))
                             // You can also store the URL in Firestore here if needed
-                            // db.collection("posts").document(postId).setData(["attachment": urlString], merge: true)
+//                             db.collection("posts").document(postId).setData(["attachment": urlString], merge: true)
                         } else {
                             print("URL is nil")
                             completion(.failure(UploadError.urlIsNil))
@@ -64,29 +64,44 @@ class ImageUtils {
 
     
     //Uploading for posts
-//    func uploadGroupPhoto(groupId: String, selectedImage: UIImage?) async -> Void{
-//        guard let selectedImage = selectedImage else {return}
-//        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else { return }
-//        let db = Firestore.firestore()
-//        let storageRef = Storage.storage().reference()
-//        let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
-//        _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
-//            if let error = error {
-//                print("Error uploading image:", error.localizedDescription)
-//            } else {
-//                fileRef.downloadURL { url, error in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        print("URL is \(String(describing: url))")
-//                        
-//                    }
-//                }
-//                
-//            }
-//        }
-//    }
-//
+    func uploadGroupPhoto(groupId: String, selectedImage: UIImage?, completion: @escaping (Result<String, UploadError>) -> Void) {
+        guard let selectedImage = selectedImage else {
+            completion(.failure(UploadError.invalidImage))
+            return
+        }
+        
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
+            completion(.failure(UploadError.imageDataConversionError))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let storageRef = Storage.storage().reference()
+        let fileRef = storageRef.child("group-icon/\(groupId).jpg")
+        _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Error uploading image: ", error.localizedDescription)
+                completion(.failure(UploadError.uploadError))
+            } else {
+                fileRef.downloadURL { url, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        completion(.failure(UploadError.uploadError))
+                    } else {
+                        if let urlString = url?.absoluteString {
+                            completion(.success(urlString))
+                            // You can also store the URL in Firestore here if needed
+//                             db.collection("groups").document(groupId).setData(["pfp": urlString], merge: true)
+                        } else {
+                            print("URL is nil")
+                            completion(.failure(UploadError.urlIsNil))
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //Uploading user profileImage
     func uploadPhoto(userId: String, selectedImage: UIImage?) async {
         guard let selectedImage = selectedImage else { return }

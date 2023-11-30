@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GroupsView: View {
     let groups: [Group_user]
-        @EnvironmentObject var groupModel: GroupVM
+    @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
