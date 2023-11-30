@@ -24,34 +24,34 @@ struct ContentPost: View {
                 }
             )
             
-            InteractButtons(likes: post.likes, comments: post.comments!.count)
+            InteractButtons(likes: post.likes, comments: post.comments.count)
                 .padding(.top)
             VStack (alignment: .leading){
                 HStack {
-//                    Text(post.name)
-//                        .font(.system(size: 14, weight: .semibold))
+                    //                    Text(post.name)
+                    //                        .font(.system(size: 14, weight: .semibold))
                     Text(post.caption)
                         .font(.system(size: 14))
                     Spacer()
                 }
-                if let comments = post.comments{
-                    if comments.count > 2 {
-                        Text("View all \(comments.count) comments")
-                            .font(.system(size: 14))
-                            .foregroundColor(.gray)
-                            .padding(.leading, 1)
-                    }
-                    
-                    VStack{
-                        ForEach(comments.suffix(2), id: \.id) { comment in
-                            CommentView(comment: comment)
-                        }
-                    }
-                    .padding(.leading, 1)
-                    .padding(.top, 1)
-
-                    
+                
+                if post.comments.count > 2 {
+                    Text("View all \(post.comments.count) comments")
+                        .font(.system(size: 14))
+                        .foregroundColor(.gray)
+                        .padding(.leading, 1)
                 }
+                
+                VStack{
+                    ForEach(post.comments.suffix(2), id: \.id) { comment in
+                        CommentView(comment: comment)
+                    }
+                }
+                .padding(.leading, 1)
+                .padding(.top, 1)
+                
+                
+                
                 
             }
             

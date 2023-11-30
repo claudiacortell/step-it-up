@@ -11,34 +11,57 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseCore
 
+enum UploadError: Error {
+    case invalidImage
+    case imageDataConversionError
+    case uploadError
+    case urlIsNil
+    // Add other specific error cases as needed for your application
+}
+
 class ImageUtils {
 
     // Uploading for posts
-    func uploadPostPhoto(postId: String, selectedImage: UIImage?) async -> Void{
-        guard let selecteImage = selectedImage else {return}
-        guard let imageData = selectedImage?.jpegData(compressionQuality: 0.5) else {return}
+    
+    func uploadPostPhoto(postId: String, selectedImage: UIImage?, completion: @escaping (Result<String, UploadError>) -> Void) {
+        guard let selectedImage = selectedImage else {
+            completion(.failure(UploadError.invalidImage))
+            return
+        }
+        
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
+            completion(.failure(UploadError.imageDataConversionError))
+            return
+        }
+
         let db = Firestore.firestore()
         let storageRef = Storage.storage().reference()
-        let fileRef = storageRef.child("posts-attatchment/\(postId).jpg")
-        _ = fileRef.putData(imageData, metadata: nil){ metadata, error in
-            if let error = error{
+        let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
+        
+        _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
                 print("Error uploading image: ", error.localizedDescription)
-            } else{
-                fileRef.downloadURL{ url, error in
-                    if let error = error{
+                completion(.failure(UploadError.uploadError))
+            } else {
+                fileRef.downloadURL { url, error in
+                    if let error = error {
                         print(error.localizedDescription)
+                        completion(.failure(UploadError.uploadError))
                     } else {
                         if let urlString = url?.absoluteString {
-                            db.collection("posts").document(postId).setData(["attachment": urlString], merge: true)
+                            completion(.success(urlString))
+                            // You can also store the URL in Firestore here if needed
+                            // db.collection("posts").document(postId).setData(["attachment": urlString], merge: true)
                         } else {
                             print("URL is nil")
+                            completion(.failure(UploadError.urlIsNil))
                         }
                     }
-                    
                 }
             }
         }
     }
+
     
     //Uploading for posts
 //    func uploadGroupPhoto(groupId: String, selectedImage: UIImage?) async -> Void{

@@ -15,10 +15,9 @@ import SwiftUI
 
 
 class FriendVM: ObservableObject {
-    
     var userModel: UserVM
-
     @Published var user_friends: [String: UserHealth] = [:]
+    @Published var pfpUrl: [String: String] = [:]
     @Published var user_reqs: [FriendRequest] = []
     
     init(userModel: UserVM) {
@@ -28,6 +27,9 @@ class FriendVM: ObservableObject {
                 if friends_id.count > 0{
                     print("Fetching friends")
                     await fetchFriends(friend_ids: friends_id)
+                    if let user = self.userModel.currentUser{
+                        self.pfpUrl[user.id] = user.pfp
+                    }
                 }
             }
             
@@ -118,7 +120,7 @@ class FriendVM: ObservableObject {
             
             if fetchedFriendUser != nil && fetchedFriendHealth != nil{
                 self.user_friends[user_id] = UserHealth(id: user_id, user: fetchedFriendUser!, data: fetchedFriendHealth!)
-                print("added friend \(user_id)")
+                self.pfpUrl[user_id] = fetchedFriendUser!.pfp
             } else {
                 print("Error fetching friend for Id: \(user_id)")
             }

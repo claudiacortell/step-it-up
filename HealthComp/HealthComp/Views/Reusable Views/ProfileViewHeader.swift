@@ -11,7 +11,6 @@ struct ProfileHeaderView: View {
     let user: User
     var body: some View {
         VStack{
-            AppName()
             ProfileIcon(pfp: user.pfp, size: 120)
             Text("\(user.name)")
                 .font(.system(size: 18, weight: .semibold))

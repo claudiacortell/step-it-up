@@ -22,8 +22,6 @@ struct MakePostView: View {
                     Spacer()
                 }.padding()
             }
-        
-        
     }
 }
 

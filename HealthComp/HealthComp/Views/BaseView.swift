@@ -11,7 +11,8 @@ struct BaseView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
     @EnvironmentObject var friendModel: FriendVM
-    
+    @EnvironmentObject var feedModel: FeedVM
+
     var body: some View {
 
         TabView {
@@ -27,7 +28,7 @@ struct BaseView: View {
                 .tabItem{
                     Label("", systemImage: "plus.circle")
                 }
-            FeedView(feed: sample_feed)
+            FeedView(feed: feedModel.user_feed)
                 .tabItem {
                     Label("", systemImage: "heart")
                 }

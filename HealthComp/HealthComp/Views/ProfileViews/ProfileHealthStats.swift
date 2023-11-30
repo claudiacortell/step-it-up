@@ -11,7 +11,7 @@ import SwiftUICharts
 struct ProfileHealthStats: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
-            .frame(width: UIScreen.main.bounds.width/2 - 25, height: 200)
+            .frame(width: UIScreen.main.bounds.width/3, height: 225)
             .foregroundColor(Color("gray"))
             .overlay{
                 TabView{
