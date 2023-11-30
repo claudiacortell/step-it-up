@@ -130,6 +130,26 @@ class FriendVM: ObservableObject {
         print(self.user_friends)
     }
     
+    func addFriend(friendId: String) async{
+        do{
+            if var user = userModel.currentUser{
+                var friends = user.friends
+                if user.friends == nil{
+                    user.friends = [friendId]
+                } else {
+                    user.friends?.append(friendId)
+                }
+                let encodedUser = try Firestore.Encoder().encode(user)
+                try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+                try await Firestore.firestore().collection("users").document(friendId).setData(["friends": [user.id]], merge: true)
+                await fetchFriends(friend_ids: [friendId])
+                userModel.addFriend(userId: friendId)
+            }
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+    
     func fetchHealthData(id: String) async throws -> FetchHealthData {
         guard let snapshot = try? await Firestore.firestore().collection("healthdata").document(id).getDocument() else {return .failure("Could not fetch a user's health data")}
         if let userHealthData = try? snapshot.data(as: HealthData.self){

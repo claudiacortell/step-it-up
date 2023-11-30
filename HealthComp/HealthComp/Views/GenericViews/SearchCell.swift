@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchCell: View {
     let friend: User
+    @EnvironmentObject var friendMdoel: FriendVM
     @State private var isFriendAdded = false
     var body: some View {
         HStack {
@@ -24,6 +25,9 @@ struct SearchCell: View {
             if isFriendAdded == false{
                 Button(action: {
                     // Call a function from
+                    Task{
+                        await friendMdoel.addFriend(friendId: friend.id)
+                    }
                     isFriendAdded.toggle()
                 }) {
                     Image(systemName: "plus.circle")

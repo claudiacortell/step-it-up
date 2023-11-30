@@ -61,9 +61,9 @@ struct CreatePostView: View {
                 Divider()
                     .padding(.bottom, 10)
                 HStack{
-                    ProfileIcon(pfp: "", size: 60)
+                    ProfileIcon(pfp: user.pfp, size: 60)
                     VStack(alignment: .leading){
-                        Text("Name")
+                        Text(user.name)
                             .font(.system(size: 16, weight: .semibold))
                         Text(feedModel.formatDate(date: Date()))
                             .font(.system(size: 14))
