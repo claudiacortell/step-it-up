@@ -11,6 +11,9 @@ struct SearchCell: View {
     let friend: User
     @EnvironmentObject var friendMdoel: FriendVM
     @State private var isFriendAdded = false
+    @State private var sheetPresented = false
+    
+    
     var body: some View {
         HStack {
             ProfileIcon(pfp: friend.pfp, size: 40)
@@ -29,6 +32,7 @@ struct SearchCell: View {
                         await friendMdoel.addFriend(friendId: friend.id)
                     }
                     isFriendAdded.toggle()
+                    sheetPresented.toggle()
                 }) {
                     Image(systemName: "plus.circle")
                         .resizable()
@@ -41,6 +45,10 @@ struct SearchCell: View {
                     .foregroundColor(Color("dark-blue"))
                     .frame(width: 20, height: 20)
             }
+        }.sheet(isPresented: $sheetPresented) {
+            print("Sheet dismissed!")
+        } content: {
+            SuccessView(message: "Added \(friend.name) as a friend!")
         }
         .padding(.vertical, 5)
         .padding(.horizontal, 20)

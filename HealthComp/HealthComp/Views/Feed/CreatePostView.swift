@@ -44,7 +44,7 @@ struct CreatePostView: View {
                         Spacer()
                         Button(action: {
                             feedModel.makePost(id: user.id, caption: caption, image: ui_selectedImage)
-                            print("Here")
+                            presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Share")
                                 .font(.system(size: 16, weight: .semibold))

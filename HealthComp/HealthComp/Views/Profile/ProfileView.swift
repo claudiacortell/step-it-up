@@ -29,7 +29,7 @@ struct ProfileView: View {
                         Button {
                             signOutAction()
                         } label: {
-                            Image(systemName: "gearshape.fill")
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                         }.accentColor(Color("button-accent"))

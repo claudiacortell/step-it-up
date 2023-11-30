@@ -24,13 +24,13 @@ struct BaseView: View {
                 .tabItem{
                     Label("", systemImage: "magnifyingglass")
                 }
-            GroupCreationView()
-                .tabItem{
-                    Label("", systemImage: "plus.circle")
-                }
             FeedView(feed: feedModel.user_feed)
                 .tabItem {
-                    Label("", systemImage: "heart")
+                    Label("", systemImage: "plus.circle")
+                }
+            GroupCreationView()
+                .tabItem{
+                    Label("", systemImage: "person.3.fill")
                 }
             LeaderboardView()
                 .environmentObject(LeaderBoardVM(userModel: userModel, friendModel: friendModel, healthModel: healthModel))

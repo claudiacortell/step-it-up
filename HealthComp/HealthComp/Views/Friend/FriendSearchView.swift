@@ -16,15 +16,19 @@ struct FriendSearchView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                SearchBar(text: $searchText, searchResults: $results)
-                    .padding()
-                ForEach(results){ friend in
-                    SearchCell(friend: friend)
-                    Divider()
-                        .padding(.horizontal, 20)
+            ScrollView{
+                VStack {
+                    SearchBar(text: $searchText, searchResults: $results)
+                        .padding()
+                    ForEach(results){ friend in
+                        SearchCell(friend: friend)
+                        Divider()
+                            .padding(.horizontal, 20)
+                    }
+                    .frame(maxHeight: UIScreen.main.bounds.height - 30)
+                    
+                    Spacer()
                 }
-                Spacer()
             }
         }
     }
