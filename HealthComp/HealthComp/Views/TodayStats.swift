@@ -22,18 +22,13 @@ struct TodayStats: View {
             if healthModel.healthData.dailyStep != nil{
                 HStack{
                     Text("\(healthModel.healthData.dailyStep!)")
-                        .font(.custom("DIN Alternate",fixedSize: 40))
-                    Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 14))
+                        .font(.custom("DIN Alternate",fixedSize: 35))
                 }
                 
             } else {
-
                 HStack{
                     Text("0")
-                        .font(.custom("DIN Alternate",fixedSize: 40))
-                    Text("steps")
-                        .font(.custom("DIN Alternate",fixedSize: 14))
+                        .font(.custom("DIN Alternate",fixedSize: 35))
                 }
             }
             Text("Distance")
@@ -41,7 +36,7 @@ struct TodayStats: View {
             if healthModel.healthData.dailyMileage != nil{
                 HStack{
                     Text(String(format: "%.1f", healthModel.healthData.dailyMileage!))
-                        .font(.custom("DIN Alternate", fixedSize: 40))
+                        .font(.custom("DIN Alternate", fixedSize: 35))
                     Text("miles")
                         .font(.custom("DIN Alternate",fixedSize: 14))
                 }
@@ -50,7 +45,7 @@ struct TodayStats: View {
                 //TODO: remove
                 HStack{
                     Text("0.0")
-                        .font(.custom("DIN Alternate",fixedSize: 40))
+                        .font(.custom("DIN Alternate",fixedSize: 35))
                     Text("miles")
                         .font(.custom("DIN Alternate",fixedSize: 14))
                 }

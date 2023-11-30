@@ -15,7 +15,6 @@ import SwiftUI
 
 
 class FriendVM: ObservableObject {
-    
     var userModel: UserVM
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var pfpUrl: [String: String] = [:]

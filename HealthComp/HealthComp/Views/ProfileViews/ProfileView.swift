@@ -10,8 +10,10 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+                AppName()
                 if let user = userModel.currentUser{
                     ProfileHeaderView(user: user)
+                        .padding(.bottom, 20)
                     HStack(){
                         ProfileHealthStats()
                         ProgressBarView()
@@ -23,6 +25,7 @@ struct ProfileView: View {
                     } label: {
                         EmbeddedFriendsView(friends: Array(friendModel.user_friends.values))
                     }.accentColor(Color("button-accent"))
+                        .padding(.vertical)
                 }
 
 
