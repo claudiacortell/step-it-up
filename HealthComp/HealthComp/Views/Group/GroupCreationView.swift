@@ -66,17 +66,16 @@ struct GroupCreationView: View {
             Text("Add Friends to Group")
                 .font(.system(size: 18, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            ZStack {
+                .padding(.leading)
                 ScrollView {
                     VStack {
                         let friends = Array(friendModel.user_friends.values)
                         ForEach(friends) { friend in
                             GroupFriend(isSelected: self.binding(for: friend), friend: friend)
-                                .padding(.horizontal)
+                                .padding(.vertical, 5)
                         }
                     }
-                }
+                }.frame(height: UIScreen.main.bounds.height/2.5)
                 VStack {
                     Spacer()
                     ZStack {
@@ -128,7 +127,7 @@ struct GroupCreationView: View {
                         }
                     }
                 }
-            }
+            
             Spacer()
         }.sheet(isPresented: $sheetPresented) {
             self.groupName = ""
