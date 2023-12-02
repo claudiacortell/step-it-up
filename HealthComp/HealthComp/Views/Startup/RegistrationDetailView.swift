@@ -85,10 +85,8 @@ struct RegistrationDetailView: View {
                             if let result = try? await userModel.createUser(email: email, password: password, username: username, name: name, pfp_uri: ""){ switch result {
                             case .success(let id):
                                 if let image = ui_selectedImage {
-                                    print("Here inside line 89")
                                     await userModel.imageUtil.uploadPhoto(userId: id, selectedImage: image)
                                 }
-                                print("yay")
                             case .failure(let error):
                                 print(error)
                             }
@@ -97,7 +95,7 @@ struct RegistrationDetailView: View {
                     } label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-                                .foregroundColor(Color("medium-green"))
+                                .foregroundColor(Color("const-medium-green"))
                                 .frame(width: 100, height: 40)
                             Text("Let's go!")
                                 .font(.system(size: 13, weight: .bold))

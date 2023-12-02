@@ -14,7 +14,9 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var confirm = ""
     @State private var next: Bool = false
-    @State private var error: Bool = false
+    @State private var fieldError: Bool = false
+    @State private var pwMatchError: Bool = false
+    @State private var pwLengthError: Bool = false
     @State private var viewPw: Bool = false
     
     @EnvironmentObject var userModel: UserVM
@@ -35,9 +37,27 @@ struct RegistrationView: View {
                 
                 CustomTextField(title: "Confirm Password", placeholder: "", secure: true, autocap: false, text: $confirm)
                 
-                if error == true{
-                    Text("Passwords don't match")
+                if fieldError == true{
+                    Text("Please enter all fields")
+                        .font(.system(size: 12))
+                        .foregroundColor(.red)
+                        .opacity(1.0)
                 }
+                
+                if pwMatchError == true{
+                    Text("Passwords don't match")
+                        .font(.system(size: 12))
+                        .foregroundColor(.red)
+                        .opacity(1.0)
+                }
+                if pwLengthError == true{
+                    Text("Your password must be 6 or more characters long")
+                        .font(.system(size: 12))
+                        .foregroundColor(.red)
+                        .opacity(1.0)
+                }
+                
+                
                 NavigationLink {
                     LoginView()
                 } label: {
@@ -49,16 +69,22 @@ struct RegistrationView: View {
                 HStack{
                     Spacer()
                     Button(action: {
-                        if userModel.checkPassword(confirm: confirm, password: password){
-                            self.next.toggle()
-                        } else {
-                            self.error.toggle()
+                        self.fieldError = name.trimmingCharacters(in: .whitespaces).isEmpty || email.trimmingCharacters(in: .whitespaces).isEmpty || password.trimmingCharacters(in: .whitespaces).isEmpty || confirm.trimmingCharacters(in: .whitespaces).isEmpty
+                        self.pwMatchError = !userModel.checkPassword(confirm: confirm, password: password)
+                        self.pwLengthError = !userModel.isPasswordValid(password: password)
+                        
+                        if !fieldError && !pwMatchError && !pwLengthError {
+                            self.next = true
+                        } else if fieldError {
+                            self.pwMatchError = false
+                            self.pwLengthError = false
                         }
+                        
                     }, label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 25)
                                 .frame(width: 80, height: 40)
-                                .foregroundColor(Color("medium-green"))
+                                .foregroundColor(Color("const-medium-green"))
                             Text("Next")
                                 .font(.system(size: 15, weight: .bold))
                         }
