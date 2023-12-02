@@ -84,7 +84,7 @@ struct RegistrationView: View {
                         ZStack{
                             RoundedRectangle(cornerRadius: 25)
                                 .frame(width: 80, height: 40)
-                                .foregroundColor(Color("const-medium-green"))
+                                .foregroundColor(Color("medium-green-to-blue"))
                             Text("Next")
                                 .font(.system(size: 15, weight: .bold))
                         }

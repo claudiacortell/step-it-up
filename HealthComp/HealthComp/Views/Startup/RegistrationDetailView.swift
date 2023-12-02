@@ -95,7 +95,7 @@ struct RegistrationDetailView: View {
                     } label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-                                .foregroundColor(Color("const-medium-green"))
+                                .foregroundColor(Color("medium-green-to-blue"))
                                 .frame(width: 100, height: 40)
                             Text("Let's go!")
                                 .font(.system(size: 13, weight: .bold))
