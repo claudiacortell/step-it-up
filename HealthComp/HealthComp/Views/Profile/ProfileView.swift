@@ -68,7 +68,7 @@ struct ProfileView: View {
                         // use the view model
                         FriendsView(friends: Array(friendModel.user_friends.values))
                     } label: {
-                        EmbeddedFriendsView(friends: Array(friendModel.user_friends.values))
+                        EmbeddedFriendsView()
                     }.accentColor(Color("button-accent"))
                         .padding(.vertical, 15)
                     HStack{

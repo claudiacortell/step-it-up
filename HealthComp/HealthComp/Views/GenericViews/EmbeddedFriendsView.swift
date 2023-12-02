@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct EmbeddedFriendsView: View {
-    let friends: [UserHealth]
+    @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var friendModel: FriendVM
+    // let friends: [UserHealth]
     var body: some View {
         VStack{
             HStack{
-                Text("\(friends.count) FRIENDS")
+                Text("\(friendModel.user_friends.count) FRIENDS")
                     .font(.system(size: 16, weight: .semibold))
                 Spacer()
                 Text("View all")
@@ -20,7 +22,7 @@ struct EmbeddedFriendsView: View {
             }
             ScrollView(.horizontal){
                 HStack(spacing: 20){
-                    ForEach(friends) { friend in
+                    ForEach(Array(friendModel.user_friends.values)) { friend in
                         // Assuming Icon is a View that displays user information
                         Icon(friend: friend)
                     }
