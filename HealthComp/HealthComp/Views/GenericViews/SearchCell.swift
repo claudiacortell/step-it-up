@@ -46,7 +46,7 @@ struct SearchCell: View {
                     .frame(width: 20, height: 20)
             }
         }.sheet(isPresented: $sheetPresented) {
-            print("Sheet dismissed!")
+//            print("Sheet dismissed!")
         } content: {
             SuccessView(message: "Added \(friend.name) as a friend!")
         }
