@@ -131,7 +131,9 @@ struct GroupCreationView: View {
             }
             Spacer()
         }.sheet(isPresented: $sheetPresented) {
-//            print("Sheet dismissed!")
+            self.groupName = ""
+            self.selectedMembers = [:]
+            self.selectedImage = nil
         } content: {
             SuccessView(message: "Successfully created group!")
         }
@@ -145,7 +147,3 @@ struct GroupCreationView: View {
     }
 }
 
-#Preview {
-    GroupCreationView()
-    //GroupFriend(friend: currentUser)
-}

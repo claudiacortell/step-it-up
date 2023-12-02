@@ -23,9 +23,8 @@ struct LoginView: View {
                         if let result = try? await userModel.signIn(withEmail: email, password: pw){
                             switch result{
                             case .success:
-                                print("Success")
+                                print("Success: Logged in")
                             case .failure(let message):
-//                                self.errorMsg =  message
                                 print(message)
                             }
                         }
