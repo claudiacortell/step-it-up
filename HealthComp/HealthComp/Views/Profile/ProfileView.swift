@@ -88,9 +88,23 @@ struct ProfileView: View {
                         }
                     }
                 }
-
-
-                
+            }
+            .refreshable {
+                Task{
+                    await userModel.fetchCurrUser()
+                    await goalModel.fetchGoal()
+                    healthModel.fetchAllHealthData()
+                    if let friends_id = self.userModel.currentUser?.friends {
+                        if friends_id.count > 0 {
+                            await friendModel.fetchFriends(friend_ids: friends_id)
+                        }
+                    }
+                    if let groups_id = self.userModel.currentUser?.groups {
+                        if groups_id.count > 0 {
+                            await groupModel.fetchGroups(groups: groups_id)
+                        }
+                    }
+                }
             }
         }
     }

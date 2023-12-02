@@ -35,6 +35,7 @@ struct FeedView: View {
             .refreshable {
                 Task{
                     if let user = self.userModel.currentUser?.id{
+                        feedModel.user_feed = []
                         if var user_ids = self.userModel.currentUser?.friends{
                             user_ids.append(user)
                             await feedModel.fetchFeed(users: user_ids)
