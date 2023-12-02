@@ -12,7 +12,7 @@ struct ProfileView: View {
     @EnvironmentObject var goalModel: GoalVM
     
     @State var signoutConfirmPresented = false
-    
+    private var fetchCount: Int  = 0
     private func signOutAction() {
         healthModel.signOut()
         friendModel.signOut()
@@ -90,11 +90,7 @@ struct ProfileView: View {
 
 
                 
-            }.onAppear{
-                healthModel.fetchAllHealthData()
             }
-
         }
-        
     }
 }

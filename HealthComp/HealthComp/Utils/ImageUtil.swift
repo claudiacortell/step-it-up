@@ -19,9 +19,35 @@ enum UploadError: Error {
     // Add other specific error cases as needed for your application
 }
 
-class ImageUtils {
+class ImageUtils: ObservableObject{
+    @Published var postsPhotos: [String: UIImage] = [:]
+    @Published var userPhotos: [String: UIImage] = [:]
 
-    // Uploading for posts
+    func fetchPostPhoto(postId: String){
+        let storageRef = Storage.storage().reference()
+        let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
+        fileRef.getData(maxSize: 1 * 1024 * 1024){ data, error in
+            if let error = error{
+                print("something ahppened")
+            } else {
+                let image = UIImage(data: data!)
+                self.postsPhotos[postId] = image
+            }
+        }
+    }
+    
+    func fetchProfilePhoto(userId: String){
+        let storageRef = Storage.storage().reference()
+        let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
+        fileRef.getData(maxSize: 1 * 1024 * 1024){ data, error in
+            if let error = error{
+                print("something ahppened")
+            } else {
+                let image = UIImage(data: data!)
+                self.userPhotos[userId] = image
+            }
+        }
+    }
     
     func uploadPostPhoto(postId: String, selectedImage: UIImage?, completion: @escaping (Result<String, UploadError>) -> Void) {
         guard let selectedImage = selectedImage else {
@@ -34,7 +60,6 @@ class ImageUtils {
             return
         }
 
-        let db = Firestore.firestore()
         let storageRef = Storage.storage().reference()
         let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
         

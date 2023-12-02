@@ -15,10 +15,12 @@ import SwiftUI
 
 class GoalVM: ObservableObject {
     @Published var userGoal: Goal?
-    
+    var fetchTime: Int = 0
     init(){
         Task{
-            await self.fetchGoal()
+            if fetchTime == 0{
+                await self.fetchGoal()
+            }
         }
     }
     
@@ -31,6 +33,7 @@ class GoalVM: ObservableObject {
         if let goal = try? snapshot.data(as: Goal.self){
             self.userGoal = goal
             print(self.userGoal!)
+            self.fetchTime += 1
         } else {
             return
         }
