@@ -13,6 +13,7 @@ struct FriendSearchView: View {
     @State private var searchText = ""
     @State private var results: [User] = []
     @EnvironmentObject var friendModel: FriendVM
+    @EnvironmentObject var userModel: UserVM
     
     var body: some View {
         NavigationView {
@@ -21,9 +22,11 @@ struct FriendSearchView: View {
                     SearchBar(text: $searchText, searchResults: $results)
                         .padding()
                     ForEach(results){ friend in
-                        SearchCell(friend: friend)
-                        Divider()
-                            .padding(.horizontal, 20)
+                        if friend.id != userModel.currentUser?.id{
+                            SearchCell(friend: friend)
+                            Divider()
+                                .padding(.horizontal, 20)
+                        }
                     }
                     .frame(maxHeight: UIScreen.main.bounds.height - 30)
                     
