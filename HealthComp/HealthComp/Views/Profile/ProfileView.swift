@@ -12,7 +12,7 @@ struct ProfileView: View {
     @EnvironmentObject var goalModel: GoalVM
     
     @State var editGoalPresented = false
-    
+    @State var signoutConfirmPresented = false
     private var fetchCount: Int  = 0
     private func signOutAction() {
         healthModel.signOut()
@@ -30,12 +30,26 @@ struct ProfileView: View {
                     HStack{
                         Spacer()
                         Button {
-                            signOutAction()
+                            signoutConfirmPresented = true
                         } label: {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                         }.accentColor(Color("button-accent"))
+                            .alert(isPresented: $signoutConfirmPresented, content: {
+                                Alert(
+                                    title: Text("Confirm"),
+                                    message: Text("Are you sure you want to sign out?"),
+                                    primaryButton: .default(
+                                        Text("Sign Out"),
+                                        action: signOutAction
+                                    ),
+                                    secondaryButton: .default(
+                                        Text("Cancel"),
+                                        action: {}
+                                    )
+                                    )
+                            })
                     }.padding(.trailing)
                 }
                 if let user = userModel.currentUser{
