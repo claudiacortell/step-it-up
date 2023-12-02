@@ -60,10 +60,12 @@ struct ProgressBarView: View {
                                 .data([weeklyProgress * 100])
                                 .chartStyle(ChartStyle(backgroundColor: .clear, foregroundColor: gradientIn))
                                 .frame(width: UIScreen.main.bounds.width/2-120)
+                                .allowsHitTesting(false)
                             RingsChart()
                                 .data([dailyProgress * 100])
                                 .chartStyle(ChartStyle(backgroundColor: .clear, foregroundColor: gradientOut))
                                 .frame(width: UIScreen.main.bounds.width/2-90)
+                                .allowsHitTesting(false)
                         }.padding(.bottom)
                             .onAppear{
                                 if colorScheme == .dark{
