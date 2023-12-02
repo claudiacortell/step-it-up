@@ -11,6 +11,10 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseCore
 
+class ImageUtilObservable: ObservableObject {
+    let imageUtils = ImageUtils()
+}
+
 enum UploadError: Error {
     case invalidImage
     case imageDataConversionError
@@ -23,12 +27,20 @@ class ImageUtils: ObservableObject{
     @Published var postsPhotos: [String: UIImage] = [:]
     @Published var userPhotos: [String: UIImage] = [:]
 
+//    func fetchImage(userId: String, completion: @escaping (FetchImage) -> Void) {
+//        if let image = userPhotos[userId]{
+//            completion(.success(image))
+//        } else{
+//            completion(.notFound)
+//        }
+//    }
+    
     func fetchPostPhoto(postId: String){
         let storageRef = Storage.storage().reference()
         let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
         fileRef.getData(maxSize: 1 * 1024 * 1024){ data, error in
             if let error = error{
-                print("something ahppened")
+                print("Fetching \(postId) image: ",error.localizedDescription)
             } else {
                 let image = UIImage(data: data!)
                 self.postsPhotos[postId] = image
@@ -36,15 +48,23 @@ class ImageUtils: ObservableObject{
         }
     }
     
-    func fetchProfilePhoto(userId: String){
-        let storageRef = Storage.storage().reference()
-        let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
-        fileRef.getData(maxSize: 1 * 1024 * 1024){ data, error in
-            if let error = error{
-                print("something ahppened")
-            } else {
-                let image = UIImage(data: data!)
-                self.userPhotos[userId] = image
+    func fetchProfilePhoto(userId: String, completion: @escaping (FetchImage) -> Void) {
+        if let image = userPhotos[userId]{
+            completion(.success(image))
+            print("Got from cache")
+        } else{
+            print("Got from database")
+            let storageRef = Storage.storage().reference()
+            let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
+            fileRef.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                if let error = error {
+                    print(error)
+                } else if let imageData = data {
+                    print("Fetched \(userId) image")
+                    let image = UIImage(data: imageData)
+                    self.userPhotos[userId] = image
+                    completion(.success(image!))
+                }
             }
         }
     }
@@ -100,7 +120,6 @@ class ImageUtils: ObservableObject{
             return
         }
         
-        let db = Firestore.firestore()
         let storageRef = Storage.storage().reference()
         let fileRef = storageRef.child("group-icon/\(groupId).jpg")
         _ = fileRef.putData(imageData, metadata: nil) { metadata, error in
@@ -115,10 +134,7 @@ class ImageUtils: ObservableObject{
                     } else {
                         if let urlString = url?.absoluteString {
                             completion(.success(urlString))
-                            // You can also store the URL in Firestore here if needed
-//                             db.collection("groups").document(groupId).setData(["pfp": urlString], merge: true)
                         } else {
-                            print("URL is nil")
                             completion(.failure(UploadError.urlIsNil))
                         }
                     }
@@ -151,8 +167,6 @@ class ImageUtils: ObservableObject{
                     } else {
                         if let urlString = url?.absoluteString {
                             db.collection("users").document(userId).setData(["pfp": urlString], merge: true)
-                        } else {
-                            print("URL is nil")
                         }
                     }
                 }

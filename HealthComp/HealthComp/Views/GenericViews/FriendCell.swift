@@ -12,7 +12,7 @@ struct FriendCell: View {
 
     var body: some View {
         VStack(){
-            ProfileIcon(pfp: friend.user.pfp, size: 75)
+            ProfileIcon(userId: friend.id, size: 75)
                 .padding(.bottom, 2)
 
             Text("@\(friend.user.username)")

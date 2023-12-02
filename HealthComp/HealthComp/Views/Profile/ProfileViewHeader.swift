@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
+    @EnvironmentObject var imageUtil: ImageUtilObservable // Inject your observable object here
     let user: User
     var body: some View {
         VStack{
-            ProfileIcon(pfp: user.pfp, size: 120)
+            ProfileIcon(userId: user.id, size: 120)
             Text("\(user.name)")
                 .font(.system(size: 18, weight: .semibold))
                 .padding(.top, 15)

@@ -14,9 +14,7 @@ struct NoContentPost: View{
         VStack(alignment: .leading, spacing: 10) { // Adjust the spacing as needed
             VStack (alignment: .leading){
                 HStack{
-                    if let pfpUrl = friendModel.pfpUrl[post.userId]{
-                        ProfileIcon(pfp: pfpUrl, size: 40)
-                    }
+                    ProfileIcon(userId: post.userId, size: 40)
                     VStack(alignment:.leading){
                         if let username = friendModel.usernames[post.userId]{
                             Text("@\(username)")
@@ -56,11 +54,7 @@ struct NoContentPost: View{
         }.padding()
         .background(
             RoundedRectangle(cornerRadius: 25.0)
-                .fill(Color("gray"))
+                .fill(Color("gray-text"))
         )
-        .onAppear{
-            print(post.userId)
-        }
-
     }
 }

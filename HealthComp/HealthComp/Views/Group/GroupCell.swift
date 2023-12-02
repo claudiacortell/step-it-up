@@ -31,7 +31,7 @@ struct GroupCell: View {
             ScrollView{
                 HStack(spacing: 5){
                     ForEach(Array(group.members.prefix(2))) { friend in
-                        ProfileIcon(pfp: friend.user.pfp, size: 20)
+                        ProfileIcon(userId: friend.user.id, size: 20)
                     }
                     
                     if group.members.count > 2 {

@@ -44,18 +44,19 @@ struct GroupCreationView: View {
                             .foregroundColor(Color("medium-green"))
                     }
                 }
-                
-            }.onChange(of: selectedItem) { newValue in
+            }.onChange(of: selectedItem) {
                 Task {
-                    if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                        ui_selectedImage = UIImage(data: data)
-                        selectedImage = Image(uiImage: ui_selectedImage!)
+                    if selectedItem != nil {
+                        if let data = try? await selectedItem!.loadTransferable(type: Data.self) {
+                            ui_selectedImage = UIImage(data: data)
+                            selectedImage = Image(uiImage: ui_selectedImage!)
+                        }
                     }
                 }
             }
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(Color("gray"))
+                    .fill(Color("gray-text"))
                     .frame(height: 60)
                     .padding(.horizontal)
                 TextField("Group name", text: $groupName)
@@ -100,8 +101,8 @@ struct GroupCreationView: View {
                                             sheetPresented.toggle()
                                             groupName = ""
                                             selectedMembers = [:]
-                                        case .failure(let msg):
-                                            print(msg)
+                                        case .failure(let error):
+                                            print(error)
                                         }
                                     }
                                 }
@@ -120,7 +121,7 @@ struct GroupCreationView: View {
                     .onAppear{
                         if colorScheme == .dark{
                             self.buttonColor = Color("light-green")
-                            self.buttonTextColor = Color("gray")
+                            self.buttonTextColor = Color("gray-text")
                         } else if colorScheme == .light{
                             self.buttonColor = Color("medium-green")
                             self.buttonTextColor = Color("dark-blue")

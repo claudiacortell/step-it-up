@@ -61,7 +61,7 @@ struct CreatePostView: View {
                 Divider()
                     .padding(.bottom, 10)
                 HStack{
-                    ProfileIcon(pfp: user.pfp, size: 60)
+                    ProfileIcon(userId: user.id, size: 60)
                     VStack(alignment: .leading){
                         Text(user.name)
                             .font(.system(size: 16, weight: .semibold))
@@ -110,11 +110,13 @@ struct CreatePostView: View {
                                 .frame(width: 30)
                                 .foregroundColor(Color("dark-blue"))
                             
-                        }.onChange(of: selectedItem) { newValue in
+                        }.onChange(of: selectedItem) {
                             Task {
-                                if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                                    ui_selectedImage = UIImage(data: data)
-                                    selectedImage = Image(uiImage: ui_selectedImage!)
+                                if selectedItem != nil {
+                                    if let data = try? await selectedItem!.loadTransferable(type: Data.self) {
+                                        ui_selectedImage = UIImage(data: data)
+                                        selectedImage = Image(uiImage: ui_selectedImage!)
+                                    }
                                 }
                             }
                         }

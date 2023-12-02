@@ -12,7 +12,7 @@ struct ProfileHealthStats: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .frame(width: UIScreen.main.bounds.width/3, height: 225)
-            .foregroundColor(Color("gray"))
+            .foregroundColor(Color("gray-text"))
             .overlay{
                 TabView{
                     TodayStats()

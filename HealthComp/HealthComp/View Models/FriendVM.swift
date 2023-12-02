@@ -16,27 +16,36 @@ import SwiftUI
 
 class FriendVM: ObservableObject {
     var userModel: UserVM
+    var imageUtil: ImageUtilObservable
+    
     @Published var user_friends: [String: UserHealth] = [:]
     @Published var pfpUrl: [String: String] = [:]
     @Published var names: [String: String] = [:]
     @Published var usernames: [String: String] = [:]
-    
-    init(userModel: UserVM) {
+   
+    init(userModel: UserVM, imageUtil: ImageUtilObservable) {
         self.userModel = userModel
-        Task{
-            if let friends_id = self.userModel.currentUser?.friends{
-                if friends_id.count > 0{
-                    await fetchFriends(friend_ids: friends_id)
-                    if let user = self.userModel.currentUser{
-                        self.pfpUrl[user.id] = user.pfp
-                        self.names[user.id] = user.name
-                        self.usernames[user.id] = user.username
+        self.imageUtil = imageUtil
+        
+        Task {
+            if let friends_id = self.userModel.currentUser?.friends {
+                if friends_id.count > 0 {
+                    await self.fetchFriends(friend_ids: friends_id)
+                    
+                    if let user = self.userModel.currentUser {
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            
+                            self.pfpUrl[user.id] = user.pfp
+                            self.names[user.id] = user.name
+                            self.usernames[user.id] = user.username
+                        }
                     }
                 }
             }
-            
         }
     }
+
     
     func searchFriend(search: String, completion: @escaping (Result<[User], Error>) -> Void) {
         var matchingUsers: [User] = []
@@ -87,52 +96,54 @@ class FriendVM: ObservableObject {
     }
 
     
+
     func fetchFriends(friend_ids: [String]) async {
         for user_id in friend_ids {
-            var fetchedFriendUser: User? = nil
-            var fetchedFriendHealth: HealthData? = nil
             do {
-                let result = try await self.userModel.fetchUser(id: user_id)
-                switch result {
-                case .success(let user):
-                    //                    self.user_friends[user.id] = user
-                    fetchedFriendUser = user
-                case .failure(let error):
-                    print(error)
+                let resultUser = try await self.userModel.fetchUser(id: user_id)
+                let resultHealth = try await fetchHealthData(id: user_id)
+                
+                let localFetchedFriendUser: User?
+                let localFetchedFriendHealth: HealthData?
+                
+                switch resultUser {
+                    case .success(let user):
+                        localFetchedFriendUser = user
+                    case .failure(let error):
+                        print(error)
+                        localFetchedFriendUser = nil
                 }
-            } catch {
-                print("Error fetching user data for ID: \(user_id), Error: \(error)")
-            }
-            
-            do {
-                let result = try await fetchHealthData(id: user_id)
-                switch result {
-                case .success(let healthdata):
-                    fetchedFriendHealth = healthdata
-                    //   self.user_friends_healthdata[user_id] = healthdata
-                case .failure(let error):
-                    print(error)
+                
+                switch resultHealth {
+                    case .success(let healthdata):
+                        localFetchedFriendHealth = healthdata
+                    case .failure(let error):
+                        print(error)
+                        localFetchedFriendHealth = nil
                 }
+                
+                // Now, perform UI updates on the main thread
+                DispatchQueue.main.async { [weak self] in
+                    if let user = localFetchedFriendUser, let health = localFetchedFriendHealth {
+                        self?.user_friends[user_id] = UserHealth(id: user_id, user: user, data: health)
+                        self?.pfpUrl[user_id] = user.pfp
+                        self?.names[user_id] = user.name
+                        self?.usernames[user_id] = user.username
+                    } else {
+                        print("Error fetching friend for Id: \(user_id)")
+                    }
+                }
+                
             } catch {
-                print("Error fetching user health data for ID: \(user_id), Error: \(error)")
-            }
-            
-            if fetchedFriendUser != nil && fetchedFriendHealth != nil{
-                self.user_friends[user_id] = UserHealth(id: user_id, user: fetchedFriendUser!, data: fetchedFriendHealth!)
-                self.pfpUrl[user_id] = fetchedFriendUser!.pfp
-                self.names[user_id]=fetchedFriendUser!.name
-                self.usernames[user_id]=fetchedFriendUser!.username
-            } else {
-                print("Error fetching friend for Id: \(user_id)")
+                print("Error fetching data for ID: \(user_id), Error: \(error)")
             }
         }
-        print(self.user_friends)
     }
     
     func addFriend(friendId: String) async{
         do{
             if var user = userModel.currentUser{
-                var friends = user.friends
+                var _ = user.friends
                 if user.friends == nil{
                     user.friends = [friendId]
                 } else {
@@ -152,7 +163,6 @@ class FriendVM: ObservableObject {
                     }
                     let encodedFriend = try Firestore.Encoder().encode(friend)
                     try await Firestore.firestore().collection("users").document(friend.id).setData(encodedFriend)
-                    print("Added friend")
                 case .failure (_):
                     print("Could not add friend")
                 }
@@ -170,7 +180,6 @@ class FriendVM: ObservableObject {
     func fetchHealthData(id: String) async throws -> FetchHealthData {
         guard let snapshot = try? await Firestore.firestore().collection("healthdata").document(id).getDocument() else {return .failure("Could not fetch a user's health data")}
         if let userHealthData = try? snapshot.data(as: HealthData.self){
-            print("SUCCESS: Fetched a user's friend data")
             return .success(userHealthData)
         } else{
             return .failure("Could not decode a user's health data")

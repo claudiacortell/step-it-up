@@ -16,7 +16,7 @@ struct SearchCell: View {
     
     var body: some View {
         HStack {
-            ProfileIcon(pfp: friend.pfp, size: 40)
+            ProfileIcon(userId: friend.id, size: 40)
             
             VStack(alignment: .leading) {
                 Text(friend.name)

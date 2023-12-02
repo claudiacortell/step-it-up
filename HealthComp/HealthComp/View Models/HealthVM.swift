@@ -31,7 +31,6 @@ class HealthVM: ObservableObject {
         let distance = HKQuantityType(.distanceWalkingRunning)
         let healthTypes: Set = [steps, distance]
         Task{
-            print("In health init")
             do{
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
@@ -225,7 +224,6 @@ class HealthVM: ObservableObject {
                 if let error = error {
                     print("Error writing health data to Firestore: \(error.localizedDescription)")
                 } else {
-                    print("Health data written to Firestore successfully")
                 }
             }
         } catch {
