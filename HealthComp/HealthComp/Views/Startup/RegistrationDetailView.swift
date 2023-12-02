@@ -20,6 +20,7 @@ struct RegistrationDetailView: View {
     @State var opacity: CGFloat = 0
     @State var display: Bool = false
     @EnvironmentObject var userModel: UserVM
+    @EnvironmentObject var imageUtil: ImageUtilObservable
     
     var body: some View {
         NavigationStack{
@@ -48,11 +49,13 @@ struct RegistrationDetailView: View {
                         }
                     }
                     
-                }.onChange(of: selectedItem) { newValue in
+                }.onChange(of: selectedItem) {
                     Task {
-                        if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                            ui_selectedImage = UIImage(data: data)
-                            selectedImage = Image(uiImage: ui_selectedImage!)
+                        if selectedItem != nil{
+                            if let data = try? await selectedItem!.loadTransferable(type: Data.self) {
+                                ui_selectedImage = UIImage(data: data)
+                                selectedImage = Image(uiImage: ui_selectedImage!)
+                            }
                         }
                     }
                 }
@@ -61,7 +64,7 @@ struct RegistrationDetailView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.red)
                     .opacity(opacity)
-                    .onChange(of: username) { newValue in
+                    .onChange(of: username) {
                         Task {
                             userModel.isUsernameAvailable(username){ isAvailable, error in
                                 if let error = error{
@@ -85,10 +88,8 @@ struct RegistrationDetailView: View {
                             if let result = try? await userModel.createUser(email: email, password: password, username: username, name: name, pfp_uri: ""){ switch result {
                             case .success(let id):
                                 if let image = ui_selectedImage {
-                                    print("Here inside line 89")
-                                    await userModel.imageUtil.uploadPhoto(userId: id, selectedImage: image)
+                                    await imageUtil.imageUtils.uploadPhoto(userId: id, selectedImage: image)
                                 }
-                                print("yay")
                             case .failure(let error):
                                 print(error)
                             }

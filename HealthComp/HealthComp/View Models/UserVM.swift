@@ -17,18 +17,15 @@ class UserVM: ObservableObject {
     @Published var currentUser: User?
     @Published var userSession: FirebaseAuth.User?
     
-    var imageUtil = ImageUtils()
     init() {
         self.userSession = Auth.auth().currentUser
         Task {
             await fetchCurrUser()
-            print("Done fetching user")
         }
     }
 
     func checkUserSession() {
         // Add an observer to the Firebase Authentication state
-        print("In check user session")
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             guard let self = self else { return }
             if let user = user {
@@ -57,7 +54,6 @@ class UserVM: ObservableObject {
             }
             return .success
         } catch {
-            print(error)
             if (error.localizedDescription == "There is no user record corresponding to this identifier.The user may have been deleted"){
                 return .failure("Hmmm, we couldn't find that account. Try creating one")
             }
@@ -146,7 +142,6 @@ class UserVM: ObservableObject {
     func fetchUser(id: String) async throws -> FetchUser {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(id).getDocument() else {return .failure("Could not fetch user")}
         if let user = try? snapshot.data(as: User.self) {
-            print("SUCCESS: Fetched the user")
             return .success(user)
         } else {
             return .failure("Could not decode a user")
@@ -155,7 +150,6 @@ class UserVM: ObservableObject {
     }
     
     func fetchCurrUser() async {
-        print("Fetching user")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         DispatchQueue.main.async{

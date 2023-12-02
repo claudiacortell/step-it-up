@@ -5,7 +5,9 @@
 //  Created by Phillip Le on 11/8/23.
 //
 
+
 import Foundation
+import SwiftUI
 
 enum HealthKitRetrievalInt{
     case success(Int)
@@ -30,6 +32,11 @@ enum Upload{
 enum CreatedGroup{
     case success(String)
     case failure(String)
+}
+
+enum FetchImage{
+    case success(UIImage)
+    case notFound
 }
 
 enum FetchUser{

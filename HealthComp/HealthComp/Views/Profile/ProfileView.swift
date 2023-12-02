@@ -10,6 +10,9 @@ struct ProfileView: View {
     @EnvironmentObject var leaderboardModel: LeaderBoardVM
     @EnvironmentObject var groupModel: GroupVM
     @EnvironmentObject var goalModel: GoalVM
+    @EnvironmentObject var imageUtil: ImageUtilObservable
+    
+    @State private var didFetchProfilePhoto = false // Track if profile photo was fetched
     private var fetchCount: Int  = 0
     private func signOutAction() {
         healthModel.signOut()
@@ -36,11 +39,14 @@ struct ProfileView: View {
                     }.padding(.trailing)
                 }
                 if let user = userModel.currentUser{
+                    if let image = imageUtil.imageUtils.userPhotos[user.id]{
+                        Image(uiImage: image)
+                    }
                     ProfileHeaderView(user: user)
                         .padding(.bottom, 20)
                     HStack(){
                         ProfileHealthStats()
-                        if let goal = goalModel.userGoal{
+                        if let _ = goalModel.userGoal{
                             ProgressBarView()
                         } else {
                             SetGoalView()

@@ -28,16 +28,16 @@ struct SetGoalView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                         }
-                    }).accentColor(Color("dark-text"))
+                    }).accentColor(Color("accent-text"))
                 } else {
                     VStack{
                         Text("Think big!")
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color("dark-text"))
+                            .foregroundColor(Color("accent-text"))
                         ZStack{
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width:2*(UIScreen.main.bounds.width/3)-50, height: 50)
-                                .foregroundColor(Color("gray")) // Set your desired outline color here
+                                .foregroundColor(Color("gray-text")) // Set your desired outline color here
                                 .opacity(0.5)
                             TextField("10,000", text: $newGoal)
                                 .font(.system(size: 16, weight: .semibold))

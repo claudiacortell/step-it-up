@@ -40,7 +40,7 @@ struct ProgressBarView: View {
                             
                             Text("Your current goal")
                                 .font(.system(size: 12, weight: .semibold))
-                                .foregroundColor(Color("gray"))
+                                .foregroundColor(Color("gray-text"))
                             
                         }.padding(.top,20)
                         
@@ -61,7 +61,7 @@ struct ProgressBarView: View {
                             .onAppear{
                                 if colorScheme == .dark{
                                     self.endColorIn = Color("light-blue")
-                                    self.startColorIn = Color("gray")
+                                    self.startColorIn = Color("gray-text")
                                 }
                             }
                         
@@ -75,7 +75,7 @@ struct ProgressBarView: View {
                             VStack(alignment: .leading){
                                 Text("Today")
                                     .font(.system(size: 12))
-                                    .foregroundColor(Color("gray"))
+                                    .foregroundColor(Color("gray-text"))
 //                                Text("15%")
                                 let dailyPercentage = Int(dailyProgress*100)
                                 Text("\(dailyPercentage)%")
@@ -93,7 +93,7 @@ struct ProgressBarView: View {
                             VStack(alignment: .leading){
                                 Text("Week average")
                                     .font(.system(size: 12))
-                                    .foregroundColor(Color("gray"))
+                                    .foregroundColor(Color("gray-text"))
                                 let weeklyPercentage = Int(weeklyProgress * 100)
                                 Text("\(weeklyPercentage)%")
                                     .font(.system(size: 16, weight: .semibold))
@@ -107,15 +107,12 @@ struct ProgressBarView: View {
                         if let dailyStep = newData.dailyStep {
                             dailySteps = dailyStep
                             dailyProgress = Double(dailySteps) / Double(goal.goal)
-                            print(dailyProgress)
-                            print(dailySteps)
                         } else {
                             dailyProgress = 0.0
                         }
                         if let weeklyStep = newData.weeklyStep{
                             weeklySteps = weeklyStep/7
                             weeklyProgress = Double(weeklySteps) / Double(goal.goal)
-                            print(weeklyProgress)
 
                         } else {
                             weeklyProgress = 0.0

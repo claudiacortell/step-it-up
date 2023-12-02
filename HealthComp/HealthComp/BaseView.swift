@@ -14,7 +14,6 @@ struct BaseView: View {
     @EnvironmentObject var feedModel: FeedVM
     
     var body: some View {
-
         TabView {
             ProfileView()
                 .tabItem {

@@ -7,6 +7,7 @@ struct HealthCompApp: App {
     init() {
         FirebaseApp.configure()
     }
+    @StateObject var imageUtil = ImageUtilObservable()
     @StateObject var userModel = UserVM()
     @StateObject var healthModel = HealthVM()
     
@@ -15,6 +16,7 @@ struct HealthCompApp: App {
             ContentView()
                 .environmentObject(userModel)
                 .environmentObject(healthModel)
+                .environmentObject(imageUtil)
         }
     }
 }
