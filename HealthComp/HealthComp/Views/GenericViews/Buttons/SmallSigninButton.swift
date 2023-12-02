@@ -11,7 +11,7 @@ struct SmallSigninButton: View {
     var body: some View {
             HStack{
                 Text ("Already have an account?")
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color("button-accent"))
                 Text ("Sign in")
                     .foregroundColor(Color.gray)
             }

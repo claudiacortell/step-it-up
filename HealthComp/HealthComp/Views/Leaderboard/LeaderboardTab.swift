@@ -72,10 +72,10 @@ struct LeaderboardTab: View {
             
         }.onAppear{
             Task{
-                await leaderboardModel.makeUserHealth()
+                leaderboardModel.makeUserHealth()
                 leaderboardModel.sortUsers()
             }
-        }
+        }.padding(.top)
     }
     
 }

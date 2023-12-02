@@ -131,7 +131,7 @@ struct GroupCreationView: View {
             }
             Spacer()
         }.sheet(isPresented: $sheetPresented) {
-            print("Sheet dismissed!")
+//            print("Sheet dismissed!")
         } content: {
             SuccessView(message: "Successfully created group!")
         }
