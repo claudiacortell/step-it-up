@@ -15,13 +15,13 @@ struct LeaderboardView: View {
     @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {
-        ZStack{
-            
-            Color("dark-blue")
-            
-            NavigationStack{
+        NavigationStack{
+            ZStack{
+                Color(.greyToBlack)
+                    .ignoresSafeArea(.all)
                 VStack{
                     TabView{
+                    
                         //showing friends
                         LeaderboardTab()
                         
@@ -31,12 +31,9 @@ struct LeaderboardView: View {
                         }
                     }
                     .tabViewStyle(.page)
-
-                
                 }
-                
-            }.navigationBarBackButtonHidden()
-        }
+            }
+        }.navigationBarBackButtonHidden()
     }
 }
 

@@ -24,7 +24,6 @@ struct FeedView: View {
                     MakePostView()
                 })
                 .sheet(isPresented: $sheetPresented) {
-                    print("Sheet dismissed!")
                 } content: {
                     CreatePostView()
                 }
