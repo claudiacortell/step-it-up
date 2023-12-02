@@ -1,29 +1,46 @@
 import SwiftUI
 
-import SwiftUI
-
 struct GroupsDetailView: View {
-    @State private var isMemberAdded: Bool = false
-    let group: Group_user
-
+    let groups: [Group_user]
+    @EnvironmentObject var groupModel: GroupVM
+    
     var body: some View {
-        VStack {
-            Text(group.name)
-                .font(.title)
-                .padding()
-                .lineLimit(nil)
-
-            Text("Total Members: \(group.members.count)")
-                .font(.title3)
-            ScrollView{
-                LazyHGrid(rows: [GridItem(), GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.01) {
-                    ForEach(group.members) { friend in
-                        GroupMember(curr_user: friend.user)
+        ZStack(alignment: .topTrailing) {
+            ScrollView {
+                VStack(spacing: UIScreen.main.bounds.height * 0.02) {
+                    Text("My Groups")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding()
+                    
+                    Text("Currently an active member of \(groupModel.user_groups.count) groups!")
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem()], spacing: UIScreen.main.bounds.width * 0.05) {
+                        ForEach(Array(groupModel.user_groups.values.enumerated()), id: \.element.id) { index, group in
+                            NavigationLink {
+                                GroupsView(group: group)
+                            } label: {
+                                GroupCell(group: group, rowIndex: index / 2, columnIndex: index % 2)
+                            }
+                        }
                     }
+                    .padding()
                 }
             }
-            .padding()
+            NavigationLink {
+                GroupCreationView()
+            } label: {
+               
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                        .padding()
+                        .font(.title)
+                
+            }
+            
         }
+        
     }
 }
+
 

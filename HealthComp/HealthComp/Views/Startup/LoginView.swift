@@ -15,21 +15,18 @@ struct LoginView: View {
 
     var body: some View {
         NavigationStack{
-            if success == false {
-                VStack(){
-                    Logo()
-                    CustomTextField(title: "email", placeholder: "", secure: false, autocap: false, text: $email)
-                    CustomTextField(title: "Password", placeholder: "", secure: true, autocap: false, text: $pw)
-                    Button {
-                        Task{
-                            if let result = try? await userModel.signIn(withEmail: email, password: pw){
-                                switch result{
-                                case .success:
-                                    success.toggle()
-                                case .failure(let message):
-    //                                self.errorMsg =  message
-                                    print(message)
-                                }
+            VStack(){
+                Logo()
+                CustomTextField(title: "email", placeholder: "", secure: false, autocap: false, text: $email)
+                CustomTextField(title: "Password", placeholder: "", secure: true, autocap: false, text: $pw)
+                Button {
+                    Task{
+                        if let result = try? await userModel.signIn(withEmail: email, password: pw){
+                            switch result{
+                            case .success:
+                                print("Success: Logged in")
+                            case .failure(let message):
+                                print(message)
                             }
                             
                         }

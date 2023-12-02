@@ -13,7 +13,7 @@ struct LoginButton: View{
         ZStack{
             RoundedRectangle(cornerRadius: 20.0)
                 .frame(width: UIScreen.main.bounds.width - 80, height: 50)
-                .foregroundColor(Color("dark-blue"))
+                .foregroundColor(Color("startup-button-color"))
             Text("Log In")
                 .font(.system(size: 16, weight: .semibold))
         }

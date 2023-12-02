@@ -16,6 +16,7 @@ import SwiftUI
 class GoalVM: ObservableObject {
     @Published var userGoal: Goal?
     var fetchTime: Int = 0
+    
     init(){
         Task{
             if fetchTime == 0{

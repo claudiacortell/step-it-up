@@ -18,7 +18,7 @@ struct LeaderboardMessage: View {
 
     var body: some View {
         Text(messageText()).font(.system(size: 16, weight: .semibold)).foregroundColor(Color("dark-blue")).padding(.bottom, 10).multilineTextAlignment(.center)
-            .lineLimit(nil).frame(width: UIScreen.main.bounds.width - 100, height: 100)
+            .lineLimit(nil).frame(width: UIScreen.main.bounds.width - 100, height: 80)
     }
     
     func messageText() -> String {

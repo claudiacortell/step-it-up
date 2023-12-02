@@ -75,7 +75,7 @@ struct LeaderboardTab: View {
                 leaderboardModel.makeUserHealth()
                 leaderboardModel.sortUsers()
             }
-        }
+        }.padding(.top)
     }
     
 }

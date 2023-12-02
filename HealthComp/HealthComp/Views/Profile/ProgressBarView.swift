@@ -23,6 +23,7 @@ struct ProgressBarView: View {
     @State var startColorIn: Color = Color("light-blue")
     @State var endColorIn: Color = Color("medium-blue")
 
+    @Binding var editViewPresented: Bool
 
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
@@ -41,6 +42,12 @@ struct ProgressBarView: View {
                             Text("Your current goal")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(Color("gray-text"))
+                            Image(systemName: "pencil")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    self.editViewPresented.toggle()
+                                }
                             
                         }.padding(.top,20)
                         
@@ -53,10 +60,12 @@ struct ProgressBarView: View {
                                 .data([weeklyProgress * 100])
                                 .chartStyle(ChartStyle(backgroundColor: .clear, foregroundColor: gradientIn))
                                 .frame(width: UIScreen.main.bounds.width/2-120)
+                                .allowsHitTesting(false)
                             RingsChart()
                                 .data([dailyProgress * 100])
                                 .chartStyle(ChartStyle(backgroundColor: .clear, foregroundColor: gradientOut))
                                 .frame(width: UIScreen.main.bounds.width/2-90)
+                                .allowsHitTesting(false)
                         }.padding(.bottom)
                             .onAppear{
                                 if colorScheme == .dark{
@@ -126,6 +135,6 @@ struct ProgressBarView: View {
     }
 
 
-#Preview {
-    ProgressBarView()
-}
+//#Preview {
+//    ProgressBarView()
+//}

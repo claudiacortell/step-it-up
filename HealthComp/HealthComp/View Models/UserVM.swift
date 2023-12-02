@@ -95,6 +95,14 @@ class UserVM: ObservableObject {
         }
     }
     
+    
+    func isPasswordValid(password: String) -> Bool {
+        if password.count < 6{
+            return false
+        }
+        return true
+    }
+    
     func addPost(postId: String) {
         if self.currentUser?.posts == nil {
             self.currentUser?.posts = [postId]
