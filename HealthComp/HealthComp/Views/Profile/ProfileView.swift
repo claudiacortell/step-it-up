@@ -68,7 +68,7 @@ struct ProfileView: View {
                         // use the view model
                         FriendsView(friends: Array(friendModel.user_friends.values))
                     } label: {
-                        EmbeddedFriendsView(friends: Array(friendModel.user_friends.values))
+                        EmbeddedFriendsView()
                     }.accentColor(Color("button-accent"))
                         .padding(.vertical, 15)
                     HStack{
@@ -85,6 +85,23 @@ struct ProfileView: View {
                                 GroupListItem(group: group)
                             }.accentColor(Color("button-accent"))
 
+                        }
+                    }
+                }
+            }
+            .refreshable {
+                Task{
+                    await userModel.fetchCurrUser()
+                    await goalModel.fetchGoal()
+                    healthModel.fetchAllHealthData()
+                    if let friends_id = self.userModel.currentUser?.friends {
+                        if friends_id.count > 0 {
+                            await friendModel.fetchFriends(friend_ids: friends_id)
+                        }
+                    }
+                    if let groups_id = self.userModel.currentUser?.groups {
+                        if groups_id.count > 0 {
+                            await groupModel.fetchGroups(groups: groups_id)
                         }
                     }
                 }
