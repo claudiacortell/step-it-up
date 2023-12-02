@@ -11,6 +11,7 @@ struct ProfileView: View {
     @EnvironmentObject var groupModel: GroupVM
     @EnvironmentObject var goalModel: GoalVM
     
+    @State var editGoalPresented = false
     @State var signoutConfirmPresented = false
     private var fetchCount: Int  = 0
     private func signOutAction() {
@@ -56,10 +57,10 @@ struct ProfileView: View {
                         .padding(.bottom, 20)
                     HStack(){
                         ProfileHealthStats()
-                        if let goal = goalModel.userGoal{
-                            ProgressBarView()
+                        if let goal = goalModel.userGoal, !self.editGoalPresented {
+                            ProgressBarView(editViewPresented: $editGoalPresented)
                         } else {
-                            SetGoalView()
+                            SetGoalView(clicked: editGoalPresented, isPresented: $editGoalPresented)
                         }
                     }.padding(.horizontal)
                     

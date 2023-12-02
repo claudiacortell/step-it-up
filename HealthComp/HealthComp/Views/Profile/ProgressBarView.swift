@@ -23,6 +23,7 @@ struct ProgressBarView: View {
     @State var startColorIn: Color = Color("light-blue")
     @State var endColorIn: Color = Color("medium-blue")
 
+    @Binding var editViewPresented: Bool
 
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
@@ -41,6 +42,12 @@ struct ProgressBarView: View {
                             Text("Your current goal")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(Color("gray"))
+                            Image(systemName: "pencil")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    self.editViewPresented.toggle()
+                                }
                             
                         }.padding(.top,20)
                         
@@ -129,6 +136,6 @@ struct ProgressBarView: View {
     }
 
 
-#Preview {
-    ProgressBarView()
-}
+//#Preview {
+//    ProgressBarView()
+//}
