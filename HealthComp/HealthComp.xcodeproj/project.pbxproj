@@ -79,8 +79,8 @@
 		75E5629A2B170E7D002DD8BC /* MakePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E562992B170E7D002DD8BC /* MakePostView.swift */; };
 		7F173D612B0A793D0066E2A5 /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D602B0A793D0066E2A5 /* GroupMember.swift */; };
 		7F173D632B0A7A8B0066E2A5 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F173D622B0A7A8B0066E2A5 /* GroupCell.swift */; };
-		7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */; };
-		7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */; };
+		7F59B3FE2AFFDB1500D3B24A /* GroupsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FD2AFFDB1500D3B24A /* GroupsDetailView.swift */; };
+		7F59B4002AFFDB2300D3B24A /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59B3FF2AFFDB2300D3B24A /* GroupsView.swift */; };
 		7FD51DEB2AFC436B006F1BA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */; };
 		9D8409272B16E88B005FF535 /* ProfileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8409262B16E88B005FF535 /* ProfileIcon.swift */; };
 		9DF207082AFFF92600C8AE37 /* HealthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF207072AFFF92600C8AE37 /* HealthVM.swift */; };
@@ -156,8 +156,8 @@
 		75E562992B170E7D002DD8BC /* MakePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostView.swift; sourceTree = "<group>"; };
 		7F173D602B0A793D0066E2A5 /* GroupMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
 		7F173D622B0A7A8B0066E2A5 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
-		7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
+		7F59B3FD2AFFDB1500D3B24A /* GroupsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailView.swift; sourceTree = "<group>"; };
+		7F59B3FF2AFFDB2300D3B24A /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		7FD51DEA2AFC436B006F1BA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9D8409262B16E88B005FF535 /* ProfileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIcon.swift; sourceTree = "<group>"; };
 		9DF207072AFFF92600C8AE37 /* HealthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthVM.swift; sourceTree = "<group>"; };
@@ -352,13 +352,13 @@
 		75A558262B184C1500AB0640 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				7F59B3FD2AFFDB1500D3B24A /* GroupsView.swift */,
+				7F59B3FD2AFFDB1500D3B24A /* GroupsDetailView.swift */,
 				754536312B042C6C00567E8D /* GroupCreationView.swift */,
 				7F173D622B0A7A8B0066E2A5 /* GroupCell.swift */,
 				75A5582C2B18EB0200AB0640 /* GroupListItem.swift */,
 				7F173D602B0A793D0066E2A5 /* GroupMember.swift */,
 				75A558242B184BFC00AB0640 /* GroupFriend.swift */,
-				7F59B3FF2AFFDB2300D3B24A /* GroupsDetailView.swift */,
+				7F59B3FF2AFFDB2300D3B24A /* GroupsView.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -514,7 +514,7 @@
 				75AD009F2AFC0557004F28D2 /* GroupVM.swift in Sources */,
 				7594E1F42B16A12300E33A10 /* TodayStats.swift in Sources */,
 				75AD00A32AFC0582004F28D2 /* FriendVM.swift in Sources */,
-				7F59B3FE2AFFDB1500D3B24A /* GroupsView.swift in Sources */,
+				7F59B3FE2AFFDB1500D3B24A /* GroupsDetailView.swift in Sources */,
 				75B7D2872B009D88004E5DE0 /* ImageUtil.swift in Sources */,
 				758B751B2B04750C00230CCC /* Health.swift in Sources */,
 				7594E2062B16D9E700E33A10 /* PostComment.swift in Sources */,
@@ -534,7 +534,7 @@
 				75A558112B1842F200AB0640 /* RegistrationHeader.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75A5581A2B18453500AB0640 /* LikeCommentButton.swift in Sources */,
-				7F59B4002AFFDB2300D3B24A /* GroupsDetailView.swift in Sources */,
+				7F59B4002AFFDB2300D3B24A /* GroupsView.swift in Sources */,
 				7594E2042B16D87300E33A10 /* NoContentPost.swift in Sources */,
 				7545362F2B042C5800567E8D /* FriendSearchView.swift in Sources */,
 				75AD00992AFB0551004F28D2 /* PostView.swift in Sources */,
