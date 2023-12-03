@@ -14,7 +14,6 @@ struct BaseView: View {
     @EnvironmentObject var feedModel: FeedVM
     
     var body: some View {
-
         TabView {
             ProfileView()
                 .tabItem {
@@ -37,7 +36,8 @@ struct BaseView: View {
                 .tabItem {
                     Label("", systemImage: "chart.bar.fill")
                 }
-        }.padding(.top)
+                
+        }.padding(.top).ignoresSafeArea(edges: .top)
     }
 
 }

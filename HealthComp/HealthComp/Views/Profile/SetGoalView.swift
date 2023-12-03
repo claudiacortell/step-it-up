@@ -12,6 +12,7 @@ struct SetGoalView: View {
     @State private var newGoal: String = ""
     @EnvironmentObject var goalModel: GoalVM
     @EnvironmentObject var userModel: UserVM
+    @Binding var isPresented: Bool
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .frame(width: 2*(UIScreen.main.bounds.width/3)-30, height: 225)
@@ -51,6 +52,7 @@ struct SetGoalView: View {
                                     if let user = userModel.currentUser{
                                         await goalModel.writeGoal(userId: user.id, goal: Goal(goal: Int(newGoal)!))
                                     }
+                                    isPresented = false
                                 }
                             }, label: {
                                 Image(systemName: "arrow.right.circle.fill")
@@ -67,6 +69,7 @@ struct SetGoalView: View {
     }
 }
 
-#Preview {
-    SetGoalView()
-}
+//#Preview {
+//    SetGoalView()
+//}
+

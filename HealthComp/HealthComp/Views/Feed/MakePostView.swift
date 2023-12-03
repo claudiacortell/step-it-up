@@ -16,12 +16,12 @@ struct MakePostView: View {
             .overlay{
                 HStack{
                     if let user = userModel.currentUser{
-                        ProfileIcon(pfp: user.pfp, size: 50)
+                        ProfileIcon(userId: user.id, size: 50)
                     }
                     
                     Text("What's on your mind?")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(Color("gray"))
+                        .foregroundColor(Color("gray-text"))
                     Spacer()
                 }.padding()
             }

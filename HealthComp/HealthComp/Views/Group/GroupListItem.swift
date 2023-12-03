@@ -21,7 +21,7 @@ struct GroupListItem: View {
                     .font(.system(size: 16, weight: .semibold))
                 HStack(spacing: 2){
                     ForEach(Array(group.members.prefix(4))) { friend in
-                        ProfileIcon(pfp: friend.user.pfp, size: 25)
+                        ProfileIcon(userId: friend.user.id, size: 25)
                     }
                     if group.members.count > 4{
                         Circle()
@@ -47,7 +47,7 @@ struct GroupListItem: View {
             RoundedRectangle(cornerRadius: 30)
                 .stroke(lineWidth: 2)
                 .frame(width: UIScreen.main.bounds.width - 30, height: 90)
-                .foregroundColor(Color("gray")) // Set your desired outline color here
+                .foregroundColor(Color("gray-text")) // Set your desired outline color here
                 .opacity(0.5)
         )
 

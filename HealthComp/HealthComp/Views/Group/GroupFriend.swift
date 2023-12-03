@@ -14,13 +14,13 @@ struct GroupFriend: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(isSelected ? Color("light-green") : Color("gray"))
+                .fill(isSelected ? Color("light-green") : Color("gray-text"))
                 .frame(height: 60)
                 .onTapGesture {
                     self.isSelected.toggle()
                 }
             HStack {
-                ProfileIcon(pfp: friend.user.pfp, size: 40)
+                ProfileIcon(userId: friend.user.id, size: 40)
                     .padding(.leading)
                 Text("\(friend.user.name)")
                     .padding(.horizontal)

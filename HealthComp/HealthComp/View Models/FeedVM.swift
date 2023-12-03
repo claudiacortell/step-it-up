@@ -111,7 +111,9 @@ class FeedVM: ObservableObject {
             }
 
             for await userPosts in group {
-                self.user_feed.append(contentsOf: userPosts)
+                DispatchQueue.main.async{
+                    self.user_feed.append(contentsOf: userPosts)
+                }
             }
         }
         self.sortPost()

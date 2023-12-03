@@ -10,6 +10,11 @@ struct ProfileView: View {
     @EnvironmentObject var leaderboardModel: LeaderBoardVM
     @EnvironmentObject var groupModel: GroupVM
     @EnvironmentObject var goalModel: GoalVM
+    @EnvironmentObject var imageUtil: ImageUtilObservable
+    @State private var didFetchProfilePhoto = false // Track if profile photo was fetched    
+    @State var editGoalPresented = false
+    @State var signoutConfirmPresented = false
+
     private var fetchCount: Int  = 0
     private func signOutAction() {
         healthModel.signOut()
@@ -27,31 +32,50 @@ struct ProfileView: View {
                     HStack{
                         Spacer()
                         Button {
-                            signOutAction()
+                            signoutConfirmPresented = true
                         } label: {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                         }.accentColor(Color("button-accent"))
+                            .alert(isPresented: $signoutConfirmPresented, content: {
+                                Alert(
+                                    title: Text("Confirm"),
+                                    message: Text("Are you sure you want to sign out?"),
+                                    primaryButton: .default(
+                                        Text("Sign Out"),
+                                        action: signOutAction
+                                    ),
+                                    secondaryButton: .default(
+                                        Text("Cancel"),
+                                        action: {}
+                                    )
+                                    )
+                            })
                     }.padding(.trailing)
                 }
                 if let user = userModel.currentUser{
+                    if let image = imageUtil.imageUtils.userPhotos[user.id]{
+                        Image(uiImage: image)
+                    }
                     ProfileHeaderView(user: user)
                         .padding(.bottom, 20)
                     HStack(){
                         ProfileHealthStats()
-                        if let goal = goalModel.userGoal{
-                            ProgressBarView()
+
+                        if let goal = goalModel.userGoal, !self.editGoalPresented {
+                            ProgressBarView(editViewPresented: $editGoalPresented)
                         } else {
-                            SetGoalView()
+                            SetGoalView(clicked: editGoalPresented, isPresented: $editGoalPresented)
                         }
+                        
                     }.padding(.horizontal)
                     
                     NavigationLink {
                         // use the view model
                         FriendsView(friends: Array(friendModel.user_friends.values))
                     } label: {
-                        EmbeddedFriendsView(friends: Array(friendModel.user_friends.values))
+                        EmbeddedFriendsView()
                     }.accentColor(Color("button-accent"))
                         .padding(.vertical, 15)
                     HStack{
@@ -63,7 +87,7 @@ struct ProfileView: View {
                     VStack(){
                         ForEach(Array(groupModel.user_groups.values)){ group in
                             NavigationLink {
-                                GroupsDetailView(group: group)
+                                GroupsDetailView(groups: group)
                             } label: {
                                 GroupListItem(group: group)
                             }.accentColor(Color("button-accent"))
@@ -71,9 +95,23 @@ struct ProfileView: View {
                         }
                     }
                 }
-
-
-                
+            }
+            .refreshable {
+                Task{
+                    await userModel.fetchCurrUser()
+                    await goalModel.fetchGoal()
+                    healthModel.fetchAllHealthData()
+                    if let friends_id = self.userModel.currentUser?.friends {
+                        if friends_id.count > 0 {
+                            await friendModel.fetchFriends(friend_ids: friends_id)
+                        }
+                    }
+                    if let groups_id = self.userModel.currentUser?.groups {
+                        if groups_id.count > 0 {
+                            await groupModel.fetchGroups(groups: groups_id)
+                        }
+                    }
+                }
             }
         }
     }

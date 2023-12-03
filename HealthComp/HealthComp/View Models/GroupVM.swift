@@ -40,11 +40,9 @@ class GroupVM: ObservableObject {
     // Make sure that the current user is in the list
     func fillGroupStruct(groups: [Group_id]) async {
         for group in groups{
-            print(group.name)
             var new_group = Group_user(id: group.id, name: group.name, pfp: "", members: [])
             do {
                 for id in group.members{
-
                     if id == userModel.currentUser?.id{
                         if let user = userModel.currentUser{
                             var hd = HealthData(dailyStep: 0, dailyMileage: 0.0, weeklyStep: 0, weeklyMileage: 0.0)
@@ -61,7 +59,6 @@ class GroupVM: ObservableObject {
                         new_group.members.append(user)
                         continue
                     } else {
-                        print("else fetching the group user")
                         do{
                             let result = try await self.userModel.fetchUser(id: id)
                             switch result {
@@ -72,9 +69,7 @@ class GroupVM: ObservableObject {
                                     case .success(let healthData):
                                         let loadedUserHealth = UserHealth(id: user.id, user: user, data: healthData)
                                         self.user_cache[user.id] = loadedUserHealth
-                                        print("this is loaded user health: \(loadedUserHealth)")
                                         new_group.members.append(loadedUserHealth)
-                                        
                                     case .failure(_):
                                         print("Error fetching data in fillGroupStruct for \(id)")
                                     }

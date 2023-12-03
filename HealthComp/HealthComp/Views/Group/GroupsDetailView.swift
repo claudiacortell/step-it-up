@@ -1,9 +1,8 @@
 import SwiftUI
 
 struct GroupsDetailView: View {
-    
-    
-    let group: Group_user
+    let groups: Group_user
+    @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {
         ScrollView {

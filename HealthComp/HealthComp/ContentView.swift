@@ -10,9 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var userModel: UserVM
     @EnvironmentObject var healthModel: HealthVM
+    @EnvironmentObject var imageUtil: ImageUtilObservable
     
     var body: some View {
-        let friendModel = FriendVM(userModel: userModel)
+        let friendModel = FriendVM(userModel: userModel, imageUtil: imageUtil)
         let groupModel = GroupVM(userModel: userModel, healthModel: healthModel, friendModel: friendModel)
         let feedModel = FeedVM(userModel: userModel, friendModel: friendModel)
         let goalModel = GoalVM()

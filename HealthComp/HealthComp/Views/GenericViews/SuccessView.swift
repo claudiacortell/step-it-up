@@ -24,7 +24,7 @@ struct SuccessView: View {
                     VStack{
                         Text(message)
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("button-accent"))
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)

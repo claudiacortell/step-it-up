@@ -44,18 +44,19 @@ struct GroupCreationView: View {
                             .foregroundColor(Color("medium-green"))
                     }
                 }
-                
-            }.onChange(of: selectedItem) { newValue in
+            }.onChange(of: selectedItem) {
                 Task {
-                    if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                        ui_selectedImage = UIImage(data: data)
-                        selectedImage = Image(uiImage: ui_selectedImage!)
+                    if selectedItem != nil {
+                        if let data = try? await selectedItem!.loadTransferable(type: Data.self) {
+                            ui_selectedImage = UIImage(data: data)
+                            selectedImage = Image(uiImage: ui_selectedImage!)
+                        }
                     }
                 }
             }
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(Color("gray"))
+                    .fill(Color("gray-text"))
                     .frame(height: 60)
                     .padding(.horizontal)
                 TextField("Group name", text: $groupName)
@@ -66,17 +67,16 @@ struct GroupCreationView: View {
             Text("Add Friends to Group")
                 .font(.system(size: 18, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            ZStack {
+                .padding(.leading)
                 ScrollView {
                     VStack {
                         let friends = Array(friendModel.user_friends.values)
                         ForEach(friends) { friend in
                             GroupFriend(isSelected: self.binding(for: friend), friend: friend)
-                                .padding(.horizontal)
+                                .padding(.vertical, 5)
                         }
                     }
-                }
+                }.frame(height: UIScreen.main.bounds.height/2.5)
                 VStack {
                     Spacer()
                     ZStack {
@@ -101,8 +101,8 @@ struct GroupCreationView: View {
                                             sheetPresented.toggle()
                                             groupName = ""
                                             selectedMembers = [:]
-                                        case .failure(let msg):
-                                            print(msg)
+                                        case .failure(let error):
+                                            print(error)
                                         }
                                     }
                                 }
@@ -121,17 +121,19 @@ struct GroupCreationView: View {
                     .onAppear{
                         if colorScheme == .dark{
                             self.buttonColor = Color("light-green")
-                            self.buttonTextColor = Color("gray")
+                            self.buttonTextColor = Color("gray-text")
                         } else if colorScheme == .light{
                             self.buttonColor = Color("medium-green")
                             self.buttonTextColor = Color("dark-blue")
                         }
                     }
                 }
-            }
+            
             Spacer()
         }.sheet(isPresented: $sheetPresented) {
-            print("Sheet dismissed!")
+            self.groupName = ""
+            self.selectedMembers = [:]
+            self.selectedImage = nil
         } content: {
             SuccessView(message: "Successfully created group!")
         }
@@ -145,7 +147,3 @@ struct GroupCreationView: View {
     }
 }
 
-#Preview {
-    GroupCreationView()
-    //GroupFriend(friend: currentUser)
-}

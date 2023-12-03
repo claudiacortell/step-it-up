@@ -21,7 +21,7 @@ struct LeaderboardCell: View{
             HStack {
                 Text("\(leaderboardPosition).").fontWeight(.bold).foregroundColor(Color("const-navy"))
                                     .padding(.trailing, 8)
-                ProfileIcon(pfp: user.user.pfp, size: 40)
+                ProfileIcon(userId: user.user.id, size: 40)
                 Spacer()
                 Text(user.user.name)
                     .foregroundColor(Color("const-navy"))

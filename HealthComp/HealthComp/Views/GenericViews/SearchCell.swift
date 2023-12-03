@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SearchCell: View {
     let friend: User
-    @EnvironmentObject var friendMdoel: FriendVM
+    @EnvironmentObject var friendModel: FriendVM
     @State private var isFriendAdded = false
     @State private var sheetPresented = false
     
     
     var body: some View {
         HStack {
-            ProfileIcon(pfp: friend.pfp, size: 40)
+            ProfileIcon(userId: friend.id, size: 40)
             
             VStack(alignment: .leading) {
                 Text(friend.name)
@@ -25,28 +25,30 @@ struct SearchCell: View {
             }
             
             Spacer()
-            if isFriendAdded == false{
-                Button(action: {
-                    // Call a function from
-                    Task{
-                        await friendMdoel.addFriend(friendId: friend.id)
+            if !friendModel.user_friends.keys.contains(friend.id) {
+                if isFriendAdded == false{
+                    Button(action: {
+                        // Call a function from
+                        Task{
+                            await friendModel.addFriend(friendId: friend.id)
+                        }
+                        isFriendAdded.toggle()
+                        sheetPresented.toggle()
+                    }) {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .foregroundColor(Color("medium-green"))
+                            .frame(width: 20, height: 20)
                     }
-                    isFriendAdded.toggle()
-                    sheetPresented.toggle()
-                }) {
-                    Image(systemName: "plus.circle")
+                }else{
+                    Image(systemName: "checkmark.circle.fill")
                         .resizable()
-                        .foregroundColor(Color("medium-green"))
+                        .foregroundColor(Color("dark-blue"))
                         .frame(width: 20, height: 20)
                 }
-            }else{
-                Image(systemName: "checkmark.circle.fill")
-                    .resizable()
-                    .foregroundColor(Color("dark-blue"))
-                    .frame(width: 20, height: 20)
             }
         }.sheet(isPresented: $sheetPresented) {
-            print("Sheet dismissed!")
+
         } content: {
             SuccessView(message: "Added \(friend.name) as a friend!")
         }

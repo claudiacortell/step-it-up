@@ -11,7 +11,7 @@ struct GroupMember: View {
     var curr_user: User
     var body: some View {
         VStack {
-            ProfileIcon(pfp: curr_user.pfp, size: 100)
+            ProfileIcon(userId: curr_user.id, size: 100)
             Text(curr_user.name)
                 .foregroundColor(Color("dark-blue"))
                 .bold()

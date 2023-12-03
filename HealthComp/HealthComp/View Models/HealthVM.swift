@@ -31,7 +31,6 @@ class HealthVM: ObservableObject {
         let distance = HKQuantityType(.distanceWalkingRunning)
         let healthTypes: Set = [steps, distance]
         Task{
-            print("In health init")
             do{
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
@@ -225,7 +224,6 @@ class HealthVM: ObservableObject {
                 if let error = error {
                     print("Error writing health data to Firestore: \(error.localizedDescription)")
                 } else {
-                    print("Health data written to Firestore successfully")
                 }
             }
         } catch {
@@ -239,21 +237,6 @@ class HealthVM: ObservableObject {
         self.healthData = HealthData()
     }
         
-//        do {
-//            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-//            DispatchQueue.main.async{
-//                self.userSession = result.user
-//            }
-//            UserDefaults.standard.set(result.user.uid, forKey: "userId")
-//            UserDefaults.standard.set(name, forKey: "name")
-//            let new_user = User(id: result.user.uid, name: name, email: email, username: username, pfp: pfp_uri)
-//            let encoded_user = try Firestore.Encoder().encode(new_user)
-//            try await Firestore.firestore().collection("users").document(result.user.uid).setData(encoded_user)
-//            return .success(new_user.id)
-//        } catch {
-//            print(error.localizedDescription)
-//            return .failure(error.localizedDescription)
-//        }
 
 }
 

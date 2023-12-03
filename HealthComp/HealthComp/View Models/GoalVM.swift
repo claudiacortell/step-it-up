@@ -16,26 +16,33 @@ import SwiftUI
 class GoalVM: ObservableObject {
     @Published var userGoal: Goal?
     var fetchTime: Int = 0
+    
     init(){
         Task{
             if fetchTime == 0{
-                await self.fetchGoal()
+                self.fetchGoal()
             }
         }
     }
     
-    func fetchGoal() async{
+    func fetchGoal() {
         guard let user_id = UserDefaults.standard.string(forKey: "userId") else {
             print("User ID not found in UserDefaults")
             return
         }
-        guard let snapshot = try? await Firestore.firestore().collection("goals").document(user_id).getDocument() else {return}
-        if let goal = try? snapshot.data(as: Goal.self){
-            self.userGoal = goal
-            print(self.userGoal!)
-            self.fetchTime += 1
-        } else {
-            return
+        
+        Task {
+            do {
+                let snapshot = try await Firestore.firestore().collection("goals").document(user_id).getDocument()
+                DispatchQueue.main.async { [weak self] in
+                    if let goal = try? snapshot.data(as: Goal.self) {
+                        self?.userGoal = goal
+                        self?.fetchTime += 1
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
