@@ -15,7 +15,7 @@ struct GroupFriend: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(isSelected ? Color("light-green") : Color("gray-text"))
-                .frame(height: 60)
+                .frame(width: UIScreen.main.bounds.width - 20, height: 60)
                 .onTapGesture {
                     self.isSelected.toggle()
                 }

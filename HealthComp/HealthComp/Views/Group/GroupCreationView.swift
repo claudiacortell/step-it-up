@@ -80,7 +80,7 @@ struct GroupCreationView: View {
                 VStack {
                     Spacer()
                     ZStack {
-                        if selectedMembers.values.filter({ $0 }).count > 0 {
+                        if selectedMembers.values.filter({ $0 }).count > 0  && !groupName.trimmingCharacters(in: .whitespaces).isEmpty{
                             RoundedRectangle(cornerRadius: 25)
                                 .fill(buttonColor)
                                 .frame(width: UIScreen.main.bounds.width / 1.75, height: 50)

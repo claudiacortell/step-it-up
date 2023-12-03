@@ -87,7 +87,7 @@ struct ProfileView: View {
                     VStack(){
                         ForEach(Array(groupModel.user_groups.values)){ group in
                             NavigationLink {
-                                GroupsDetailView(groups: group)
+                                GroupsDetailView(group: group)
                             } label: {
                                 GroupListItem(group: group)
                             }.accentColor(Color("button-accent"))

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GroupsDetailView: View {
-    let groups: Group_user
+    let group: Group_user
     @EnvironmentObject var groupModel: GroupVM
     
     var body: some View {

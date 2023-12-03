@@ -14,13 +14,13 @@ struct FriendsView: View {
         NavigationView {
             VStack {
                 ScrollView{
-                    LazyVGrid(columns: [GridItem(), GridItem(), GridItem()], spacing: 2){
+                    LazyVGrid(columns: [GridItem(), GridItem(), GridItem()], spacing: 40){
                         ForEach(friends){ friend in
                             FriendCell(friend: friend)
                         }
                     }
                     .padding(.horizontal, 10)
-                    .padding(.top)
+                    .padding(.top, 25)
                 }
             }
         }
