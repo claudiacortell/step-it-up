@@ -65,10 +65,10 @@ struct ProfileView: View {
 
                         if let goal = goalModel.userGoal, !self.editGoalPresented {
                             ProgressBarView(editViewPresented: $editGoalPresented)
-
                         } else {
                             SetGoalView(clicked: editGoalPresented, isPresented: $editGoalPresented)
                         }
+                        
                     }.padding(.horizontal)
                     
                     NavigationLink {
@@ -87,7 +87,7 @@ struct ProfileView: View {
                     VStack(){
                         ForEach(Array(groupModel.user_groups.values)){ group in
                             NavigationLink {
-                                GroupsDetailView(group: group)
+                                GroupsDetailView(groups: group)
                             } label: {
                                 GroupListItem(group: group)
                             }.accentColor(Color("button-accent"))
