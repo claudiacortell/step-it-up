@@ -55,9 +55,6 @@ struct ProfileView: View {
                     }.padding(.trailing)
                 }
                 if let user = userModel.currentUser{
-                    if let image = imageUtil.imageUtils.userPhotos[user.id]{
-                        Image(uiImage: image)
-                    }
                     ProfileHeaderView(user: user)
                         .padding(.bottom, 20)
                     HStack(){
@@ -67,8 +64,7 @@ struct ProfileView: View {
                             ProgressBarView(editViewPresented: $editGoalPresented)
                         } else {
                             SetGoalView(clicked: editGoalPresented, isPresented: $editGoalPresented)
-                        }
-                        
+                        }                        
                     }.padding(.horizontal)
                     
                     NavigationLink {
