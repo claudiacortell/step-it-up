@@ -8,24 +8,13 @@ struct GroupsDetailView: View {
         ScrollView {
             VStack {
                 // Group Picture
-                Image(systemName: group.pfp) // Replace with your group picture
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: UIScreen.main.bounds.height * 0.05)
-                    .padding()
+                GroupImageIcon(groupId: group.id, size: 200)
                 
                 // Group Name
-                Text(group.name ?? "Unnamed")
+                Text(group.name)
                     .font(.custom("DIN Alternate",fixedSize: 36))
                     .bold()
                     .padding()
-                
-                
-                
-//                // Total Members
-//                Text("\(group.members.count) Members")
-//                    .font(.title2)
-                
                 
                 let totalSteps = group.members.reduce(0) { $0 + ($1.data.dailyStep ?? 0) }
             

@@ -22,13 +22,14 @@ struct FeedView: View {
                     sheetPresented.toggle()
                 }, label: {
                     MakePostView()
-                })
+                }).accentColor(.white)
                 .sheet(isPresented: $sheetPresented) {
                 } content: {
                     CreatePostView()
                 }
                 ForEach(feed) {post in
                     PostView(post: post)
+                        .padding(.horizontal,12)
                 }
             }
             .refreshable {

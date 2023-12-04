@@ -26,24 +26,41 @@ enum UploadError: Error {
 class ImageUtils: ObservableObject{
     @Published var postsPhotos: [String: UIImage] = [:]
     @Published var userPhotos: [String: UIImage] = [:]
+    @Published var groupPhotos: [String: UIImage] = [:]
 
-//    func fetchImage(userId: String, completion: @escaping (FetchImage) -> Void) {
-//        if let image = userPhotos[userId]{
-//            completion(.success(image))
-//        } else{
-//            completion(.notFound)
-//        }
-//    }
     
-    func fetchPostPhoto(postId: String){
-        let storageRef = Storage.storage().reference()
-        let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
-        fileRef.getData(maxSize: 1 * 1024 * 1024){ data, error in
-            if let error = error{
-                print("Fetching \(postId) image: ",error.localizedDescription)
-            } else {
-                let image = UIImage(data: data!)
-                self.postsPhotos[postId] = image
+    func fetchPostPhoto(postId: String, completion: @escaping (FetchImage) -> Void) {
+        if let image = postsPhotos[postId]{
+            completion(.success(image))
+        } else{
+            let storageRef = Storage.storage().reference()
+            let fileRef = storageRef.child("posts-attachment/\(postId).jpg")
+            fileRef.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                if let _ = error {
+//                    print("")
+                } else if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    self.postsPhotos[postId] = image
+                    completion(.success(image!))
+                }
+            }
+        }
+    }
+    
+    func fetchGroupPhoto(groupId: String, completion: @escaping (FetchImage) -> Void) {
+        if let image = groupPhotos[groupId]{
+            completion(.success(image))
+        } else{
+            let storageRef = Storage.storage().reference()
+            let fileRef = storageRef.child("group-icon/\(groupId).jpg")
+            fileRef.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                if let _ = error {
+//                    print("")
+                } else if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    self.groupPhotos[groupId] = image
+                    completion(.success(image!))
+                }
             }
         }
     }
@@ -51,16 +68,13 @@ class ImageUtils: ObservableObject{
     func fetchProfilePhoto(userId: String, completion: @escaping (FetchImage) -> Void) {
         if let image = userPhotos[userId]{
             completion(.success(image))
-            print("Got from cache")
         } else{
-            print("Got from database")
             let storageRef = Storage.storage().reference()
             let fileRef = storageRef.child("profile-images/\(userId)-pfp.jpg")
             fileRef.getData(maxSize: 1 * 5000 * 5000) { data, error in
-                if let error = error {
-                    print(error)
+                if let _ = error {
+//                    print(error)
                 } else if let imageData = data {
-                    print("Fetched \(userId) image")
                     let image = UIImage(data: imageData)
                     self.userPhotos[userId] = image
                     completion(.success(image!))

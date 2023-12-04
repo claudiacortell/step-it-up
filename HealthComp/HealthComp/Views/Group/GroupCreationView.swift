@@ -37,7 +37,7 @@ struct GroupCreationView: View {
                     
                 } else{
                     ZStack{
-                        RoundedRectangle(cornerRadius: 25.0)
+                        Circle()
                             .frame(width: 150, height: 150)
                             .foregroundColor(Color("light-green"))
                         Image(systemName: "camera.fill")

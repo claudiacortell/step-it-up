@@ -42,12 +42,15 @@ struct ProgressBarView: View {
                             Text("Your current goal")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(Color("gray-text"))
-                            Image(systemName: "pencil")
+                            
+                            Image(systemName: "pencil.circle.fill")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.white)
                                 .onTapGesture {
                                     self.editViewPresented = true
                                 }
+                        
+                            
                             
                         }.padding(.top,20)
                         

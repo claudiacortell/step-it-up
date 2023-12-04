@@ -12,11 +12,10 @@ struct GroupListItem: View {
     @EnvironmentObject var groupModel: GroupVM
     var body: some View {
         HStack{
-            if !group.pfp.isEmpty{
-                GroupImageIcon(pfp: group.pfp, size: 50)
+                GroupImageIcon(groupId: group.id, size: 50)
                     .padding(.horizontal, 20)
-            }
-            VStack(alignment: .leading, spacing: 2){
+            
+                VStack(alignment: .leading, spacing: 2){
                 Text(group.name)
                     .font(.system(size: 16, weight: .semibold))
                 HStack(spacing: 2){

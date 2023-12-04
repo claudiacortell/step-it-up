@@ -11,6 +11,8 @@
 		751F04D32AFC0E2900382FD3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D22AFC0E2900382FD3 /* Enums.swift */; };
 		751F04D82AFC8E5E00382FD3 /* SmallSignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D72AFC8E5E00382FD3 /* SmallSignupButton.swift */; };
 		751F04DA2AFC9E7700382FD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F04D92AFC9E7700382FD3 /* BaseView.swift */; };
+		7542154E2B1D696F00F8250E /* GroupIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542154D2B1D696F00F8250E /* GroupIcon.swift */; };
+		754215502B1D69A200F8250E /* PostPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542154F2B1D69A200F8250E /* PostPhoto.swift */; };
 		7542556D2AF5CC9600E9DB17 /* HealthCompApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */; };
 		7542556F2AF5CC9600E9DB17 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542556E2AF5CC9600E9DB17 /* ContentView.swift */; };
 		754255712AF5CC9700E9DB17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754255702AF5CC9700E9DB17 /* Assets.xcassets */; };
@@ -92,6 +94,8 @@
 		751F04D22AFC0E2900382FD3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		751F04D72AFC8E5E00382FD3 /* SmallSignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSignupButton.swift; sourceTree = "<group>"; };
 		751F04D92AFC9E7700382FD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7542154D2B1D696F00F8250E /* GroupIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIcon.swift; sourceTree = "<group>"; };
+		7542154F2B1D69A200F8250E /* PostPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhoto.swift; sourceTree = "<group>"; };
 		754255692AF5CC9600E9DB17 /* StepItUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepItUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7542556C2AF5CC9600E9DB17 /* HealthCompApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCompApp.swift; sourceTree = "<group>"; };
 		7542556E2AF5CC9600E9DB17 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				75A5582E2B18F49500AB0640 /* GroupImageIcon.swift */,
 				75B7D2842B008A59004E5DE0 /* TextField.swift */,
 				9D8409262B16E88B005FF535 /* ProfileIcon.swift */,
+				7542154D2B1D696F00F8250E /* GroupIcon.swift */,
+				7542154F2B1D69A200F8250E /* PostPhoto.swift */,
 				75A558152B18447100AB0640 /* SearchCell.swift */,
 				75A558172B18449600AB0640 /* FriendCell.swift */,
 				75A558052B18302300AB0640 /* SuccessView.swift */,
@@ -492,6 +498,7 @@
 				7542557B2AF5CCA800E9DB17 /* RegistrationView.swift in Sources */,
 				7F173D612B0A793D0066E2A5 /* GroupMember.swift in Sources */,
 				751F04D82AFC8E5E00382FD3 /* SmallSignupButton.swift in Sources */,
+				754215502B1D69A200F8250E /* PostPhoto.swift in Sources */,
 				7594E1F82B16A1D200E33A10 /* ProfileHealthStats.swift in Sources */,
 				75A5582F2B18F49500AB0640 /* GroupImageIcon.swift in Sources */,
 				754255842AF5CCF900E9DB17 /* UserVM.swift in Sources */,
@@ -534,6 +541,7 @@
 				75A558112B1842F200AB0640 /* RegistrationHeader.swift in Sources */,
 				75AD00972AFAE747004F28D2 /* Feed.swift in Sources */,
 				75A5581A2B18453500AB0640 /* LikeCommentButton.swift in Sources */,
+				7542154E2B1D696F00F8250E /* GroupIcon.swift in Sources */,
 				7F59B4002AFFDB2300D3B24A /* GroupsView.swift in Sources */,
 				7594E2042B16D87300E33A10 /* NoContentPost.swift in Sources */,
 				7545362F2B042C5800567E8D /* FriendSearchView.swift in Sources */,

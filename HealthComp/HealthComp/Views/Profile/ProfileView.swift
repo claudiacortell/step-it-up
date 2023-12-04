@@ -59,8 +59,7 @@ struct ProfileView: View {
                         .padding(.bottom, 20)
                     HStack(){
                         ProfileHealthStats()
-
-                        if let goal = goalModel.userGoal, !self.editGoalPresented {
+                        if let _ = goalModel.userGoal, !self.editGoalPresented {
                             ProgressBarView(editViewPresented: $editGoalPresented)
                         } else {
                             SetGoalView(clicked: editGoalPresented, isPresented: $editGoalPresented)
@@ -95,7 +94,7 @@ struct ProfileView: View {
             .refreshable {
                 Task{
                     await userModel.fetchCurrUser()
-                    await goalModel.fetchGoal()
+                    goalModel.fetchGoal()
                     healthModel.fetchAllHealthData()
                     if let friends_id = self.userModel.currentUser?.friends {
                         if friends_id.count > 0 {
