@@ -17,6 +17,7 @@ struct FriendsView: View {
                     LazyVGrid(columns: [GridItem(), GridItem(), GridItem()], spacing: 40){
                         ForEach(friends){ friend in
                             FriendCell(friend: friend)
+                                .padding(.vertical, 2)
                         }
                     }
                     .padding(.horizontal, 10)

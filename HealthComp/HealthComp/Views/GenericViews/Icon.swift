@@ -13,7 +13,7 @@ struct Icon: View{
         VStack{
             ProfileIcon(userId: friend.id, size: 60)
             Text("@\(friend.user.username)")
-                .font(.system(size: 12))
+                .font(.system(size: 12, weight: .semibold))
         }
     }
 }

@@ -33,7 +33,7 @@ struct CreatePostView: View {
                             Image(systemName: "xmark.circle.fill")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("button-accent"))
                         })
                         Spacer()
                     }
@@ -48,6 +48,7 @@ struct CreatePostView: View {
                         }, label: {
                             Text("Share")
                                 .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color("const-navy"))
                                 .padding()
                                 .frame(height: 30)
                                 .background(Color("medium-green"))

@@ -37,7 +37,7 @@ struct GroupCell: View {
                     if group.members.count > 2 {
                         Text("+\(group.members.count - 2)")
                             .font(.footnote)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("const-navy"))
                             .frame(width: UIScreen.main.bounds.width * 0.1, height: UIScreen.main.bounds.width * 0.1)
                             .background(Color("light-green"))
                             .clipShape(Circle())
