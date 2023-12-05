@@ -46,12 +46,12 @@ struct GroupsDetailView: View {
                 if let topUser = group.members.max(by: { $0.data.dailyStep ?? 0 < $1.data.dailyStep ?? 0 }) {
                     Text(" \(Text(topUser.user.name).bold()) currently has the most steps with \(topUser.data.dailyStep ?? 0) steps! Step it up!")
                         .font(.custom("DIN Alternate",fixedSize: 18))
-                        .foregroundColor(Color("grey-to-black"))
+//                        .foregroundColor(Color("grey-to-black"))
                         .padding()
                 } else {
                     Text("No user data available.")
                         .font(.custom("DIN Alternate",fixedSize: 18))
-                        .foregroundColor(Color("grey-to-black"))
+//                        .foregroundColor(Color("grey-to-black"))
                         .padding()
                 }
                 
