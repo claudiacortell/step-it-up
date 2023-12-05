@@ -28,7 +28,7 @@ struct GroupListItem: View {
                             .frame(width: 30, height: 30)
                             .overlay{
                                 Text("+\(group.members.count - 4)")
-                                    .foregroundColor(Color("dark-blue"))
+                                    .foregroundColor(Color("const-navy"))
                                     .font(.system(size: 10, weight: .bold))
                             }
                     }
